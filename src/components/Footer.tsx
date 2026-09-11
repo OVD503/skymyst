@@ -22,11 +22,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
   };
 
   return (
-    <footer id="main-footer" className="bg-[#003B2B] text-stone-200 pt-16 pb-10 border-t border-emerald-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-14 border-b border-emerald-900/60">
+    <footer id="main-footer" className="bg-[#003B2B] text-stone-200 pt-10 sm:pt-16 pb-6 sm:pb-10 border-t border-emerald-950">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 pb-8 sm:pb-14 border-b border-emerald-900/60">
           {/* Left Column: Brand & Contact info */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-6 space-y-4 sm:space-y-6">
             <div className="flex items-start">
               <SkymystLogo variant="light" onClick={() => onNavigate('home')} />
             </div>
@@ -59,9 +59,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
           </div>
 
           {/* Right Column: Subscribe & Links */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-5 sm:space-y-8">
             <div>
-              <h3 className="font-serif text-2xl text-white mb-4">Subscribe</h3>
+              <h3 className="font-serif text-xl sm:text-2xl text-white mb-3 sm:mb-4">Subscribe</h3>
 
               {/* Newsletter form */}
               <form onSubmit={handleSubscribe} className="relative max-w-md">
@@ -138,7 +138,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
         </div>
 
         {/* Bottom Legal & Socials */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-4">
+        <div className="pt-5 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-3 sm:gap-4">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <span>© Skymyst 2026, Inc</span>
             <span className="text-emerald-800">|</span>

@@ -33,7 +33,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
         <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/60 to-black/90" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto h-full px-6 sm:px-10 lg:px-16 py-8 flex flex-col justify-between text-white">
+      <div className="relative z-10 max-w-7xl mx-auto h-full px-4 sm:px-8 lg:px-16 py-5 sm:py-8 flex flex-col justify-between text-white">
         {/* Top bar: CLOSE button on far right */}
         <div className="flex justify-end">
           <button
@@ -46,9 +46,9 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
         </div>
 
         {/* Middle Section: Left GDPR Info & Right Massive Underlined Links */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 my-auto items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-8 my-auto items-center">
           {/* Left Column: ABOUT US text */}
-          <div className="md:col-span-6 space-y-4 max-w-lg">
+          <div className="md:col-span-6 space-y-3 sm:space-y-4 max-w-lg hidden md:block">
             <span className="text-xs uppercase tracking-[0.25em] text-stone-400 font-semibold block">
               ABOUT US
             </span>
@@ -69,14 +69,14 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
           </div>
 
           {/* Right Column: Prominent Underlined Links */}
-          <div className="md:col-span-6 flex flex-col items-start md:items-end space-y-5 sm:space-y-7">
+          <div className="md:col-span-6 flex flex-col items-start md:items-end space-y-3 sm:space-y-5 md:space-y-7">
             <button
               id="menu-link-book-a-call"
               onClick={() => {
                 onClose();
                 onOpenContact();
               }}
-              className="font-serif text-3xl sm:text-4xl md:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-8 decoration-2"
+              className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-4 sm:underline-offset-8 decoration-1 sm:decoration-2"
             >
               Book a Call
             </button>
@@ -87,7 +87,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
                 onNavigate('partner');
                 onClose();
               }}
-              className="font-serif text-3xl sm:text-4xl md:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-8 decoration-2"
+              className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-4 sm:underline-offset-8 decoration-1 sm:decoration-2"
             >
               Become a Partner
             </button>
@@ -98,7 +98,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
                 onNavigate('about');
                 onClose();
               }}
-              className="font-serif text-3xl sm:text-4xl md:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-8 decoration-2"
+              className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-4 sm:underline-offset-8 decoration-1 sm:decoration-2"
             >
               About Us
             </button>
@@ -109,7 +109,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
                 onNavigate('search');
                 onClose();
               }}
-              className="font-serif text-3xl sm:text-4xl md:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-8 decoration-2"
+              className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-4 sm:underline-offset-8 decoration-1 sm:decoration-2"
             >
               Explore Stays & Map
             </button>
@@ -117,7 +117,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
         </div>
 
         {/* Bottom Bar: Socials (Left) and Copyright / Legal (Right) */}
-        <div className="pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-4">
+        <div className="pt-4 sm:pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-3 sm:gap-4">
           {/* Social Links with Circle Icon + Underlined text */}
           <div className="flex items-center space-x-6">
             <a
