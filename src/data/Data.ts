@@ -99,7 +99,7 @@ export const PROPERTIES: Property[] = [
   },
   {
     id: 'sukoon',
-    name: 'Sukoon Stay & Mountain View (Managed by SKYMYST – Digital Partner)',
+    name: 'Sukoon Stay & Mountain View',
     location: 'Pandeygoan, Almora',
     state: 'Uttrakhand',
     propertyType: '2-Bedroom Entire Home',
@@ -189,7 +189,7 @@ export const PROPERTIES: Property[] = [
     name: 'The Sunlit Homestay',
     location: 'Ghorakhal, Bhowali',
     state: 'Uttrakhand',
-    propertyType: '3BHK Independent Hillside Cottage (Managed by SKYMYST)',
+    propertyType: '3BHK Independent Hillside Cottage',
     guestCapacityText: 'Accommodates up to 6 guests',
     guests: 6,
     bedrooms: 3,

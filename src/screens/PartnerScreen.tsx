@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, Globe, TrendingUp, BarChart3, Phone } from 'lucide-react';
+import { ChevronDown, ChevronUp, Home, Building2, Sprout } from 'lucide-react';
 import { FAQS } from '../data/Data';
 
 interface PartnerScreenProps {
@@ -7,180 +7,185 @@ interface PartnerScreenProps {
 }
 
 export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) => {
-  const [openFaq, setOpenFaq] = useState<number>(0);
+  // All FAQs open by default
+  const [openFaqs, setOpenFaqs] = useState<number[]>(FAQS.map((_, i) => i));
+
+  const toggleFaq = (idx: number) => {
+    setOpenFaqs((prev) =>
+      prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
+    );
+  };
 
   return (
-    <div className="w-full">
-      {/* 1. Hero Section (Image 1) */}
-      <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] min-h-[420px] sm:min-h-[520px] md:min-h-[680px] flex items-center justify-center overflow-hidden">
+    <div className="w-full bg-white font-sans antialiased text-stone-800">
+      {/* 1. Hero Banner Section */}
+      <section className="relative h-[65vh] sm:h-[75vh] md:h-[80vh] min-h-[440px] sm:min-h-[540px] flex items-center justify-center overflow-hidden">
+        {/* Background image: warm homestay lounge/dining window view with hanging lights */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=85"
+            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=85"
             alt="Warm atmospheric boutique homestay interior"
-            className="w-full h-full object-cover brightness-[0.4]"
+            className="w-full h-full object-cover brightness-[0.45]"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F5] via-transparent to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/60" />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-4">
-          <h1 className="font-casiome-impera hero-title text-2xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-normal leading-tight tracking-tight">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-4 pt-12">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-normal leading-tight tracking-tight">
             List Your Property on Skymyst Group
           </h1>
-          <p className="text-xs sm:text-sm md:text-base text-stone-200 max-w-2xl mx-auto leading-relaxed font-light">
-            When you list with Skymyst Group, you&apos;ll enjoy extended reach that can lead to more
-            diverse travellers and more opportunity for your business.
+          <p className="text-xs sm:text-sm md:text-base text-stone-200 max-w-2xl mx-auto leading-relaxed font-sans font-light">
+            When you list with Skymyst Group, you&apos;ll enjoy extended reach that can lead to more diverse travellers and more opportunity for your business.
           </p>
-          <div className="pt-4">
-            <button
-              onClick={onOpenContact}
-              className="px-8 py-3.5 rounded-full bg-[#004030] hover:bg-[#002f23] text-white text-sm font-medium transition shadow-lg active:scale-95"
-            >
-              Book a call with our team
-            </button>
-          </div>
         </div>
       </section>
 
-      {/* 2. Three Value Propositions */}
-      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
-          <div className="bg-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-stone-200 shadow-xs space-y-3 sm:space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-100 flex items-center justify-center text-[#004030]">
-              <Globe className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif text-xl sm:text-2xl text-stone-900 font-medium">
-              Reach a wealth of travellers
-            </h3>
-            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-light">
-              Connect with high-value guests looking for curated homestays and memorable retreats
-              across India and international destinations.
+      {/* 2. Three Value Propositions Section */}
+      <section className="bg-white py-16 sm:py-24 border-b border-[#EAE3D2]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-2xl mx-auto mb-12 sm:mb-16">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal tracking-tight mb-3">
+              Bring the right guests within reach
+            </h2>
+            <p className="text-xs sm:text-sm text-stone-500 font-sans leading-relaxed max-w-xl mx-auto font-light">
+              Connect with millions of people whose purpose, taste and budget make your property the perfect place to stay.
             </p>
           </div>
 
-          <div className="bg-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-stone-200 shadow-xs space-y-3 sm:space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-100 flex items-center justify-center text-amber-800">
-              <TrendingUp className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif text-xl sm:text-2xl text-stone-900 font-medium">
-              Drive bookings year round
-            </h3>
-            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-light">
-              Maximize your occupancy with dynamic pricing models, seasonal marketing campaigns,
-              and dedicated concierge support.
-            </p>
-          </div>
-
-          <div className="bg-white p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-stone-200 shadow-xs space-y-3 sm:space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center text-blue-800">
-              <BarChart3 className="w-6 h-6" />
-            </div>
-            <h3 className="font-serif text-xl sm:text-2xl text-stone-900 font-medium">
-              Grow your business
-            </h3>
-            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-light">
-              Transparent monthly revenue statements, complete property upkeep SOPs, and actionable
-              insights to optimize profitability.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Hotel Partner Spotlight (Image 1) */}
-      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
-        <div className="bg-[#003B2B] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl text-white">
-          <div className="grid grid-cols-1 md:grid-cols-12 items-center">
-            {/* Left Column: Portrait */}
-            <div className="md:col-span-5 h-48 sm:h-72 md:h-full min-h-[200px] sm:min-h-[380px] relative">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=85"
-                alt="Hasnain Alloo, Commercial Director"
-                className="w-full h-full object-cover object-top"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#003B2B]/40 hidden md:block" />
-            </div>
-
-            {/* Right Column: Quote & CTA */}
-            <div className="md:col-span-7 p-5 sm:p-8 md:p-12 space-y-4 sm:space-y-6">
-              <span className="text-xs uppercase tracking-widest text-[#d8f95c] font-semibold">
-                Partner Spotlight
-              </span>
-
-              <h2 className="font-serif text-xl sm:text-3xl md:text-4xl font-normal leading-snug">
-                Drive demand like our hotel partners
-              </h2>
-
-              <blockquote className="text-xs sm:text-sm text-stone-200 leading-relaxed font-light">
-                &quot;Hear how Skymyst Group helps Edwardian Hotels London to reach higher-value
-                travellers across our global market from Commercial Director Hasnain Alloo.&quot;
-              </blockquote>
-
-              <div className="pt-2 space-y-2">
-                <p className="text-xs text-stone-300">Hasnain Alloo — Commercial Director</p>
-                <div>
-                  <a
-                    href="tel:+919876543210"
-                    className="text-xl sm:text-2xl font-serif text-[#d8f95c] hover:underline block"
-                  >
-                    Contact Us : +91 987 6543 210
-                  </a>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-stone-200/80 items-start">
+            {/* Column 1 */}
+            <div className="py-6 md:py-0 md:px-8 flex flex-col items-center text-center space-y-3">
+              <div className="w-10 h-10 rounded-full bg-[#D2F1E4] flex items-center justify-center text-[#005B41] mb-2">
+                <Home className="w-5 h-5" />
               </div>
+              <h3 className="font-bold text-sm sm:text-base text-[#2C2926] font-sans">
+                Reach a wealth of travellers
+              </h3>
+              <p className="text-xs text-stone-500 font-sans leading-relaxed max-w-xs font-light">
+                Access guests who stay longer, cancel less, and spend more across our travel brands and global B2B distribution network.
+              </p>
+            </div>
 
-              <div>
-                <button
-                  onClick={onOpenContact}
-                  className="px-7 py-3 rounded-full bg-stone-900 hover:bg-black text-white text-xs sm:text-sm font-medium transition shadow-md active:scale-95"
-                >
-                  Book a call
-                </button>
+            {/* Column 2 */}
+            <div className="py-6 md:py-0 md:px-8 flex flex-col items-center text-center space-y-3">
+              <div className="w-10 h-10 rounded-full bg-[#D2F1E4] flex items-center justify-center text-[#005B41] mb-2">
+                <Building2 className="w-5 h-5" />
               </div>
+              <h3 className="font-bold text-sm sm:text-base text-[#2C2926] font-sans">
+                Drive bookings year round
+              </h3>
+              <p className="text-xs text-stone-500 font-sans leading-relaxed max-w-xs font-light">
+                Target travellers who book weekend getaways, travel mid-week for work, or fill your shoulder-season rooms.
+              </p>
+            </div>
+
+            {/* Column 3 */}
+            <div className="py-6 md:py-0 md:px-8 flex flex-col items-center text-center space-y-3">
+              <div className="w-10 h-10 rounded-full bg-[#D2F1E4] flex items-center justify-center text-[#005B41] mb-2">
+                <Sprout className="w-5 h-5" />
+              </div>
+              <h3 className="font-bold text-sm sm:text-base text-[#2C2926] font-sans">
+                Grow your business
+              </h3>
+              <p className="text-xs text-stone-500 font-sans leading-relaxed max-w-xs font-light">
+                Leverage data from our pricing and visibility tools to help capture valuable guests and maximize revenue.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 4. FAQ Accordion (Image 1) */}
-      <section id="faq-section" className="max-w-4xl mx-auto px-3 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-24">
-        <div className="text-center mb-8 sm:mb-12">
-          <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-1">
-            Questions
-          </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 font-normal">
-            Frequently asked questions
-          </h2>
-        </div>
+      {/* 3. Partner Spotlight Section */}
+      <section className="bg-[#FFF9E8] py-16 sm:py-24 border-b border-[#EAE3D2]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-2xl mx-auto mb-10">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal tracking-tight mb-3">
+              Drive demand like our hotel partners
+            </h2>
+            <p className="text-xs sm:text-sm text-stone-600 font-sans leading-relaxed max-w-xl mx-auto font-light">
+              Hear how Skymyst Group helps Edwardian Hotels London to reach higher-value travellers across our global market from Commercial Director Hasnain Alloo.
+            </p>
+          </div>
 
-        <div className="space-y-3 sm:space-y-4">
-          {FAQS.map((faq, idx) => (
-            <div
-              key={idx}
-              className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-xs transition"
-            >
-              <button
-                onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
-                className="w-full p-4 sm:p-5 md:p-6 text-left flex items-center justify-between hover:bg-stone-50/50 transition"
+          {/* Centered Image Card */}
+          <div className="mb-8 max-w-lg mx-auto">
+            <img
+              src=""
+              className="rounded-[28px] w-full h-64 sm:h-80 object-cover shadow-sm"
+            />
+          </div>
+
+          {/* Contact Us + Book a Call Button below image */}
+          <div className="max-w-lg mx-auto flex items-center justify-between pt-2">
+            <div className="text-left">
+              <span className="text-xs text-stone-500 font-sans block mb-0.5">Contact Us</span>
+              <a
+                href="tel:+919876543210"
+                className="text-xl sm:text-2xl font-serif text-[#2C2926] font-normal hover:underline"
               >
-                <span className="font-serif text-base sm:text-lg text-stone-900 pr-4">
-                  {faq.question}
-                </span>
-                {openFaq === idx ? (
-                  <ChevronUp className="w-5 h-5 text-stone-500 shrink-0" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-stone-500 shrink-0" />
-                )}
-              </button>
-
-              {openFaq === idx && (
-                <div className="p-6 pt-0 border-t border-stone-100 text-xs sm:text-sm text-stone-600 leading-relaxed font-light bg-stone-50/30">
-                  {faq.answer}
-                </div>
-              )}
+                +91 987 6543 210
+              </a>
             </div>
-          ))}
+            <div>
+              <button
+                onClick={onOpenContact}
+                className="bg-[#00704A] hover:bg-[#00583A] text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium transition-all shadow-sm active:scale-95"
+              >
+                Book a call
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FAQ Section */}
+      <section id="faq-section" className="bg-white py-16 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left Header Column */}
+            <div className="md:col-span-5 lg:col-span-4">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal leading-[1.15] tracking-tight">
+                Frequently<br />Asked Questions
+              </h2>
+            </div>
+
+            {/* Right Accordion Column */}
+            <div className="md:col-span-7 lg:col-span-8 border-t border-[#E7E0CE]">
+              {FAQS.map((faq, idx) => {
+                const isOpen = openFaqs.includes(idx);
+                return (
+                  <div
+                    key={idx}
+                    className={`border-b transition-colors ${
+                      isOpen ? 'border-b-2 border-[#00704A]' : 'border-[#E7E0CE]'
+                    }`}
+                  >
+                    <button
+                      onClick={() => toggleFaq(idx)}
+                      className="w-full py-5 sm:py-6 text-left flex items-center justify-between group"
+                    >
+                      <span className="font-bold text-xs sm:text-sm text-[#2C2926] font-sans pr-4 leading-snug">
+                        {faq.question}
+                      </span>
+                      <div className="w-7 h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
+                        {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                      </div>
+                    </button>
+
+                    {isOpen && (
+                      <div className="pb-5 sm:pb-6 text-xs sm:text-sm text-stone-600 font-sans leading-relaxed font-light">
+                        {faq.answer}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
     </div>
   );
 };
+

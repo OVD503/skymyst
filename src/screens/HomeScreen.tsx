@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, ChevronUp, ChevronRight, ChevronLeft, Star, Heart, Calendar, MapPin, Users, Home } from 'lucide-react';
+import { Search, ChevronDown, ChevronUp, ChevronRight, ChevronLeft, Calendar, MapPin, Users, Home } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ScreenPage } from '../types';
-import { DESTINATIONS, PROPERTIES, TESTIMONIALS } from '../data/Data';
+import { DESTINATIONS, PROPERTIES } from '../data/Data';
+import { UserAvatar } from '../components/UserAvatar';
 
 interface HomeScreenProps {
   onNavigate: (page: ScreenPage) => void;
@@ -50,95 +51,92 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#FFF9E8]">
-      {/* 1. Hero Section (Image 7) */}
-      <section className="relative h-screen min-h-[520px] sm:min-h-[680px] md:min-h-[780px] w-full flex items-center justify-center">
-        {/* Cinematic background video */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover brightness-[0.75]"
-          >
-            <source src="/assets/bg.mp4" type="video/mp4" />
-          </video>
+    <div className="w-full bg-[#FFF9E8] font-sans antialiased text-stone-800">
+      {/* 1. Hero Section (Uses bg.png background image with curved bottom edges) */}
+      <section className="relative h-[95vh] min-h-[580px] max-h-[850px] w-full flex items-center justify-center overflow-hidden rounded-b-[45px] sm:rounded-b-[75px] md:rounded-b-[110px] shadow-sm">
+        {/* Background Image bg.png */}
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-b-[45px] sm:rounded-b-[75px] md:rounded-b-[110px]">
+          <img
+            src="/assets/bg.png"
+            alt="Skymyst Mountain Stays"
+            className="w-full h-full object-cover object-center brightness-[0.80]"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
         </div>
 
-        {/* Hero Title */}
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-3 -mt-20 sm:-mt-16">
-          <h1 className="font-casiome-impera hero-title text-3xl sm:text-5xl md:text-7xl text-white font-semibold tracking-tight leading-[1.1]">
-            A Place to Stay.
-            <br />A Feeling to Keep.
+        {/* Hero Title - Exact match from image */}
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-4 -mt-16 sm:-mt-12">
+          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[76px] text-white font-normal tracking-tight leading-[1.12] drop-shadow-md">
+            Exceptional Stays.
+            <br />
+            Seamlessly managed.
           </h1>
         </div>
 
-        {/* Floating Search Bar (Perfect Rectangle) */}
-        <div className="absolute bottom-12 sm:bottom-8 md:bottom-10 left-0 right-0 z-30 px-3 sm:px-4">
+        {/* Floating Search Bar (Exact pill style matching image) */}
+        <div className="absolute bottom-8 sm:bottom-10 md:bottom-12 left-0 right-0 z-30 px-3 sm:px-6">
           <form
             onSubmit={handleSearchSubmit}
-            className="max-w-5xl mx-auto bg-white/20 sm:bg-white backdrop-blur-xl sm:backdrop-blur-none rounded-2xl sm:rounded-xl shadow-2xl p-2 sm:p-3 md:p-4 flex flex-col lg:flex-row items-stretch lg:items-center gap-1.5 sm:gap-3 border border-white/30 sm:border-stone-200 relative transition-all"
+            className="max-w-4xl mx-auto bg-white rounded-2xl sm:rounded-full shadow-2xl p-2 sm:p-2.5 flex flex-col md:flex-row items-center gap-2 border border-stone-200/80 transition-all"
           >
             {/* 1. LOCATION */}
-            <div className="flex-1 px-2 sm:px-3 py-1 sm:py-1.5 border-b border-white/20 sm:border-stone-200 lg:border-b-0 lg:border-r">
-              <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-200 sm:text-stone-400 font-semibold mb-0 sm:mb-0.5">
-                <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-300 sm:text-[#005B41]" />
+            <div className="flex-1 w-full px-4 py-1.5 border-b md:border-b-0 md:border-r border-stone-200">
+              <label className="flex items-center space-x-1 text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0.5">
+                <MapPin className="w-3 h-3 text-[#005B41]" />
                 <span>Location</span>
               </label>
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="w-full text-[11px] sm:text-sm font-semibold text-white sm:text-stone-800 focus:outline-none bg-transparent cursor-pointer py-0 sm:py-0 [&>option]:bg-stone-900 [&>option]:text-white sm:[&>option]:bg-white sm:[&>option]:text-stone-800"
+                className="w-full text-xs sm:text-sm font-medium text-stone-800 focus:outline-none bg-transparent cursor-pointer"
               >
-                <option value="All Locations">All Locations (Uttrakhand)</option>
+                <option value="All Locations">location</option>
                 <option value="Almora">Almora, Uttrakhand</option>
                 <option value="Bhimtal">Bhimtal, Uttrakhand</option>
                 <option value="Bhowali">Bhowali, Uttrakhand</option>
               </select>
             </div>
 
-            {/* 2. STAYS (Linked to real data PROPERTIES) */}
-            <div className="flex-1 px-2 sm:px-3 py-1 sm:py-1.5 border-b border-white/20 sm:border-stone-200 lg:border-b-0 lg:border-r">
-              <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-200 sm:text-stone-400 font-semibold mb-0 sm:mb-0.5">
-                <Home className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-300 sm:text-[#005B41]" />
+            {/* 2. STAYS */}
+            <div className="flex-1 w-full px-4 py-1.5 border-b md:border-b-0 md:border-r border-stone-200">
+              <label className="flex items-center space-x-1 text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0.5">
+                <Home className="w-3 h-3 text-[#005B41]" />
                 <span>Stays</span>
               </label>
               <select
                 value={selectedProperty}
                 onChange={(e) => setSelectedProperty(e.target.value)}
-                className="w-full text-[11px] sm:text-sm font-semibold text-white sm:text-stone-800 focus:outline-none bg-transparent cursor-pointer truncate py-0 sm:py-0 [&>option]:bg-stone-900 [&>option]:text-white sm:[&>option]:bg-white sm:[&>option]:text-stone-800"
+                className="w-full text-xs sm:text-sm font-medium text-stone-800 focus:outline-none bg-transparent cursor-pointer truncate"
               >
-                <option value="all">All Stays (Curated Collection)</option>
+                <option value="all">stays</option>
                 {PROPERTIES.map((prop) => (
                   <option key={prop.id} value={prop.id}>
-                    {prop.name} ({prop.location})
+                    {prop.name}
                   </option>
                 ))}
               </select>
             </div>
 
-            {/* 3. DATES (With Visual Calendar Picker Popup) */}
-            <div className="flex-1 px-2 sm:px-3 py-1 sm:py-1.5 border-b border-white/20 sm:border-stone-200 lg:border-b-0 lg:border-r relative">
-              <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-200 sm:text-stone-400 font-semibold mb-0 sm:mb-0.5">
-                <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-300 sm:text-[#005B41]" />
+            {/* 3. DATES */}
+            <div className="flex-1 w-full px-4 py-1.5 border-b md:border-b-0 md:border-r border-stone-200 relative">
+              <label className="flex items-center space-x-1 text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0.5">
+                <Calendar className="w-3 h-3 text-[#005B41]" />
                 <span>Dates</span>
               </label>
               <button
                 type="button"
                 onClick={() => setShowDatePicker(!showDatePicker)}
-                className="w-full text-left text-[11px] sm:text-sm font-semibold text-white sm:text-stone-800 focus:outline-none bg-transparent flex items-center justify-between py-0 sm:py-0"
+                className="w-full text-left text-xs sm:text-sm font-medium text-stone-800 focus:outline-none bg-transparent flex items-center justify-between"
               >
                 <span className="truncate">
-                  {checkInDate ? (checkOutDate ? `${checkInDate} - ${checkOutDate}` : checkInDate) : 'Select Dates'}
+                  {checkInDate ? (checkOutDate ? `${checkInDate} - ${checkOutDate}` : checkInDate) : 'check in date'}
                 </span>
-                <ChevronDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-stone-300 sm:text-stone-400 shrink-0 ml-1" />
+                <ChevronDown className="w-3.5 h-3.5 text-stone-400 shrink-0 ml-1" />
               </button>
 
-              {/* Visual Calendar Dropdown Popup - Positioned Upwards to Prevent Clipping */}
+              {/* Date Picker Dropdown */}
               {showDatePicker && (
-                <div className="absolute bottom-full left-0 sm:left-auto lg:-left-12 mb-3 bg-white rounded-2xl shadow-2xl border border-stone-200 p-5 z-50 w-80 sm:w-96 text-stone-900 animate-in fade-in zoom-in-95 duration-150">
+                <div className="absolute bottom-full left-0 md:-left-12 mb-3 bg-white rounded-2xl shadow-2xl border border-stone-200 p-5 z-50 w-80 sm:w-96 text-stone-900 animate-in fade-in zoom-in-95 duration-150">
                   <div className="flex justify-between items-center pb-3 border-b border-stone-100 mb-3">
                     <div>
                       <span className="text-xs font-bold text-stone-900 block">Select Travel Dates</span>
@@ -156,26 +154,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     </button>
                   </div>
 
-                  {/* Month Header */}
                   <div className="flex items-center justify-between mb-3 px-1">
-                    <button
-                      type="button"
-                      className="p-1 rounded-md text-stone-400 hover:text-stone-700 hover:bg-stone-100"
-                    >
+                    <button type="button" className="p-1 rounded-md text-stone-400 hover:text-stone-700">
                       <ChevronLeft className="w-4 h-4" />
                     </button>
                     <span className="text-xs font-bold text-stone-800 uppercase tracking-wider">
                       October 2026
                     </span>
-                    <button
-                      type="button"
-                      className="p-1 rounded-md text-stone-400 hover:text-stone-700 hover:bg-stone-100"
-                    >
+                    <button type="button" className="p-1 rounded-md text-stone-400 hover:text-stone-700">
                       <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
 
-                  {/* Day Names Header */}
                   <div className="grid grid-cols-7 gap-1 text-center text-[10px] font-semibold text-stone-400 uppercase mb-1">
                     <span>Su</span>
                     <span>Mo</span>
@@ -186,7 +176,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     <span>Sa</span>
                   </div>
 
-                  {/* Days Grid (October 2026 starts on Thursday) */}
                   <div className="grid grid-cols-7 gap-1 text-center text-xs mb-4">
                     <div />
                     <div />
@@ -206,13 +195,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                           key={d}
                           type="button"
                           onClick={() => handleDayClick(d)}
-                          className={`h-8 w-8 rounded-full flex items-center justify-center font-medium transition text-xs mx-auto ${
-                            isStart || isEnd
-                              ? 'bg-[#005B41] text-white font-bold shadow-sm'
-                              : inRange
+                          className={`h-8 w-8 rounded-full flex items-center justify-center font-medium transition text-xs mx-auto ${isStart || isEnd
+                            ? 'bg-[#005B41] text-white font-bold shadow-sm'
+                            : inRange
                               ? 'bg-emerald-100 text-[#005B41] font-semibold'
                               : 'text-stone-700 hover:bg-stone-100'
-                          }`}
+                            }`}
                         >
                           {d}
                         </button>
@@ -245,34 +233,33 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               )}
             </div>
 
-            {/* 4. GUESTS (Supporting up to 12 Guests) */}
-            <div className="flex-1 px-2 sm:px-3 py-1 sm:py-1.5 flex items-center justify-between">
-              <div className="w-full">
-                <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-200 sm:text-stone-400 font-semibold mb-0 sm:mb-0.5">
-                  <Users className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-300 sm:text-[#005B41]" />
+            {/* 4. GUESTS & BUTTON */}
+            <div className="w-full md:w-auto flex items-center justify-between pl-2">
+              <div className="hidden lg:block px-2">
+                <label className="flex items-center space-x-1 text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0.5">
+                  <Users className="w-3 h-3 text-[#005B41]" />
                   <span>Guests</span>
                 </label>
                 <select
                   value={guestsCount}
                   onChange={(e) => setGuestsCount(Number(e.target.value))}
-                  className="w-full text-[11px] sm:text-sm font-semibold text-white sm:text-stone-800 focus:outline-none bg-transparent cursor-pointer py-0 sm:py-0 [&>option]:bg-stone-900 [&>option]:text-white sm:[&>option]:bg-white sm:[&>option]:text-stone-800"
+                  className="text-xs font-medium text-stone-800 focus:outline-none bg-transparent cursor-pointer"
                 >
                   {Array.from({ length: 12 }, (_, i) => i + 1).map((num) => (
                     <option key={num} value={num}>
-                      {num} {num === 1 ? 'Guest' : 'Guests'} (up to 12)
+                      {num} {num === 1 ? 'Guest' : 'Guests'}
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 id="hero-find-trip-btn"
-                className="ml-2 sm:ml-3 px-3.5 sm:px-6 py-2 sm:py-3.5 rounded-xl bg-emerald-600/90 sm:bg-[#004030] hover:bg-emerald-600 sm:hover:bg-[#002f23] text-white flex items-center space-x-2 text-[11px] sm:text-xs md:text-sm font-semibold transition shrink-0 shadow-lg border border-white/20 sm:border-transparent active:scale-95"
+                className="w-full md:w-auto px-6 py-3 rounded-full bg-[#005B41] hover:bg-[#004030] text-white flex items-center justify-center space-x-2 text-xs sm:text-sm font-semibold transition shrink-0 shadow-md active:scale-95"
               >
-                <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                <span className="hidden sm:inline">Find Trip Now</span>
+                <Search className="w-4 h-4" />
+                <span>Find Trip Now</span>
               </button>
             </div>
           </form>
@@ -280,14 +267,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 2. Featured Properties Section */}
-      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-20">
-        <div className="flex flex-wrap items-end justify-between gap-3 mb-5 sm:mb-8">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
+        <div className="flex flex-wrap items-end justify-between gap-3 mb-6 sm:mb-8">
           <div>
-            <span className="text-sm font-normal text-stone-700 block mb-1">
+            <span className="text-xs font-normal text-stone-500 block mb-1">
               Featured Properties
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 font-normal">
-              Handpick stays, Just for you.
+              Handpick stays, just for you.
             </h2>
           </div>
           <div className="flex items-center space-x-3">
@@ -296,7 +283,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 const container = document.getElementById('featured-properties-slider');
                 if (container) container.scrollBy({ left: -320, behavior: 'smooth' });
               }}
-              className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white hover:border-stone-900 transition"
+              className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white transition"
               aria-label="Previous properties"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -306,22 +293,21 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 const container = document.getElementById('featured-properties-slider');
                 if (container) container.scrollBy({ left: 320, behavior: 'smooth' });
               }}
-              className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white hover:border-stone-900 transition"
+              className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white transition"
               aria-label="Next properties"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => onNavigate('search')}
-              id="featured-see-all-btn"
-              className="px-6 py-2.5 rounded-full border border-stone-700 text-stone-800 text-sm font-medium hover:bg-stone-900 hover:text-white transition shrink-0"
+              className="px-6 py-2.5 rounded-full border border-stone-700 text-stone-800 text-xs sm:text-sm font-medium hover:bg-stone-900 hover:text-white transition shrink-0"
             >
               See All
             </button>
           </div>
         </div>
 
-        {/* Sliding Row Container for All 5 Cards */}
+        {/* Property Cards Slider */}
         <div
           id="featured-properties-slider"
           className="flex overflow-x-auto gap-6 pb-6 pt-2 scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
@@ -329,29 +315,23 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           {PROPERTIES.map((prop, idx) => (
             <motion.div
               key={prop.id}
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: 0.55,
-                delay: idx * 0.08,
-                ease: [0.21, 0.47, 0.32, 0.98],
-              }}
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
               onClick={() => {
                 onSelectProperty(prop.id);
                 onNavigate('property');
               }}
-              className="group cursor-pointer flex flex-col justify-between w-[240px] sm:w-[280px] lg:w-[300px] shrink-0 snap-start"
+              className="group cursor-pointer flex flex-col justify-between w-[250px] sm:w-[280px] lg:w-[290px] shrink-0 snap-start"
             >
               <div>
-                {/* Standalone Rounded Image Container with Badge */}
-                <div className="relative aspect-[4/3] rounded-[18px] sm:rounded-[24px] overflow-hidden bg-stone-100 mb-2 sm:mb-3 shadow-xs group-hover:shadow-md transition">
+                <div className="relative aspect-[4/3] rounded-[22px] overflow-hidden bg-stone-100 mb-3 shadow-xs group-hover:shadow-md transition">
                   <img
                     src={prop.images[0]}
                     alt={prop.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                    referrerPolicy="no-referrer"
                   />
                   {prop.discountBadge && (
                     <span className="absolute top-3 right-3 bg-[#005B41] text-white text-[11px] font-semibold px-2.5 py-1 rounded-md shadow-xs">
@@ -359,20 +339,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     </span>
                   )}
                   {prop.isPremium && !prop.discountBadge && (
-                    <span className="absolute top-3 right-3 bg-[#FFC107] text-stone-900 text-[11px] font-bold px-2.5 py-1 rounded-md shadow-xs flex items-center space-x-1">
-                      <span>👑</span>
-                      <span>Premium</span>
+                    <span className="absolute top-3 right-3 bg-[#FFC107] text-stone-900 text-[11px] font-bold px-2.5 py-1 rounded-md shadow-xs">
+                      Featured
                     </span>
                   )}
                 </div>
 
-                {/* Details */}
                 <div className="space-y-1">
-                  <h3 className="font-semibold text-base text-[#005B41] group-hover:underline transition line-clamp-1">
+                  <h3 className="font-semibold text-sm sm:text-base text-[#005B41] group-hover:underline transition line-clamp-1">
                     {prop.name}
                   </h3>
-                  <p className="text-xs text-stone-600 font-normal">
-                    {prop.location}{prop.state ? `, ${prop.state}` : ''}
+                  <p className="text-xs text-stone-600 flex items-center space-x-1">
+                    <MapPin className="w-3 h-3 text-[#005B41]" />
+                    <span>{prop.location}, {prop.state}</span>
                   </p>
 
                   <div className="flex items-center space-x-1.5 pt-1 text-xs">
@@ -385,7 +364,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </div>
               </div>
 
-              {/* Pricing */}
               <div className="mt-3 space-y-0.5">
                 <div className="flex items-baseline space-x-1.5">
                   <span className="font-bold text-stone-900 text-base sm:text-lg">
@@ -411,9 +389,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 3. Curated Collection (Stays for every kind of gateway) */}
-      <section className="bg-[#FFF9E8] py-10 sm:py-16 md:py-20 border-y border-stone-200/60">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-3 mb-8 sm:mb-12">
+      <section className="bg-[#FFF9E8] py-12 sm:py-16 md:py-20 border-y border-stone-200/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-3 mb-8 sm:mb-10">
             <div>
               <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-1">
                 Curated Collection
@@ -422,33 +400,25 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 Stays for every kind of gateway
               </h2>
             </div>
-            <button
-              onClick={() => onNavigate('search')}
-              id="curated-explore-stays-btn"
-              className="px-6 py-2.5 rounded-full border border-stone-800 text-stone-800 text-xs sm:text-sm font-medium hover:bg-[#004030] hover:text-white hover:border-[#004030] transition shrink-0 active:scale-95 shadow-2xs"
-            >
-              Explore Stays
-            </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
-            {/* Card 1: Bonfire Nights */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 items-center">
+            {/* Card 1: Bonfire Nights (Larger, unequal left card) */}
             <motion.div
-              initial={{ opacity: 0, y: 36 }}
+              initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="group relative h-60 sm:h-80 md:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg cursor-pointer"
+              transition={{ duration: 0.5 }}
+              className="md:col-span-7 group relative h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
             >
               <img
                 src="/assets/bonfire.png"
                 alt="Bonfire Nights with friends playing guitar"
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-              <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white space-y-1 sm:space-y-2">
-                <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-medium text-amber-200">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
+                <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-amber-200">
                   Bonfire Nights
                 </h3>
                 <p className="text-xs sm:text-sm text-stone-200/90 max-w-md leading-relaxed font-light">
@@ -457,23 +427,22 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </div>
             </motion.div>
 
-            {/* Card 2: Romantic Honeymoon */}
+            {/* Card 2: Romantic Honeymoon (Smaller right card) */}
             <motion.div
-              initial={{ opacity: 0, y: 36 }}
+              initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="group relative h-60 sm:h-80 md:h-[420px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg cursor-pointer"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="md:col-span-5 group relative h-60 sm:h-80 md:h-[400px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
             >
               <img
                 src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=85"
                 alt="Romantic honeymoon couple"
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                referrerPolicy="no-referrer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-              <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 text-white space-y-1 sm:space-y-2">
-                <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-medium text-amber-200">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
+                <h3 className="font-serif text-2xl sm:text-3xl font-medium text-amber-200">
                   Romantic Honeymoon
                 </h3>
                 <p className="text-xs sm:text-sm text-stone-200/90 max-w-md leading-relaxed font-light">
@@ -486,10 +455,20 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </section>
 
-      {/* 4. Explore by Destination */}
-      <section className="relative py-10 sm:py-16 md:py-24 bg-gradient-to-b from-[#7CA4C5] via-[#A1BFD8] to-[#FFF9E8]">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="text-left text-white mb-6 sm:mb-12">
+      {/* 4. Explore by Destination (Uses sky.png background image) */}
+      <section className="relative py-12 sm:py-16 md:py-24 overflow-hidden">
+        {/* Background Image sky.png */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/assets/sky.png"
+            alt="Sky background"
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-[#FFF9E8]/20" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-left text-white mb-6 sm:mb-10">
             <span className="text-xs font-semibold text-white/80 uppercase tracking-widest block mb-1">
               Destinations
             </span>
@@ -498,39 +477,34 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </h2>
           </div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
             {DESTINATIONS.map((dest, idx) => (
               <motion.div
                 key={dest.id}
-                initial={{ opacity: 0, y: 24, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: 0.45,
-                  delay: idx * 0.07,
-                  ease: [0.21, 0.47, 0.32, 0.98],
-                }}
+                transition={{ duration: 0.4, delay: idx * 0.06 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 onClick={() => dest.available && onNavigate('search')}
-                className={`relative aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden shadow-md group ${dest.available ? 'cursor-pointer' : 'cursor-default'
+                className={`relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group ${dest.available ? 'cursor-pointer' : 'cursor-default'
                   }`}
               >
                 <img
                   src={dest.image}
                   alt={dest.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-500 brightness-90"
-                  referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
 
                 {dest.badge && (
-                  <span className="absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5 bg-red-600/90 text-white text-[8px] sm:text-[9px] font-semibold px-1.5 sm:px-2 py-0.5 rounded-full uppercase tracking-wider shadow">
+                  <span className="absolute top-2.5 right-2.5 bg-red-600 text-white text-[9px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider shadow">
                     {dest.badge}
                   </span>
                 )}
 
-                <div className="absolute bottom-2 sm:bottom-3 left-1.5 sm:left-3 right-1.5 sm:right-3 text-center">
-                  <h4 className="text-[10px] sm:text-xs md:text-sm font-semibold text-white tracking-wide">
+                <div className="absolute bottom-3 left-2 right-2 text-center">
+                  <h4 className="text-xs sm:text-sm font-semibold text-white tracking-wide">
                     {dest.name}
                   </h4>
                 </div>
@@ -540,207 +514,350 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </section>
 
-      {/* 5. Guest Stories (Loved by many of travellers — Bali) */}
-      <section className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-10 sm:py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-center">
-          {/* Left Column */}
-          <div className="lg:col-span-4 space-y-4 sm:space-y-6">
-            <div>
-              <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-2">
-                Guest Stories
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 font-normal leading-tight">
-                Loved by many of travellers
-                <br />
-                — Bali
-              </h2>
-            </div>
-
-            <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-              Bali has drawn surfers since the 70s: a legendary destination with waves for every
-              level. Surf every day, explore the island, and connect with people from all around the
-              world. This is the kind of trip that stays with you long after you leave.
-            </p>
-
-            <button
-              onClick={onOpenContact}
-              className="px-6 py-2.5 rounded-full bg-[#004030] hover:bg-[#002f23] text-white text-xs sm:text-sm font-medium transition shadow-sm active:scale-95"
-            >
-              Book a Call
-            </button>
-          </div>
-
-          {/* Middle: Tall Story Card */}
-          <div className="lg:col-span-4">
-            <div className="relative h-[280px] sm:h-[360px] lg:h-[440px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl group cursor-pointer">
-              <img
-                src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=85"
-                alt="Discover Bali tropical mountains"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-
-              <span className="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white text-[10px] font-medium px-2.5 py-1 rounded-full uppercase tracking-wider">
-                trip highlights
-              </span>
-
-              <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                <h3 className="font-serif text-2xl font-medium leading-snug">
-                  Discover the
+      {/* 5. Guest Stories (Exact match to reference image) */}
+      <section className="w-full bg-[#FFF9E8] py-12 sm:py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
+            {/* Left Column: Heading, Body, and Button */}
+            <div className="lg:col-span-4 flex flex-col justify-between py-2 space-y-6">
+              <div>
+                <span className="text-xs sm:text-sm font-normal text-[#6C6656] block mb-3">
+                  Guest Stories
+                </span>
+                <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#2D281E] font-normal leading-[1.15]">
+                  Loved by many of
                   <br />
-                  Island&apos;s Secrets
-                </h3>
-                <p className="text-xs text-stone-300 font-light">
-                  Waterfalls, temples, jungles and more
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Story summary & Testimonial quote card */}
-          <div className="lg:col-span-4 space-y-3 sm:space-y-4">
-            {/* Meta Card */}
-            <div className="bg-[#FFF9E8] p-3.5 sm:p-5 rounded-xl sm:rounded-2xl border border-stone-200/80 space-y-2 sm:space-y-3 text-xs">
-              <div className="flex justify-between py-1 border-b border-stone-200">
-                <span className="text-stone-500 font-medium">Where</span>
-                <span className="font-semibold text-stone-900">Almora, Uttrakhand</span>
-              </div>
-              <div className="flex justify-between py-1 border-b border-stone-200">
-                <span className="text-stone-500 font-medium">When</span>
-                <span className="font-semibold text-stone-900">Summer Season</span>
-              </div>
-              <div className="flex justify-between py-1">
-                <span className="text-stone-500 font-medium">Purpose</span>
-                <span className="font-semibold text-stone-900">Family Trip</span>
-              </div>
-            </div>
-
-            {/* Testimonial Quote Card (with Read Our Story trigger) */}
-            <div className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-stone-200 shadow-sm space-y-3 sm:space-y-4">
-              <div className="flex items-center space-x-3">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80"
-                  alt="Guest avatar"
-                  className="w-10 h-10 rounded-full object-cover border border-stone-200"
-                  referrerPolicy="no-referrer"
-                />
+                  travellers
+                  <br />
+                  — Bali
+                </h2>
               </div>
 
-              <p className="text-xs sm:text-sm text-stone-800 leading-relaxed font-medium">
-                &quot;It started as a trip. It became a movement. Now we&apos;re building a
-                community of surfers who choose authentic experiences over everything else.&quot;
+              <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.7] max-w-sm">
+                Bali has drawn surfers since the 70s: a legendary destination with waves for every
+                level. Surf every day, explore the island, and connect with people from all around the
+                world. This is the kind of trip that stays with you long after you leave.
               </p>
 
-              <button
-                onClick={onOpenStory}
-                id="home-read-our-story-btn"
-                className="inline-flex items-center space-x-1.5 text-xs font-semibold text-stone-900 hover:text-[#004030] transition group pt-2"
-              >
-                <span>Read Our Story</span>
-                <ChevronRight className="w-4 h-4 text-stone-400 group-hover:translate-x-1 transition-transform" />
-              </button>
+              <div className="pt-2">
+                <button
+                  onClick={onOpenContact}
+                  className="px-7 py-3 rounded-full bg-[#005B41] hover:bg-[#004030] text-white text-xs sm:text-sm font-semibold transition-all shadow-xs active:scale-95"
+                >
+                  Book a Call
+                </button>
+              </div>
+            </div>
+
+            {/* Middle Column: Tall Story Card */}
+            <div className="lg:col-span-4">
+              <div className="relative h-[380px] sm:h-[460px] lg:h-[540px] rounded-[32px] overflow-hidden shadow-lg group cursor-pointer">
+                <img
+                  src="/assets/trip.png"
+                  alt="Discover Bali tropical mountains"
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700 brightness-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                <span className="absolute top-5 left-5 bg-white/20 backdrop-blur-md text-white text-[10px] font-normal px-3 py-1 rounded-full uppercase tracking-wider border border-white/25">
+                  trip highlights
+                </span>
+
+                <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-normal leading-tight drop-shadow-sm">
+                    Discover the
+                    <br />
+                    Island&apos;s Secrets
+                  </h3>
+                  <p className="text-xs text-stone-200/90 font-light drop-shadow-xs">
+                    Waterfalls, temples, jungles and more
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Metadata List & White Quote Card */}
+            <div className="lg:col-span-4 flex flex-col justify-between space-y-6">
+              {/* Top: Metadata List (Borderless dividers exact to image) */}
+              <div className="space-y-0 px-1 py-2">
+                <div className="flex items-center justify-between py-3 border-b border-[#EAE3D2]">
+                  <span className="text-xs sm:text-sm text-[#9C9585] font-normal">Where</span>
+                  <span className="text-xs sm:text-sm font-bold text-[#2D281E]">Almora, Uttrakhand</span>
+                </div>
+                <div className="flex items-center justify-between py-3 border-b border-[#EAE3D2]">
+                  <span className="text-xs sm:text-sm text-[#9C9585] font-normal">When</span>
+                  <span className="text-xs sm:text-sm font-bold text-[#2D281E]">Summer Season</span>
+                </div>
+                <div className="flex items-center justify-between py-3">
+                  <span className="text-xs sm:text-sm text-[#9C9585] font-normal">Purpose</span>
+                  <span className="text-xs sm:text-sm font-bold text-[#2D281E]">Family Trip</span>
+                </div>
+              </div>
+
+              {/* Bottom: White Quote Card */}
+              <div className="bg-white p-6 sm:p-8 rounded-[28px] border border-stone-100/80 shadow-xs space-y-6 flex-1 flex flex-col justify-between">
+                <div className="flex items-center space-x-3">
+                  <UserAvatar name="Guest Traveller" size="lg" />
+                </div>
+
+                <p className="text-xs sm:text-sm md:text-base font-semibold text-[#004030] leading-snug tracking-tight">
+                  It started as a trip.
+                  <br />
+                  It became a movement. Now we&apos;re building a community of surfers who choose authentic experiences over everything else.
+                </p>
+
+                <button
+                  onClick={onOpenStory}
+                  className="w-full flex items-center justify-between pt-2 group cursor-pointer border-t border-stone-100"
+                >
+                  <span className="text-xs sm:text-sm font-bold text-[#2D281E] group-hover:text-[#005B41] transition">
+                    Read Our Story
+                  </span>
+                  <div className="w-7 h-7 rounded-full bg-stone-100 group-hover:bg-[#005B41] text-stone-500 group-hover:text-white flex items-center justify-center transition-colors">
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. Why Choose Us (We've planned everything for you:) */}
-      <section className="bg-[#FFF9E8] py-10 sm:py-16 md:py-24 border-t border-stone-200/70">
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mb-8 sm:mb-12 text-left">
-            <span className="text-xs font-normal text-stone-500 block mb-1">
+      {/* 6. Guest Reviews Cards Section (Exact match to reference screenshot with top & bottom fade mask) */}
+      <section className="bg-[#FFFFFF] py-12 sm:py-16 md:py-24 border-t border-stone-200/70 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center mb-8 sm:mb-12 relative z-30">
+            <span className="text-xs sm:text-sm font-semibold text-[#6C6656] uppercase tracking-wider block mb-1">
               Why Choose Us
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-stone-900 font-normal tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2D281E] font-normal tracking-tight">
               We&apos;ve planned everything for you:
             </h2>
           </div>
 
-          {/* Step-by-Step Accordion Stack matching exact design */}
-          <div className="max-w-5xl space-y-3 sm:space-y-4 relative">
+          {/* Fading Cards Grid Container */}
+          <div className="relative overflow-hidden max-h-[620px] sm:max-h-[700px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_18%,black_82%,transparent_100%)]">
+            {/* Top Fade Gradient Overlay */}
+            <div className="absolute top-0 left-0 right-0 h-36 bg-gradient-to-b from-[#FFF9E8] via-[#FFF9E8]/75 to-transparent z-20 pointer-events-none" />
 
+            {/* Bottom Fade Gradient Overlay */}
+            <div className="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#FFF9E8] via-[#FFF9E8]/75 to-transparent z-20 pointer-events-none" />
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 pt-4 pb-4">
+              {/* Column 1 */}
+              <div className="space-y-5">
+                <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <UserAvatar name="David Lee" size="lg" />
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#004030]">David Lee</h4>
+                      <p className="text-xs text-[#6C6656]">Professor</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                    Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
+                  </p>
+                </div>
+
+                <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <UserAvatar name="David Lee" size="lg" />
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#004030]">David Lee</h4>
+                      <p className="text-xs text-[#6C6656]">Professor</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                    Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave. Bali has drawn surfers since the 70s: a legendary destination with waves for every level, and connect with people from all around the world.
+                  </p>
+                </div>
+
+                <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <UserAvatar name="Sarah Machillie" size="lg" />
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#004030]">Sarah Machillie</h4>
+                      <p className="text-xs text-[#6C6656]">Doctor</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                    Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island.
+                  </p>
+                </div>
+              </div>
+
+              {/* Column 2 */}
+              <div className="space-y-5 pt-6 sm:pt-10">
+                <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <UserAvatar name="David Lee" size="lg" />
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#004030]">David Lee</h4>
+                      <p className="text-xs text-[#6C6656]">Professor</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                    Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
+                  </p>
+                </div>
+
+                <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <UserAvatar name="Sarah Machillie" size="lg" />
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#004030]">Sarah Machillie</h4>
+                      <p className="text-xs text-[#6C6656]">Doctor</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                    Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world.
+                  </p>
+                </div>
+
+                <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <UserAvatar name="Sarah Machillie" size="lg" />
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#004030]">Sarah Machillie</h4>
+                      <p className="text-xs text-[#6C6656]">Doctor</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                    Bali has drawn surfers since the 70s: a legendary destination with waves for every level.
+                  </p>
+                </div>
+              </div>
+
+              {/* Column 3 */}
+              <div className="space-y-5">
+                <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <UserAvatar name="David Lee" size="lg" />
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#004030]">David Lee</h4>
+                      <p className="text-xs text-[#6C6656]">Professor</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                    Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world.
+                  </p>
+                </div>
+
+                <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <UserAvatar name="David Lee" size="lg" />
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#004030]">David Lee</h4>
+                      <p className="text-xs text-[#6C6656]">Professor</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                    Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave. Bali has drawn surfers since the 70s: a legendary destination with waves for every level.
+                  </p>
+                </div>
+
+                <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <UserAvatar name="Sarah Machillie" size="lg" />
+                    <div>
+                      <h4 className="text-base sm:text-lg font-bold text-[#004030]">Sarah Machillie</h4>
+                      <p className="text-xs text-[#6C6656]">Doctor</p>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                    Bali has drawn surfers since the 70s: a legendary destination with waves for every level.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Why Choose Us Accordion (We've planned everything for you:) */}
+      <section className="bg-[#FFF9E8] py-12 sm:py-16 md:py-24 border-t border-[#EAE3D2]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 sm:mb-10 text-left">
+            <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-1.5">
+              WHY CHOOSE US
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal tracking-tight">
+              We&apos;ve planned everything for you:
+            </h2>
+          </div>
+
+          {/* Accordion List with full width thin divider lines */}
+          <div className="border-t border-[#E7E0CE]">
             {/* Step 1 */}
-            <div className="bg-[#FFF9E8] rounded-3xl border border-stone-200/60 overflow-hidden shadow-2xs">
+            <div className="border-b border-[#E7E0CE] py-5 sm:py-6">
               <button
                 onClick={() => setExpandedStep(expandedStep === 1 ? 0 : 1)}
-                className="w-full p-4 sm:p-6 md:p-7 text-left flex items-center justify-between hover:bg-stone-100/50 transition"
+                className="w-full flex items-center justify-between text-left group"
               >
                 <div>
-                  <span className="text-[11px] text-stone-400 font-normal block mb-1">
-                    Step 1
-                  </span>
-                  <h3 className="font-serif text-lg sm:text-2xl md:text-3xl text-stone-900 font-normal">
+                  <span className="text-xs text-stone-500 font-normal block mb-1">Step 1</span>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#2C2926] font-normal">
                     Arrival and Meet the Crew
                   </h3>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-stone-200/60 flex items-center justify-center shrink-0 text-stone-600">
-                  {expandedStep === 1 ? (
-                    <ChevronUp className="w-4 h-4" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4" />
-                  )}
+                <div className="w-7 h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
+                  {expandedStep === 1 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </div>
               </button>
               {expandedStep === 1 && (
-                <div className="px-4 pb-4 sm:p-7 sm:pt-0 border-t border-stone-200/50 text-xs sm:text-sm text-stone-600 leading-relaxed font-light">
-                  Personal airport pickup and scenic mountain transfer to our homestay estate. Meet
-                  the community managers and get settled into your private suite with warm local
-                  refreshments.
+                <div className="mt-4 text-xs sm:text-sm text-[#4E4A43] leading-relaxed font-sans max-w-2xl">
+                  Personal airport pickup and scenic mountain transfer to our homestay estate. Meet the community managers and get settled into your private suite with warm local refreshments.
                 </div>
               )}
             </div>
 
-            {/* Step 2 (Expanded by default) */}
-            <div className="bg-[#FFF9E8] rounded-3xl border border-stone-200/60 overflow-hidden shadow-xs relative">
+            {/* Step 2 (Expanded state matching reference screenshot) */}
+            <div className="border-b border-[#E7E0CE] py-5 sm:py-6">
               <button
                 onClick={() => setExpandedStep(expandedStep === 2 ? 0 : 2)}
-                className="w-full p-4 sm:p-6 md:p-7 text-left flex items-center justify-between hover:bg-stone-100/50 transition"
+                className="w-full flex items-center justify-between text-left group"
               >
                 <div>
-                  <span className="text-[11px] text-stone-400 font-normal block mb-1">
-                    Step 2
-                  </span>
-                  <h3 className="font-serif text-lg sm:text-2xl md:text-3xl text-stone-900 font-normal">
+                  <span className="text-xs text-stone-500 font-normal block mb-1">Step 2</span>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#2C2926] font-normal">
                     Check in and Hospitality
                   </h3>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-stone-200/60 flex items-center justify-center shrink-0 text-stone-600">
-                  {expandedStep === 2 ? (
-                    <ChevronUp className="w-4 h-4" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4" />
-                  )}
+                <div className="w-7 h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
+                  {expandedStep === 2 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </div>
               </button>
 
               {expandedStep === 2 && (
-                <div className="p-4 sm:p-7 pt-2 border-t border-stone-200/40 grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-8 items-center">
-                  <div className="md:col-span-6 space-y-5">
-                    <span className="text-xs text-stone-400 underline underline-offset-4 font-normal block">
-                      Description
-                    </span>
-                    <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-light max-w-lg">
-                      Morning surf session focusing on technique — pop-ups, positioning, reading
-                      waves. You&apos;ll already feel more confident than yesterday. In the
-                      afternoon, we&apos;re heading to one of Canggu&apos;s famous beach clubs for
-                      lunch, drinks, and good vibes. It&apos;s the perfect mid-week energy — sun,
-                      music, ocean views, and your new best friends.
-                    </p>
-                    <button
-                      onClick={onOpenContact}
-                      className="px-7 py-3 rounded-full bg-[#005B41] hover:bg-[#004030] text-white text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"
-                    >
-                      Book a Call
-                    </button>
+                <div className="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                  {/* Left content area */}
+                  <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10">
+                      <span className="text-xs sm:text-sm text-stone-800 font-medium underline underline-offset-4 decoration-stone-400 shrink-0 pt-0.5">
+                        Description
+                      </span>
+                      <p className="text-xs sm:text-sm text-[#4E4A43] leading-relaxed font-sans">
+                        Morning surf session focusing on technique — pop-ups, positioning, reading waves. You&apos;ll already feel more confident than yesterday. In the afternoon, we&apos;re heading to one of Canggu&apos;s famous beach clubs for lunch, drinks, and good vibes. It&apos;s the perfect mid-week energy — sun, music, ocean views, and your new best friends.
+                      </p>
+                    </div>
+
+                    <div className="pt-2">
+                      <button
+                        onClick={onOpenContact}
+                        className="bg-[#00704A] hover:bg-[#00583A] text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium transition-all shadow-sm active:scale-95"
+                      >
+                        Book a Call
+                      </button>
+                    </div>
                   </div>
 
-                  <div className="md:col-span-6 relative">
+                  {/* Right landscape image */}
+                  <div className="lg:col-span-5 relative">
                     <img
-                      src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=85"
-                      alt="Lush green mountain valley landscape"
-                      className="rounded-[32px] w-full h-56 sm:h-64 object-cover shadow-md"
-                      referrerPolicy="no-referrer"
+                      src="/assets/1.png"
+                      alt="Lush green mountain landscape"
+                      className="rounded-[32px] w-full h-full sm:h-full object-cover shadow-sm"
                     />
                   </div>
                 </div>
@@ -748,91 +865,87 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
 
             {/* Step 3 */}
-            <div className="bg-[#FFF9E8] rounded-3xl border-b-2 border-emerald-600/70 overflow-hidden shadow-2xs">
+            <div className="border-b border-[#E7E0CE] py-5 sm:py-6">
               <button
                 onClick={() => setExpandedStep(expandedStep === 3 ? 0 : 3)}
-                className="w-full p-4 sm:p-6 md:p-7 text-left flex items-center justify-between hover:bg-stone-100/50 transition"
+                className="w-full flex items-center justify-between text-left group"
               >
                 <div>
-                  <span className="text-[11px] text-stone-400 font-normal block mb-1">
-                    Step 3
-                  </span>
-                  <h3 className="font-serif text-lg sm:text-2xl md:text-3xl text-stone-900 font-normal">
+                  <span className="text-xs text-stone-500 font-normal block mb-1">Step 3</span>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#2C2926] font-normal">
                     First Waves & Mountain Vibes
                   </h3>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-stone-200/60 flex items-center justify-center shrink-0 text-stone-600">
-                  {expandedStep === 3 ? (
-                    <ChevronUp className="w-4 h-4" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4" />
-                  )}
+                <div className="w-7 h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
+                  {expandedStep === 3 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </div>
               </button>
+
               {expandedStep === 3 && (
-                <div className="px-4 pb-4 sm:p-7 sm:pt-0 border-t border-stone-200/50 text-xs sm:text-sm text-stone-600 leading-relaxed font-light">
-                  Guided morning treks, panoramic sunrise breakfasts, and afternoon excursions
-                  immersing in local culture and heritage workshops.
+                <div className="mt-4 text-xs sm:text-sm text-[#4E4A43] leading-relaxed font-sans max-w-2xl">
+                  Guided morning treks, panoramic sunrise breakfasts, and afternoon excursions immersing in local culture and heritage workshops.
                 </div>
               )}
             </div>
 
             {/* Step 4 */}
-            <div className="bg-[#FFF9E8] rounded-3xl border border-stone-200/60 overflow-hidden shadow-2xs">
+            <div className="border-b border-[#E7E0CE] py-5 sm:py-6">
               <button
                 onClick={() => setExpandedStep(expandedStep === 4 ? 0 : 4)}
-                className="w-full p-4 sm:p-6 md:p-7 text-left flex items-center justify-between hover:bg-stone-100/50 transition"
+                className="w-full flex items-center justify-between text-left group"
               >
                 <div>
-                  <span className="text-[11px] text-stone-400 font-normal block mb-1">
-                    Step 4
-                  </span>
-                  <h3 className="font-serif text-lg sm:text-2xl md:text-3xl text-stone-900 font-normal">
+                  <span className="text-xs text-stone-500 font-normal block mb-1">Step 4</span>
+                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#2C2926] font-normal">
                     Final Meet and Check Out
                   </h3>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-stone-200/60 flex items-center justify-center shrink-0 text-stone-600">
-                  {expandedStep === 4 ? (
-                    <ChevronUp className="w-4 h-4" />
-                  ) : (
-                    <ChevronDown className="w-4 h-4" />
-                  )}
+                <div className="w-7 h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
+                  {expandedStep === 4 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 </div>
               </button>
+
               {expandedStep === 4 && (
-                <div className="px-4 pb-4 sm:p-7 sm:pt-0 border-t border-stone-200/50 text-xs sm:text-sm text-stone-600 leading-relaxed font-light">
-                  Farewell brunch with handcrafted souvenirs, memories capture session, and seamless
-                  concierge transfer onwards.
+                <div className="mt-4 text-xs sm:text-sm text-[#4E4A43] leading-relaxed font-sans max-w-2xl">
+                  Farewell brunch with handcrafted souvenirs, memories capture session, and seamless concierge transfer onwards.
                 </div>
               )}
             </div>
+          </div>
 
+          {/* Floating tilted campfire card peeking at bottom center */}
+          <div className="relative flex justify-center -mt-6 z-20 pointer-events-none">
+            <div className="w-48 h-32 rounded-2xl overflow-hidden shadow-xl border-2 border-[#FFF9E8] transform -rotate-[14deg] hover:rotate-0 transition-transform duration-300">
+              <img
+                src="/assets/bonfire.png"
+                alt="Tilted bonfire photo card"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 7. Body, soul, mind, and connection — we've got it all */}
-      <section className="bg-[#FFF9E8] py-10 sm:py-16 md:py-24 border-t border-stone-200/60">
-        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 lg:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-stretch">
-
-            {/* Left Column: Full-height Sunlit Mountain Room Card with overlay text in transparent card */}
+      {/* 8. Body, soul, mind, and connection — we've got it all (Exact match) */}
+      <section className="bg-[#FFF9E8] py-12 sm:py-16 md:py-24 border-t border-stone-200/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+            {/* Left Column: Mountain View Room Image with Glassmorphism Card Overlay */}
             <div className="lg:col-span-7">
-              <div className="relative h-full min-h-[300px] sm:min-h-[420px] md:min-h-[560px] rounded-[20px] sm:rounded-[32px] overflow-hidden shadow-xl">
+              <div className="relative h-full min-h-[360px] sm:min-h-[460px] md:min-h-[560px] rounded-[32px] overflow-hidden shadow-xl">
                 <img
                   src="/assets/peace.png"
                   alt="Sunlit mountain view room with glass table and seating"
                   className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent" />
 
-                <div className="absolute top-4 sm:top-6 md:top-8 left-4 sm:left-6 md:left-8 right-4 sm:right-6 md:right-8">
-                  <div className="bg-black/35 backdrop-blur-xl border border-white/20 rounded-[16px] sm:rounded-[24px] md:rounded-[28px] p-4 sm:p-6 md:p-8 text-white space-y-2 sm:space-y-4 shadow-2xl">
-                    <h2 className="font-serif text-xl sm:text-3xl md:text-4xl lg:text-[40px] font-normal leading-[1.2] text-white tracking-tight">
+                <div className="absolute top-6 left-6 right-6 sm:top-8 sm:left-8 sm:right-8">
+                  <div className="bg-black/35 backdrop-blur-xl border border-white/20 rounded-[24px] p-6 sm:p-8 text-white space-y-3 shadow-2xl">
+                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal leading-tight text-white">
                       Body, soul, mind, and connection — we&apos;ve got it all
                     </h2>
-                    <p className="text-xs sm:text-sm text-white/90 font-normal leading-relaxed">
+                    <p className="text-xs sm:text-sm text-white/90 font-light leading-relaxed">
                       This camp isn&apos;t just about surfing. It&apos;s about the whole experience.
                     </p>
                   </div>
@@ -840,69 +953,67 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </div>
             </div>
 
-            {/* Right Column: 3 White Pill Feature Cards with colorful circular icon buttons */}
-            <div className="lg:col-span-5 flex flex-col justify-between space-y-3 sm:space-y-5">
-
-              {/* 1. Yoga and Meditation */}
-              <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[18px] sm:rounded-[28px] md:rounded-[32px] border border-stone-100 shadow-xs space-y-2 sm:space-y-3 relative flex-1">
+            {/* Right Column: 3 Stacked White Pill Cards */}
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+              {/* Card 1 */}
+              <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-stone-200/70 shadow-2xs space-y-2 relative flex-1">
+                <span className="text-[11px] text-stone-400 font-normal block uppercase tracking-wider">
+                  for body
+                </span>
                 <div className="flex items-start justify-between">
-                  <div className="space-y-2 max-w-md">
-                    <h3 className="font-serif text-lg sm:text-2xl md:text-3xl text-stone-900 font-normal">
+                  <div className="space-y-1.5 max-w-sm">
+                    <h3 className="font-serif text-xl sm:text-2xl text-stone-900 font-normal">
                       Yoga and Meditation
                     </h3>
-                    <p className="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
-                      Stretch out your surf-tired muscles with sunset yoga and start your mornings
-                      centered with guided meditation sessions.
+                    <p className="text-xs text-stone-500 leading-relaxed font-light">
+                      Stretch out your surf-tired muscles with sunset yoga and start your mornings centered with guided meditation sessions.
                     </p>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-[#F59E0B] text-white flex items-center justify-center shrink-0 font-bold text-base shadow-sm">
-
+                  <div className="w-9 h-9 rounded-full bg-[#F59E0B] text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <span className="w-3.5 h-3.5 rounded-full bg-white/90" />
                   </div>
                 </div>
               </div>
 
-              {/* 2. Culture and Growth */}
-              <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[18px] sm:rounded-[28px] md:rounded-[32px] border border-stone-100 shadow-xs space-y-2 sm:space-y-3 relative flex-1">
-                <span className="text-[11px] text-stone-400 font-normal block">
+              {/* Card 2 */}
+              <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-stone-200/70 shadow-2xs space-y-2 relative flex-1">
+                <span className="text-[11px] text-stone-400 font-normal block uppercase tracking-wider">
                   for mind
                 </span>
                 <div className="flex items-start justify-between">
-                  <div className="space-y-2 max-w-md">
-                    <h3 className="font-serif text-lg sm:text-2xl md:text-3xl text-stone-900 font-normal">
+                  <div className="space-y-1.5 max-w-sm">
+                    <h3 className="font-serif text-xl sm:text-2xl text-stone-900 font-normal">
                       Culture and Growth
                     </h3>
-                    <p className="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
-                      Learn the stories behind the island at local markets and connect over dinners
-                      designed for real conversations.
+                    <p className="text-xs text-stone-500 leading-relaxed font-light">
+                      Learn the stories behind the island at local markets and connect over dinners designed for real conversations.
                     </p>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-[#EC4899] text-white flex items-center justify-center shrink-0 font-bold text-base shadow-sm">
-
+                  <div className="w-9 h-9 rounded-full bg-[#EC4899] text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <span className="w-3.5 h-3.5 rounded-full bg-white/90" />
                   </div>
                 </div>
               </div>
 
-              {/* 3. Adventures Together */}
-              <div className="bg-white p-4 sm:p-6 md:p-8 rounded-[18px] sm:rounded-[28px] md:rounded-[32px] border border-stone-100 shadow-xs space-y-2 sm:space-y-3 relative flex-1">
-                <span className="text-[11px] text-stone-400 font-normal block">
+              {/* Card 3 */}
+              <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-stone-200/70 shadow-2xs space-y-2 relative flex-1">
+                <span className="text-[11px] text-stone-400 font-normal block uppercase tracking-wider">
                   for fun
                 </span>
                 <div className="flex items-start justify-between">
-                  <div className="space-y-2 max-w-md">
-                    <h3 className="font-serif text-lg sm:text-2xl md:text-3xl text-stone-900 font-normal">
+                  <div className="space-y-1.5 max-w-sm">
+                    <h3 className="font-serif text-xl sm:text-2xl text-stone-900 font-normal">
                       Adventures Together
                     </h3>
-                    <p className="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
-                      Discover hidden beaches on scooters, ask your way through night markets, and stay
-                      up late swapping travel stories.
+                    <p className="text-xs text-stone-500 leading-relaxed font-light">
+                      Discover hidden beaches on scooters, ask your way through night markets, and stay up late swapping travel stories.
                     </p>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-[#10B981] text-white flex items-center justify-center shrink-0 font-bold text-base shadow-sm">
-
+                  <div className="w-9 h-9 rounded-full bg-[#10B981] text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <span className="w-3.5 h-3.5 rounded-full bg-white/90" />
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

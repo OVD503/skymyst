@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Become a Partner (White Pill Button) */}
           <button
-            id="nav-become-partner-btn"
+            id="nav-become-a-partner-btn"
             onClick={() => onNavigate('partner')}
             className="hidden sm:inline-flex px-4 md:px-6 py-1.5 md:py-2.5 rounded-full bg-white hover:bg-stone-100 text-stone-900 text-xs md:text-sm font-medium transition-all shadow-md active:scale-95 shrink-0"
           >

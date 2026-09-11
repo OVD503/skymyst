@@ -34,10 +34,9 @@ export const StoryModal: React.FC<StoryModalProps> = ({ isOpen, onClose }) => {
         <div className="md:w-1/2 p-2.5 sm:p-3 md:p-4">
           <div className="relative h-40 sm:h-56 md:h-full min-h-[160px] sm:min-h-[280px] md:min-h-[380px] rounded-xl sm:rounded-2xl overflow-hidden shadow-inner">
             <img
-              src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=1000&q=85"
-              alt="Group of friends smiling together on travel adventures"
+              src="/assets/bonfire.png"
+              alt="Skymyst community bonfire"
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
             />
           </div>
         </div>
