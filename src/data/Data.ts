@@ -154,6 +154,7 @@ export const PROPERTIES: Property[] = [
     isPremium: true,
     coordinates: { x: 24, y: 62, label: '₹4,950', lat: 29.5971, lng: 79.6591 },
     images: [
+      createPlaceholderImage('sukoon stay', 'Homestay Photo'),
       createPlaceholderImage('Sukoon Stay', 'Exterior & Mountain View'),
       createPlaceholderImage('Sukoon Stay', 'Nature Living Area'),
       createPlaceholderImage('Sukoon Stay', 'Private Garden'),
