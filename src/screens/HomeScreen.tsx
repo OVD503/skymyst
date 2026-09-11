@@ -79,18 +79,18 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="absolute bottom-12 sm:bottom-8 md:bottom-10 left-0 right-0 z-30 px-3 sm:px-4">
           <form
             onSubmit={handleSearchSubmit}
-            className="max-w-5xl mx-auto bg-white rounded-lg sm:rounded-xl shadow-2xl p-1.5 sm:p-3 md:p-4 flex flex-col lg:flex-row items-stretch lg:items-center gap-1 sm:gap-3 border border-stone-200 relative transition-all"
+            className="max-w-5xl mx-auto bg-white/20 sm:bg-white backdrop-blur-xl sm:backdrop-blur-none rounded-2xl sm:rounded-xl shadow-2xl p-2 sm:p-3 md:p-4 flex flex-col lg:flex-row items-stretch lg:items-center gap-1.5 sm:gap-3 border border-white/30 sm:border-stone-200 relative transition-all"
           >
             {/* 1. LOCATION */}
-            <div className="flex-1 px-2 sm:px-3 py-0.5 sm:py-1.5 border-b lg:border-b-0 lg:border-r border-stone-200">
-              <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0 sm:mb-0.5">
-                <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#005B41]" />
+            <div className="flex-1 px-2 sm:px-3 py-1 sm:py-1.5 border-b border-white/20 sm:border-stone-200 lg:border-b-0 lg:border-r">
+              <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-200 sm:text-stone-400 font-semibold mb-0 sm:mb-0.5">
+                <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-300 sm:text-[#005B41]" />
                 <span>Location</span>
               </label>
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="w-full text-[11px] sm:text-sm font-semibold text-stone-800 focus:outline-none bg-transparent cursor-pointer py-0 sm:py-0"
+                className="w-full text-[11px] sm:text-sm font-semibold text-white sm:text-stone-800 focus:outline-none bg-transparent cursor-pointer py-0 sm:py-0 [&>option]:bg-stone-900 [&>option]:text-white sm:[&>option]:bg-white sm:[&>option]:text-stone-800"
               >
                 <option value="All Locations">All Locations (Uttrakhand)</option>
                 <option value="Almora">Almora, Uttrakhand</option>
@@ -100,15 +100,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
 
             {/* 2. STAYS (Linked to real data PROPERTIES) */}
-            <div className="flex-1 px-2 sm:px-3 py-0.5 sm:py-1.5 border-b lg:border-b-0 lg:border-r border-stone-200">
-              <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0 sm:mb-0.5">
-                <Home className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#005B41]" />
+            <div className="flex-1 px-2 sm:px-3 py-1 sm:py-1.5 border-b border-white/20 sm:border-stone-200 lg:border-b-0 lg:border-r">
+              <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-200 sm:text-stone-400 font-semibold mb-0 sm:mb-0.5">
+                <Home className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-300 sm:text-[#005B41]" />
                 <span>Stays</span>
               </label>
               <select
                 value={selectedProperty}
                 onChange={(e) => setSelectedProperty(e.target.value)}
-                className="w-full text-[11px] sm:text-sm font-semibold text-stone-800 focus:outline-none bg-transparent cursor-pointer truncate py-0 sm:py-0"
+                className="w-full text-[11px] sm:text-sm font-semibold text-white sm:text-stone-800 focus:outline-none bg-transparent cursor-pointer truncate py-0 sm:py-0 [&>option]:bg-stone-900 [&>option]:text-white sm:[&>option]:bg-white sm:[&>option]:text-stone-800"
               >
                 <option value="all">All Stays (Curated Collection)</option>
                 {PROPERTIES.map((prop) => (
@@ -120,20 +120,20 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
 
             {/* 3. DATES (With Visual Calendar Picker Popup) */}
-            <div className="flex-1 px-2 sm:px-3 py-0.5 sm:py-1.5 border-b lg:border-b-0 lg:border-r border-stone-200 relative">
-              <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0 sm:mb-0.5">
-                <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#005B41]" />
+            <div className="flex-1 px-2 sm:px-3 py-1 sm:py-1.5 border-b border-white/20 sm:border-stone-200 lg:border-b-0 lg:border-r relative">
+              <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-200 sm:text-stone-400 font-semibold mb-0 sm:mb-0.5">
+                <Calendar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-300 sm:text-[#005B41]" />
                 <span>Dates</span>
               </label>
               <button
                 type="button"
                 onClick={() => setShowDatePicker(!showDatePicker)}
-                className="w-full text-left text-[11px] sm:text-sm font-semibold text-stone-800 focus:outline-none bg-transparent flex items-center justify-between py-0 sm:py-0"
+                className="w-full text-left text-[11px] sm:text-sm font-semibold text-white sm:text-stone-800 focus:outline-none bg-transparent flex items-center justify-between py-0 sm:py-0"
               >
                 <span className="truncate">
                   {checkInDate ? (checkOutDate ? `${checkInDate} - ${checkOutDate}` : checkInDate) : 'Select Dates'}
                 </span>
-                <ChevronDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-stone-400 shrink-0 ml-1" />
+                <ChevronDown className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-stone-300 sm:text-stone-400 shrink-0 ml-1" />
               </button>
 
               {/* Visual Calendar Dropdown Popup - Positioned Upwards to Prevent Clipping */}
@@ -246,16 +246,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
 
             {/* 4. GUESTS (Supporting up to 12 Guests) */}
-            <div className="flex-1 px-2 sm:px-3 py-0.5 sm:py-1.5 flex items-center justify-between">
+            <div className="flex-1 px-2 sm:px-3 py-1 sm:py-1.5 flex items-center justify-between">
               <div className="w-full">
-                <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0 sm:mb-0.5">
-                  <Users className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#005B41]" />
+                <label className="flex items-center space-x-1 sm:space-x-1.5 text-[9px] sm:text-[10px] uppercase tracking-wider text-stone-200 sm:text-stone-400 font-semibold mb-0 sm:mb-0.5">
+                  <Users className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-emerald-300 sm:text-[#005B41]" />
                   <span>Guests</span>
                 </label>
                 <select
                   value={guestsCount}
                   onChange={(e) => setGuestsCount(Number(e.target.value))}
-                  className="w-full text-[11px] sm:text-sm font-semibold text-stone-800 focus:outline-none bg-transparent cursor-pointer py-0 sm:py-0"
+                  className="w-full text-[11px] sm:text-sm font-semibold text-white sm:text-stone-800 focus:outline-none bg-transparent cursor-pointer py-0 sm:py-0 [&>option]:bg-stone-900 [&>option]:text-white sm:[&>option]:bg-white sm:[&>option]:text-stone-800"
                 >
                   {Array.from({ length: 12 }, (_, i) => i + 1).map((num) => (
                     <option key={num} value={num}>
@@ -269,7 +269,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <button
                 type="submit"
                 id="hero-find-trip-btn"
-                className="ml-2 sm:ml-3 px-3 sm:px-6 py-1.5 sm:py-3.5 rounded-lg sm:rounded-xl bg-[#004030] hover:bg-[#002f23] text-white flex items-center space-x-2 text-[10px] sm:text-xs md:text-sm font-semibold transition shrink-0 shadow-md active:scale-95"
+                className="ml-2 sm:ml-3 px-3.5 sm:px-6 py-2 sm:py-3.5 rounded-xl bg-emerald-600/90 sm:bg-[#004030] hover:bg-emerald-600 sm:hover:bg-[#002f23] text-white flex items-center space-x-2 text-[11px] sm:text-xs md:text-sm font-semibold transition shrink-0 shadow-lg border border-white/20 sm:border-transparent active:scale-95"
               >
                 <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">Find Trip Now</span>
