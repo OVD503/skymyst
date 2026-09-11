@@ -435,7 +435,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+          <div className="flex overflow-x-auto gap-3.5 pb-4 pt-1 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-6 lg:gap-4 lg:overflow-visible lg:pb-0 lg:pt-0">
             {DESTINATIONS.map((dest, idx) => (
               <motion.div
                 key={dest.id}
@@ -445,8 +445,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 transition={{ duration: 0.4, delay: idx * 0.06 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 onClick={() => dest.available && onNavigate('search')}
-                className={`relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group ${dest.available ? 'cursor-pointer' : 'cursor-default'
-                  }`}
+                className={`relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group w-[165px] sm:w-[200px] lg:w-full shrink-0 lg:shrink snap-start ${
+                  dest.available ? 'cursor-pointer' : 'cursor-default'
+                }`}
               >
                 <img
                   src={dest.image}
