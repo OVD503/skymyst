@@ -394,7 +394,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               className="md:col-span-5 group relative h-60 sm:h-80 md:h-[400px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
             >
               <img
-                src="/assets/peace.png"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGnhL5sBR68yyc6vGRzcfaYfmMGzZGhO152h5jSNRHOM7ekG_euwp6KlTa&s=10"
                 alt="Romantic honeymoon couple"
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
               />
@@ -445,9 +445,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 transition={{ duration: 0.4, delay: idx * 0.06 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 onClick={() => dest.available && onNavigate('search')}
-                className={`relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group w-[165px] sm:w-[200px] lg:w-full shrink-0 lg:shrink snap-start ${
-                  dest.available ? 'cursor-pointer' : 'cursor-default'
-                }`}
+                className={`relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md group w-[165px] sm:w-[200px] lg:w-full shrink-0 lg:shrink snap-start ${dest.available ? 'cursor-pointer' : 'cursor-default'
+                  }`}
               >
                 <img
                   src={dest.image}
