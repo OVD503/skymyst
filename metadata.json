@@ -1,0 +1,6 @@
+{
+  "name": "Skymyst - Boutique Homestays & Travel Management",
+  "description": "Discover exceptional curated homestays, boutique stays, and seamless property management with Skymyst.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

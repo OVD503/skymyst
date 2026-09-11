@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+/* 
+  Custom Font Declarations
+  - 'Kristy': Elegant serif display font used for headings throughout the website.
+  - 'Ayona': Distinctive luxury serif font used for the Hero Section.
+  - 'Casiome Impera': Premium luxury high-contrast serif typeface for Hero section headings.
+*/
+
+@font-face {
+  font-family: 'Casiome Impera';
+  src: local('Casiome Impera'), local('CasiomeImpera'), local('Casiome Impera Regular'),
+       url('https://fonts.gstatic.com/s/bodonimoda/v28/a5F11DVG2KX-jX2pTkgSg4N3y47-19w_Nhh2.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Casiome';
+  src: local('Casiome Impera'), local('Casiome'),
+       url('https://fonts.gstatic.com/s/bodonimoda/v28/a5F11DVG2KX-jX2pTkgSg4N3y47-19w_Nhh2.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kristy';
+  src: local('Kristy'), local('Kristy Regular'), local('Kristy-Regular'),
+       url('https://fonts.gstatic.com/s/cormorantgaramond/v16/co3bmX5slg_DAJADn28859P4n2Xj-M6M5B1i_v-0.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ayona';
+  src: local('Ayona'), local('Ayona Regular'), local('Ayona-Regular'),
+       url('https://fonts.gstatic.com/s/italiana/v18/0V4zM4tG79pP4t3Z13z1.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-kristy: 'Kristy', 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-ayona: 'Ayona', 'Italiana', 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-casiome: 'Casiome Impera', 'Casiome', 'Bodoni Moda', 'Italiana', 'Cinzel', 'Playfair Display', Georgia, serif;
+  --font-serif: 'Kristy', 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+}
+
+@layer base {
+  :root {
+    --font-kristy: 'Kristy', 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    --font-ayona: 'Ayona', 'Italiana', 'Cinzel', 'Playfair Display', Georgia, serif;
+    --font-casiome: 'Casiome Impera', 'Casiome', 'Bodoni Moda', 'Italiana', 'Cinzel', 'Playfair Display', Georgia, serif;
+    --font-serif: var(--font-kristy);
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #FAF9F5;
+    color: #1c1917;
+  }
+
+  /* Headings across the entire website use Kristy font */
+  h1, h2, h3, h4, h5, h6, .font-serif, .font-heading, .font-kristy {
+    font-family: var(--font-kristy);
+  }
+}
+
+/* Hero section headings use Casiome Impera / Ayona luxury serif font */
+.font-casiome,
+.font-casiome-impera,
+.font-ayona,
+.hero-title,
+.hero-heading {
+  font-family: 'Casiome Impera', 'Casiome', 'Ayona', 'Bodoni Moda', 'Italiana', 'Cinzel', 'Playfair Display', Georgia, serif !important;
+}
+
+.font-kristy {
+  font-family: var(--font-kristy) !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1ede4;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5beaf;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a89f8d;
+}
