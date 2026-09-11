@@ -1,5 +1,41 @@
 import { Destination, FAQItem, Property, TeamMember, Testimonial } from '../types';
 
+const createPlaceholderImage = (title: string, subtitle: string = 'Homestay Photo') => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+    <rect width="800" height="600" fill="#F4F1EA"/>
+    <rect x="16" y="16" width="768" height="568" rx="20" fill="#EBE6DC" stroke="#DDD6C8" stroke-width="2"/>
+    <g transform="translate(400, 270)" text-anchor="middle">
+      <path d="M-36 15 L0 -20 L36 15 V50 H-36 Z M-18 50 V25 H18 V50" fill="none" stroke="#005B41" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="0" cy="-40" r="8" fill="#005B41"/>
+      <text y="110" font-family="sans-serif" font-size="24" font-weight="600" fill="#2D281E">${title}</text>
+      <text y="140" font-family="sans-serif" font-size="16" font-weight="400" fill="#6C6656">${subtitle}</text>
+    </g>
+  </svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+};
+
+const createDestinationPlaceholder = (name: string) => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+    <rect width="600" height="800" fill="#2D3B32"/>
+    <rect x="16" y="16" width="568" height="768" rx="20" fill="none" stroke="#4A5D50" stroke-width="2"/>
+    <g transform="translate(300, 380)" text-anchor="middle">
+      <path d="M-40 30 L0 -30 L40 30 Z M-15 30 L10 -10 L35 30 Z" fill="none" stroke="#9BB5A2" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text y="90" font-family="serif, Georgia, sans-serif" font-size="28" font-weight="600" fill="#FFFFFF">${name}</text>
+      <text y="120" font-family="sans-serif" font-size="15" font-weight="400" fill="#B3C7B8">Destination Placeholder</text>
+    </g>
+  </svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+};
+
+const createAvatarPlaceholder = (name: string) => {
+  const initials = name.split(' ').map((n) => n[0]).join('');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="100" fill="#005B41"/>
+    <text x="100" y="116" font-family="sans-serif" font-size="64" font-weight="700" fill="#FFFFFF" text-anchor="middle">${initials}</text>
+  </svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+};
+
 export const PROPERTIES: Property[] = [
   {
     id: 'bhimsarovar',
@@ -22,11 +58,11 @@ export const PROPERTIES: Property[] = [
     isPremium: false,
     coordinates: { x: 38, y: 32, label: '₹12,320', lat: 29.3500, lng: 79.5530 },
     images: [
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=85',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      createPlaceholderImage('Bhimsarovar Kumaoni Stay', 'Main Property View'),
+      createPlaceholderImage('Bhimsarovar Kumaoni Stay', 'Exterior & Garden'),
+      createPlaceholderImage('Bhimsarovar Kumaoni Stay', 'Living Room Hall'),
+      createPlaceholderImage('Bhimsarovar Kumaoni Stay', 'Mountain View Terrace'),
+      createPlaceholderImage('Bhimsarovar Kumaoni Stay', 'Dining & Outdoor Area'),
     ],
     description:
       'A highly budget-friendly, welcoming retreat designed to give guests a taste of authentic Kumaon life. It operates as a peaceful homestay experience featuring amazing 360-degree mountain and valley views.',
@@ -87,12 +123,12 @@ export const PROPERTIES: Property[] = [
     rooms: [
       {
         name: 'Master Bedroom 1',
-        image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Master Bedroom 1', 'King bed · Attached bath'),
         details: 'King bed · Attached bath · Mountain view',
       },
       {
         name: 'Bedroom 2',
-        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Bedroom 2', 'King bed · Attached bath'),
         details: 'King bed · Attached bath · Valley view',
       },
     ],
@@ -118,11 +154,11 @@ export const PROPERTIES: Property[] = [
     isPremium: true,
     coordinates: { x: 24, y: 62, label: '₹4,950', lat: 29.5971, lng: 79.6591 },
     images: [
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=85',
-      'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      createPlaceholderImage('Sukoon Stay', 'Exterior & Mountain View'),
+      createPlaceholderImage('Sukoon Stay', 'Nature Living Area'),
+      createPlaceholderImage('Sukoon Stay', 'Private Garden'),
+      createPlaceholderImage('Sukoon Stay', 'Almora Valley View'),
+      createPlaceholderImage('Sukoon Stay', 'Kitchen & Dining'),
     ],
     description:
       'A highly aesthetic and beautifully designed home perfect for families looking to unwind amidst breathtaking mountains and starry skies. Every detail of the home is thoughtfully designed for relaxation and connection.',
@@ -174,12 +210,12 @@ export const PROPERTIES: Property[] = [
     rooms: [
       {
         name: 'Master Bedroom',
-        image: 'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Master Bedroom', 'Queen bed · Back support mattress'),
         details: 'Queen bed · Back support mattress · Mountain view',
       },
       {
         name: 'Bedroom 2',
-        image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Bedroom 2', 'Double bed · Back support mattress'),
         details: 'Double bed · Back support mattress · Garden view',
       },
     ],
@@ -205,9 +241,9 @@ export const PROPERTIES: Property[] = [
     isPremium: true,
     coordinates: { x: 58, y: 42, label: '₹6,299', lat: 29.3807, lng: 79.5161 },
     images: [
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85',
-      'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      createPlaceholderImage('The Sunlit Homestay', 'Hillside Cottage View'),
+      createPlaceholderImage('The Sunlit Homestay', 'First Floor Balcony'),
+      createPlaceholderImage('The Sunlit Homestay', 'Covered Terrace View'),
     ],
     description:
       'A cozy 3BHK hillside cottage offering the ultimate nature retreat. Nestled in Leeswal Gaon (Ghorakhal), 2km from Bhowali market and 9km from Kainchi Dham, it provides pristine air quality, quiet residential peace, and full privacy.',
@@ -269,17 +305,17 @@ export const PROPERTIES: Property[] = [
     rooms: [
       {
         name: 'Ground Floor Room',
-        image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Ground Floor Room', 'King bed · Attached bath'),
         details: 'King bed · Attached bath · Ground floor access',
       },
       {
         name: 'First Floor Balcony Room',
-        image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('First Floor Balcony Room', 'King bed · Private balcony'),
         details: 'King bed · Attached bath · Private balcony & terrace access',
       },
       {
         name: 'First Floor Room 3',
-        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('First Floor Room 3', 'King bed · Hill view'),
         details: 'King bed · Attached bath · Hill view',
       },
     ],
@@ -305,10 +341,10 @@ export const PROPERTIES: Property[] = [
     isPremium: true,
     coordinates: { x: 42, y: 35, label: '₹14,500', lat: 29.3520, lng: 79.5550 },
     images: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
+      createPlaceholderImage('Silvara Boutique Villa', 'Villa Exterior'),
+      createPlaceholderImage('Silvara Boutique Villa', 'Lawn Patio'),
+      createPlaceholderImage('Silvara Boutique Villa', 'Family Lounge'),
+      createPlaceholderImage('Silvara Boutique Villa', '180° Balcony View'),
     ],
     description:
       'A luxury 4-bedroom boutique hilltop villa featuring expansive 180° mountain and sky views. Designed with step-free ground floor access, themed bedrooms, a dedicated cook & caretaker, and landscaped lawn patio.',
@@ -378,22 +414,22 @@ export const PROPERTIES: Property[] = [
     rooms: [
       {
         name: 'Marigold Room (Orange Theme)',
-        image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Marigold Room', 'Ground floor · 55" Smart TV'),
         details: 'Ground floor step-free · King bed · 55" Smart TV · Attached bath',
       },
       {
         name: 'Forget-Me-Not Room (Blue Theme)',
-        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Forget-Me-Not Room', 'First floor · Mountain window'),
         details: 'First floor · King bed · 55" Smart TV · Mountain window · Attached bath',
       },
       {
         name: 'Crimson Pine Room (Red Theme)',
-        image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Crimson Pine Room', 'Private balcony · Dual windows'),
         details: 'First floor · Panoramic dual windows · Private balcony · Attached bath',
       },
       {
         name: 'Wild Orchid Room (Purple Theme)',
-        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Wild Orchid Room', 'Luxury balcony · Valley view'),
         details: 'First floor luxury · Dual view windows · Private balcony · Attached bath',
       },
     ],
@@ -419,10 +455,10 @@ export const PROPERTIES: Property[] = [
     isPremium: true,
     coordinates: { x: 48, y: 38, label: '₹8,500', lat: 29.3510, lng: 79.5540 },
     images: [
-      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=85',
-      'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      createPlaceholderImage('WoodWalk Nature Stay', 'Stone Cottage Exterior'),
+      createPlaceholderImage('WoodWalk Nature Stay', 'Garden Sitting Area'),
+      createPlaceholderImage('WoodWalk Nature Stay', 'Covered Terrace'),
+      createPlaceholderImage('WoodWalk Nature Stay', 'Village Surroundings'),
     ],
     description:
       'A peaceful 4BHK traditional stone cottage tucked in a mountain village (Chauria, Mehragaon, Bhimtal). Surrounded by green valley views and fresh mountain air, it offers a true nature-stay retreat away from road noise.',
@@ -489,22 +525,22 @@ export const PROPERTIES: Property[] = [
     rooms: [
       {
         name: 'Family Suite (1st Floor)',
-        image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Family Suite (1st Floor)', '2 Double beds · Private balcony'),
         details: '2 Double beds · Attached bath · Private balcony with village views',
       },
       {
         name: 'Garden Room (Ground Floor)',
-        image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Garden Room', 'Ground floor · Garden facing'),
         details: 'King bed · Attached bath · Located outside facing garden',
       },
       {
         name: 'Classic Room (Ground Floor)',
-        image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Classic Room', 'Ground floor · Nature view'),
         details: 'King bed · Attached bath · Nature view',
       },
       {
         name: 'Cozy Room (Ground Floor)',
-        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80',
+        image: createPlaceholderImage('Cozy Room', 'Ground floor · Mountain view'),
         details: 'Double bed · Attached bath · Mountain view',
       },
     ],
@@ -515,40 +551,40 @@ export const DESTINATIONS: Destination[] = [
   {
     id: 'uttrakhand',
     name: 'Uttrakhand',
-    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=400&q=80',
+    image: createDestinationPlaceholder('Uttrakhand'),
     available: true,
   },
   {
     id: 'himachal',
     name: 'Himachal Pradesh',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
+    image: createDestinationPlaceholder('Himachal Pradesh'),
     available: true,
   },
   {
     id: 'kerala',
     name: 'Kerala',
-    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=400&q=80',
+    image: createDestinationPlaceholder('Kerala'),
     badge: 'Coming Soon',
     available: false,
   },
   {
     id: 'rajasthan',
     name: 'Rajasthan',
-    image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=400&q=80',
+    image: createDestinationPlaceholder('Rajasthan'),
     badge: 'Coming Soon',
     available: false,
   },
   {
     id: 'goa',
     name: 'Goa',
-    image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=400&q=80',
+    image: createDestinationPlaceholder('Goa'),
     badge: 'Coming Soon',
     available: false,
   },
   {
     id: 'karnataka',
     name: 'Karnataka',
-    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=600&q=80',
+    image: createDestinationPlaceholder('Karnataka'),
     badge: 'Coming Soon',
     available: false,
   },
@@ -558,17 +594,17 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Jatin Singh Mehra',
     role: 'Founder & CEO',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80',
+    image: createAvatarPlaceholder('Jatin Singh Mehra'),
   },
   {
     name: 'Nikita Wadhawan',
     role: 'Operations',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80',
+    image: createAvatarPlaceholder('Nikita Wadhawan'),
   },
   {
     name: 'Vinay Kumar',
     role: 'Media Manager',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80',
+    image: createAvatarPlaceholder('Vinay Kumar'),
   },
 ];
 
@@ -576,28 +612,28 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     name: 'David Lee',
     title: 'Professor',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80',
+    avatar: createAvatarPlaceholder('David Lee'),
     quote:
       'Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.',
   },
   {
     name: 'Sarah Machillie',
     title: 'Doctor',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&q=80',
+    avatar: createAvatarPlaceholder('Sarah Machillie'),
     quote:
       'Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world.',
   },
   {
     name: 'David Lee',
     title: 'Professor',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80',
+    avatar: createAvatarPlaceholder('David Lee'),
     quote:
       'Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.',
   },
   {
     name: 'Sarah Machillie',
     title: 'Doctor',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=160&q=80',
+    avatar: createAvatarPlaceholder('Sarah Machillie'),
     quote:
       'Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world.',
   },
@@ -620,3 +656,4 @@ export const FAQS: FAQItem[] = [
       'We implement strict guest screening procedures before approving bookings. By utilizing dynamic pricing, we automatically filter out low-quality inquiries and attract premium travelers who respect your property.',
   },
 ];
+

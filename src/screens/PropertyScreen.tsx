@@ -641,10 +641,9 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
               {/* Map Preview Image */}
               <div className="relative h-36 rounded-2xl overflow-hidden border border-stone-200/80">
                 <img
-                  src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=600&q=80"
+                  src="/assets/sky.png"
                   alt="Map location preview"
                   className="w-full h-full object-cover brightness-95"
-                  referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 px-3 py-1 rounded-full shadow-xs text-[11px] font-bold text-[#00704A] flex items-center space-x-1">
                   <MapPin className="w-3.5 h-3.5 text-red-600" />

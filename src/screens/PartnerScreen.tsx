@@ -23,10 +23,9 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
         {/* Background image: warm homestay lounge/dining window view with hanging lights */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=85"
+            src="/assets/bg.png"
             alt="Warm atmospheric boutique homestay interior"
             className="w-full h-full object-cover brightness-[0.45]"
-            referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/60" />
         </div>

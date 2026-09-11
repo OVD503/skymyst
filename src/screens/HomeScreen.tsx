@@ -394,7 +394,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               className="md:col-span-5 group relative h-60 sm:h-80 md:h-[400px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
             >
               <img
-                src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=85"
+                src="/assets/peace.png"
                 alt="Romantic honeymoon couple"
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
               />
