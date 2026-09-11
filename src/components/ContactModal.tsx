@@ -26,13 +26,13 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
   return (
     <div
       id="contact-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6 bg-black/70 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
         id="contact-modal-dialog"
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white rounded-[32px] max-w-4xl w-full overflow-hidden shadow-2xl flex flex-col md:flex-row border border-stone-200/60"
+        className="relative bg-white rounded-t-[24px] sm:rounded-[32px] max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col md:flex-row border border-stone-200/60"
       >
         {/* Close Button */}
         <button
@@ -45,8 +45,8 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         </button>
 
         {/* Left Side: Alpine Landscape Image */}
-        <div className="md:w-1/2 p-3 sm:p-4">
-          <div className="relative h-64 md:h-full min-h-[380px] rounded-[24px] overflow-hidden shadow-inner">
+        <div className="md:w-1/2 p-2.5 sm:p-3 md:p-4">
+          <div className="relative h-40 sm:h-56 md:h-full min-h-[160px] sm:min-h-[280px] md:min-h-[380px] rounded-[16px] sm:rounded-[24px] overflow-hidden shadow-inner">
             <img
               src="/assets/contact.png"
               alt="Mountain valley with alpine lake and wildflowers"
@@ -58,12 +58,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         </div>
 
         {/* Right Side: Form & Contact Details */}
-        <div className="md:w-1/2 p-6 sm:p-10 flex flex-col justify-between space-y-6">
+        <div className="md:w-1/2 p-4 sm:p-6 md:p-10 flex flex-col justify-between space-y-4 sm:space-y-6">
           <div>
             <span className="text-[11px] font-semibold text-stone-400 tracking-[0.2em] uppercase block mb-1">
               CONTACT US
             </span>
-            <h2 className="font-casiome-impera text-3xl sm:text-4xl text-[#004030] font-normal leading-tight tracking-tight mb-6">
+            <h2 className="font-casiome-impera text-2xl sm:text-3xl md:text-4xl text-[#004030] font-normal leading-tight tracking-tight mb-4 sm:mb-6">
               Allow us to find you.
             </h2>
 
@@ -134,7 +134,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             )}
           </div>
 
-          <div className="pt-5 border-t border-stone-100 space-y-3">
+          <div className="pt-3 sm:pt-5 border-t border-stone-100 space-y-2 sm:space-y-3">
             <div className="space-y-1">
               <h4 className="font-serif text-base sm:text-lg text-[#004030] font-semibold tracking-tight">
                 Make Yourself at Home

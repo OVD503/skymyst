@@ -27,7 +27,7 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
   return (
     <div className="w-full">
       {/* Top Filter Bar */}
-      <div className="bg-white border-b border-stone-200 sticky top-20 z-30 px-4 sm:px-6 lg:px-8 py-3.5">
+      <div className="bg-white border-b border-stone-200 sticky top-16 sm:top-20 z-30 px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3.5">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div>
             <h1 className="text-sm sm:text-base font-semibold text-stone-900">
@@ -70,10 +70,10 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
       </div>
 
       {/* Main Split-Screen Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[750px]">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 min-h-[600px] sm:min-h-[750px]">
           {/* Left Column: Property Listings (Image 6) */}
-          <div className="lg:col-span-7 space-y-5">
+          <div className="lg:col-span-7 space-y-3 sm:space-y-5">
             {filteredProperties.map((prop) => (
               <div
                 key={prop.id}
@@ -88,7 +88,7 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
                   }`}
               >
                 {/* Image */}
-                <div className="relative sm:w-56 h-48 sm:h-auto shrink-0 overflow-hidden bg-stone-100">
+                <div className="relative sm:w-56 h-36 sm:h-48 md:h-auto shrink-0 overflow-hidden bg-stone-100">
                   <img
                     src={prop.images[0]}
                     alt={prop.name}
@@ -108,7 +108,7 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
                 </div>
 
                 {/* Content */}
-                <div className="p-4 sm:p-5 flex flex-col justify-between flex-1">
+                <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-between flex-1">
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
                       <span className="text-xs text-stone-500 font-medium">
@@ -164,7 +164,7 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
           </div>
 
           {/* Right Column: Interactive Map with Custom Price Pins (Image 6) */}
-          <div className="lg:col-span-5 h-[500px] lg:h-auto sticky top-40 rounded-3xl overflow-hidden border border-stone-200 shadow-md relative bg-[#E5E3DF]">
+          <div className="lg:col-span-5 h-[300px] sm:h-[400px] lg:h-auto sticky top-32 sm:top-40 rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-200 shadow-md relative bg-[#E5E3DF]">
             {/* Map Canvas Background (Simulated Road / Mountain topography) */}
             <div className="absolute inset-0 z-0">
               <svg

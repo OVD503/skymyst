@@ -47,7 +47,7 @@ export function App() {
       />
 
       {/* Screen View Container */}
-      <main className={`flex-1 ${currentPage !== 'home' && currentPage !== 'partner' ? 'pt-20 sm:pt-24' : ''}`}>
+      <main className={`flex-1 ${currentPage !== 'home' && currentPage !== 'partner' ? 'pt-14 sm:pt-20 md:pt-24' : ''}`}>
         {currentPage === 'home' && (
           <HomeScreen
             onNavigate={handleNavigate}

@@ -76,16 +76,16 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
       {/* Title */}
-      <div className="mb-6">
-        <h1 className="font-serif text-3xl sm:text-4xl text-stone-900 font-medium">
+      <div className="mb-4 sm:mb-6">
+        <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 font-medium">
           {property.name}
         </h1>
       </div>
 
       {/* Gallery Grid (Image 2) */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 rounded-3xl overflow-hidden mb-8 h-[380px] sm:h-[480px]">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 sm:gap-3 rounded-2xl sm:rounded-3xl overflow-hidden mb-5 sm:mb-8 h-[220px] sm:h-[340px] md:h-[480px]">
         {/* Large featured photo (Left 2 cols) */}
         <div
           onClick={onOpenGallery}
@@ -161,7 +161,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
       </div>
 
       {/* Subnav Tabs */}
-      <div className="flex border-b border-stone-200 mb-8 space-x-8 text-sm font-medium">
+      <div className="flex border-b border-stone-200 mb-5 sm:mb-8 space-x-4 sm:space-x-8 text-xs sm:text-sm font-medium overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {(['overview', 'amenities', 'rooms', 'policies'] as const).map((tab) => (
           <button
             key={tab}
@@ -184,16 +184,16 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
       </div>
 
       {/* Two Column Layout: Main Content + Sticky Booking Sidebar */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10">
         {/* Left Column */}
-        <div className="lg:col-span-8 space-y-10">
+        <div className="lg:col-span-8 space-y-6 sm:space-y-10">
           {/* Overview Section */}
           <div id="property-overview-section" className="space-y-4">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="font-serif text-2xl sm:text-3xl text-stone-900 font-medium">
-                  {property.location}, {property.state}
-                </h2>
+                <h2 className="font-serif text-xl sm:text-2xl md:text-3xl text-stone-900 font-medium">
+                {property.location}, {property.state}
+              </h2>
                 <p className="text-xs sm:text-sm text-stone-600 mt-1">
                   {property.propertyType && (
                     <span className="font-semibold text-emerald-900 bg-emerald-100/70 px-2 py-0.5 rounded-md mr-2">
@@ -873,11 +873,11 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
         {/* Right Column (Sticky Booking Widget + Explore the Area) */}
         <div className="lg:col-span-4 space-y-6">
           {/* Booking Card */}
-          <div className="sticky top-28 bg-white rounded-3xl p-6 border border-stone-200 shadow-lg space-y-5">
+          <div className="sticky top-24 sm:top-28 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-stone-200 shadow-lg space-y-4 sm:space-y-5">
             <div>
               <span className="text-xs text-stone-400 font-medium">Starting from</span>
               <div className="flex items-baseline space-x-1 mt-0.5">
-                <span className="font-serif text-3xl font-bold text-stone-900">₹{property.pricePerNight.toLocaleString()}</span>
+                <span className="font-serif text-2xl sm:text-3xl font-bold text-stone-900">₹{property.pricePerNight.toLocaleString()}</span>
                 <span className="text-xs text-stone-500 font-normal">/ night</span>
               </div>
             </div>

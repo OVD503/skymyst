@@ -12,13 +12,13 @@ export const StoryModal: React.FC<StoryModalProps> = ({ isOpen, onClose }) => {
   return (
     <div
       id="story-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
         id="story-modal-dialog"
         onClick={(e) => e.stopPropagation()}
-        className="relative bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl flex flex-col md:flex-row border border-stone-100"
+        className="relative bg-white rounded-t-[20px] sm:rounded-3xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col md:flex-row border border-stone-100"
       >
         {/* Close button */}
         <button
@@ -31,8 +31,8 @@ export const StoryModal: React.FC<StoryModalProps> = ({ isOpen, onClose }) => {
         </button>
 
         {/* Left Side: Cheerful group photo (Image 8) */}
-        <div className="md:w-1/2 p-3 sm:p-4">
-          <div className="relative h-72 md:h-full min-h-[380px] rounded-2xl overflow-hidden shadow-inner">
+        <div className="md:w-1/2 p-2.5 sm:p-3 md:p-4">
+          <div className="relative h-40 sm:h-56 md:h-full min-h-[160px] sm:min-h-[280px] md:min-h-[380px] rounded-xl sm:rounded-2xl overflow-hidden shadow-inner">
             <img
               src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=1000&q=85"
               alt="Group of friends smiling together on travel adventures"
@@ -43,11 +43,11 @@ export const StoryModal: React.FC<StoryModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Right Side: Text content */}
-        <div className="md:w-1/2 p-6 sm:p-10 flex flex-col justify-center">
+        <div className="md:w-1/2 p-4 sm:p-6 md:p-10 flex flex-col justify-center">
           <span className="text-xs font-semibold text-stone-500 tracking-wider uppercase mb-1">
             About Us
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 mb-6 font-normal">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 mb-4 sm:mb-6 font-normal">
             Our Experience
           </h2>
 
@@ -66,7 +66,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({ isOpen, onClose }) => {
             </p>
           </div>
 
-          <div className="mt-8 pt-6 border-t border-stone-100 flex items-center justify-between">
+          <div className="mt-5 sm:mt-8 pt-4 sm:pt-6 border-t border-stone-100 flex items-center justify-between">
             <div className="text-xs text-stone-400">
               Waveyu & Skymyst Community
             </div>

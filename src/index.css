@@ -99,3 +99,43 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a89f8d;
 }
+
+/* Mobile-specific optimizations */
+html, body {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Ensure all images scale within containers */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Improve touch targets for mobile */
+@media (max-width: 640px) {
+  button, a, select, input {
+    min-height: 36px;
+  }
+
+  /* Prevent font scaling in landscape */
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  /* Tighter form inputs on mobile */
+  input, select, textarea {
+    font-size: 16px; /* Prevents iOS zoom */
+  }
+}
