@@ -117,10 +117,9 @@ html {
   min-height: 100vh;
 }
 
-/* Ensure all images scale within containers */
+/* Prevent horizontal overflow on all containers */
 img, video {
   max-width: 100%;
-  height: auto;
 }
 
 /* Improve touch targets for mobile */

@@ -192,8 +192,8 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h2 className="font-serif text-xl sm:text-2xl md:text-3xl text-stone-900 font-medium">
-                {property.location}, {property.state}
-              </h2>
+                  {property.location}, {property.state}
+                </h2>
                 <p className="text-xs sm:text-sm text-stone-600 mt-1">
                   {property.propertyType && (
                     <span className="font-semibold text-emerald-900 bg-emerald-100/70 px-2 py-0.5 rounded-md mr-2">
