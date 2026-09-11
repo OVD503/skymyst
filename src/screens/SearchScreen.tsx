@@ -46,11 +46,6 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                     referrerPolicy="no-referrer"
                   />
-                  {prop.discountBadge && (
-                    <span className="absolute top-3 right-3 bg-[#00704A] text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow-xs">
-                      {prop.discountBadge}
-                    </span>
-                  )}
                 </div>
 
                 {/* Property Details */}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, ChevronUp, ChevronRight, ChevronLeft, Calendar, MapPin, Users, Home } from 'lucide-react';
+import { Search, ChevronDown, ChevronUp, ChevronRight, ChevronLeft, Calendar, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ScreenPage } from '../types';
 import { DESTINATIONS, PROPERTIES } from '../data/Data';
@@ -18,13 +18,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onOpenContact,
   onOpenStory,
 }) => {
-  const [selectedLocation, setSelectedLocation] = useState<string>('All Locations');
+  const [selectedLocation, setSelectedLocation] = useState<string>('Add Destination');
   const [selectedProperty, setSelectedProperty] = useState<string>('all');
-  const [selectedDayStart, setSelectedDayStart] = useState<number>(12);
-  const [selectedDayEnd, setSelectedDayEnd] = useState<number>(16);
-  const [checkInDate, setCheckInDate] = useState<string>('Oct 12, 2026');
-  const [checkOutDate, setCheckOutDate] = useState<string>('Oct 16, 2026');
-  const [guestsCount, setGuestsCount] = useState<number>(4);
+  const [selectedDayStart, setSelectedDayStart] = useState<number>(0);
+  const [selectedDayEnd, setSelectedDayEnd] = useState<number>(0);
+  const [checkInDate, setCheckInDate] = useState<string>('');
+  const [checkOutDate, setCheckOutDate] = useState<string>('');
+  const [guestsCount, setGuestsCount] = useState<number>(0);
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
   const [expandedStep, setExpandedStep] = useState<number>(2);
 
@@ -77,61 +77,31 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="absolute bottom-8 sm:bottom-10 md:bottom-12 left-0 right-0 z-30 px-3 sm:px-6">
           <form
             onSubmit={handleSearchSubmit}
-            className="max-w-4xl mx-auto bg-white rounded-2xl sm:rounded-full shadow-2xl p-2 sm:p-2.5 flex flex-col md:flex-row items-center gap-2 border border-stone-200/80 transition-all"
+            className="max-w-4xl mx-auto bg-white rounded-2xl md:rounded-full shadow-2xl p-2 sm:p-2.5 pl-6 sm:pl-8 flex flex-col md:flex-row items-center justify-between border border-stone-200/80 transition-all gap-3 md:gap-0"
           >
-            {/* 1. LOCATION */}
-            <div className="flex-1 w-full px-4 py-1.5 border-b md:border-b-0 md:border-r border-stone-200">
-              <label className="flex items-center space-x-1 text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0.5">
-                <MapPin className="w-3 h-3 text-[#005B41]" />
-                <span>Location</span>
-              </label>
+            {/* 1. Add Destination */}
+            <div className="flex-1 w-full md:w-auto py-1 md:py-0 pr-4 border-b md:border-b-0 md:border-r border-stone-200 flex items-center">
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="w-full text-xs sm:text-sm font-medium text-stone-800 focus:outline-none bg-transparent cursor-pointer"
+                className="w-full text-stone-600 font-normal text-sm sm:text-base bg-transparent focus:outline-none cursor-pointer appearance-none"
               >
-                <option value="All Locations">location</option>
-                <option value="Almora">Almora, Uttrakhand</option>
-                <option value="Bhimtal">Bhimtal, Uttrakhand</option>
-                <option value="Bhowali">Bhowali, Uttrakhand</option>
+                <option value="Add Destination">Add Destination</option>
+                <option value="Almora">Almora, Uttarakhand</option>
+                <option value="Bhimtal">Bhimtal, Uttarakhand</option>
+                <option value="Bhowali">Bhowali, Uttarakhand</option>
+                <option value="Mukteshwar">Mukteshwar, Uttarakhand</option>
               </select>
             </div>
 
-            {/* 2. STAYS */}
-            <div className="flex-1 w-full px-4 py-1.5 border-b md:border-b-0 md:border-r border-stone-200">
-              <label className="flex items-center space-x-1 text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0.5">
-                <Home className="w-3 h-3 text-[#005B41]" />
-                <span>Stays</span>
-              </label>
-              <select
-                value={selectedProperty}
-                onChange={(e) => setSelectedProperty(e.target.value)}
-                className="w-full text-xs sm:text-sm font-medium text-stone-800 focus:outline-none bg-transparent cursor-pointer truncate"
-              >
-                <option value="all">stays</option>
-                {PROPERTIES.map((prop) => (
-                  <option key={prop.id} value={prop.id}>
-                    {prop.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* 3. DATES */}
-            <div className="flex-1 w-full px-4 py-1.5 border-b md:border-b-0 md:border-r border-stone-200 relative">
-              <label className="flex items-center space-x-1 text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0.5">
-                <Calendar className="w-3 h-3 text-[#005B41]" />
-                <span>Dates</span>
-              </label>
+            {/* 2. Add Dates */}
+            <div className="flex-1 w-full md:w-auto py-1 md:py-0 px-4 md:px-6 border-b md:border-b-0 md:border-r border-stone-200 relative flex items-center">
               <button
                 type="button"
                 onClick={() => setShowDatePicker(!showDatePicker)}
-                className="w-full text-left text-xs sm:text-sm font-medium text-stone-800 focus:outline-none bg-transparent flex items-center justify-between"
+                className="w-full text-left text-stone-600 font-normal text-sm sm:text-base focus:outline-none bg-transparent truncate"
               >
-                <span className="truncate">
-                  {checkInDate ? (checkOutDate ? `${checkInDate} - ${checkOutDate}` : checkInDate) : 'check in date'}
-                </span>
-                <ChevronDown className="w-3.5 h-3.5 text-stone-400 shrink-0 ml-1" />
+                {checkInDate ? (checkOutDate ? `${checkInDate} - ${checkOutDate}` : checkInDate) : 'Add Dates'}
               </button>
 
               {/* Date Picker Dropdown */}
@@ -233,32 +203,30 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               )}
             </div>
 
-            {/* 4. GUESTS & BUTTON */}
-            <div className="w-full md:w-auto flex items-center justify-between pl-2">
-              <div className="hidden lg:block px-2">
-                <label className="flex items-center space-x-1 text-[10px] uppercase tracking-wider text-stone-400 font-semibold mb-0.5">
-                  <Users className="w-3 h-3 text-[#005B41]" />
-                  <span>Guests</span>
-                </label>
-                <select
-                  value={guestsCount}
-                  onChange={(e) => setGuestsCount(Number(e.target.value))}
-                  className="text-xs font-medium text-stone-800 focus:outline-none bg-transparent cursor-pointer"
-                >
-                  {Array.from({ length: 12 }, (_, i) => i + 1).map((num) => (
-                    <option key={num} value={num}>
-                      {num} {num === 1 ? 'Guest' : 'Guests'}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            {/* 3. Add Guests */}
+            <div className="flex-1 w-full md:w-auto py-1 md:py-0 px-4 md:px-6 flex items-center">
+              <select
+                value={guestsCount === 0 ? '' : guestsCount}
+                onChange={(e) => setGuestsCount(Number(e.target.value))}
+                className="w-full text-stone-600 font-normal text-sm sm:text-base bg-transparent focus:outline-none cursor-pointer appearance-none"
+              >
+                <option value="">Add Guests</option>
+                {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+                  <option key={num} value={num}>
+                    {num} {num === 1 ? 'Guest' : 'Guests'}
+                  </option>
+                ))}
+              </select>
+            </div>
 
+            {/* 4. Action Button */}
+            <div className="w-full md:w-auto pl-0 md:pl-2">
               <button
                 type="submit"
                 id="hero-find-trip-btn"
-                className="w-full md:w-auto px-6 py-3 rounded-full bg-[#005B41] hover:bg-[#004030] text-white flex items-center justify-center space-x-2 text-xs sm:text-sm font-semibold transition shrink-0 shadow-md active:scale-95"
+                className="w-full md:w-auto px-6 sm:px-7 py-3 rounded-full bg-[#005B41] hover:bg-[#004030] text-white flex items-center justify-center space-x-2.5 text-sm sm:text-base font-medium transition shrink-0 shadow-sm active:scale-95"
               >
-                <Search className="w-4 h-4" />
+                <Search className="w-4 sm:w-4.5 h-4 sm:h-4.5 stroke-[2.5]" />
                 <span>Find Trip Now</span>
               </button>
             </div>
@@ -333,16 +301,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                     alt={prop.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
-                  {prop.discountBadge && (
-                    <span className="absolute top-3 right-3 bg-[#005B41] text-white text-[11px] font-semibold px-2.5 py-1 rounded-md shadow-xs">
-                      {prop.discountBadge}
-                    </span>
-                  )}
-                  {prop.isPremium && !prop.discountBadge && (
-                    <span className="absolute top-3 right-3 bg-[#FFC107] text-stone-900 text-[11px] font-bold px-2.5 py-1 rounded-md shadow-xs">
-                      Featured
-                    </span>
-                  )}
                 </div>
 
                 <div className="space-y-1">
@@ -914,15 +872,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
 
           {/* Floating tilted campfire card peeking at bottom center */}
-          <div className="relative flex justify-center -mt-6 z-20 pointer-events-none">
-            <div className="w-48 h-32 rounded-2xl overflow-hidden shadow-xl border-2 border-[#FFF9E8] transform -rotate-[14deg] hover:rotate-0 transition-transform duration-300">
-              <img
-                src="/assets/bonfire.png"
-                alt="Tilted bonfire photo card"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
+
         </div>
       </section>
 
