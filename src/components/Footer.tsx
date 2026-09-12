@@ -8,7 +8,7 @@ interface FooterProps {
   onOpenContact: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -22,27 +22,29 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
   };
 
   return (
-    <footer id="main-footer" className="bg-[#003B2B] text-stone-200 pt-10 sm:pt-16 pb-6 sm:pb-10 border-t border-emerald-950">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 pb-8 sm:pb-14 border-b border-emerald-900/60">
-          {/* Left Column: Brand & Contact info */}
-          <div className="lg:col-span-6 space-y-4 sm:space-y-6">
-            <div className="flex items-start">
-              <SkymystLogo variant="light" onClick={() => onNavigate('home')} />
+    <footer id="main-footer" className="bg-[#004D3A] text-white pt-12 sm:pt-16 pb-8 sm:pb-12">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 pb-12 sm:pb-16 border-b border-[#003D2E]">
+          {/* Left Column: Brand, Address, Contact info */}
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
+            <div className="space-y-6">
+              <div className="flex items-start">
+                <SkymystLogo variant="light" onClick={() => onNavigate('home')} />
+              </div>
+
+              <div className="text-xs sm:text-sm text-stone-200/90 leading-relaxed font-sans font-light space-y-0.5">
+                <p className="font-normal text-white mb-1">Waveyu Surf Camp</p>
+                <p>Jalan Pantai Batu Bolong No. 27,</p>
+                <p>Canggu, Kuta Utara, Badung, Bali 80361,</p>
+                <p>Indonesia</p>
+              </div>
             </div>
 
-            <div className="text-sm leading-relaxed text-stone-300/90 max-w-sm">
-              <p className="font-medium text-white mb-1">Waveyu Surf Camp</p>
-              <p>Jalan Pantai Batu Bolong No. 27,</p>
-              <p>Canggu, Kuta Utara, Badung, Bali 80361,</p>
-              <p>Indonesia</p>
-            </div>
-
-            <div className="pt-2 space-y-1 text-sm font-medium">
+            <div className="space-y-1.5 font-sans">
               <p>
                 <a
                   href="tel:+919876543210"
-                  className="text-[#d8f95c] hover:underline tracking-wide text-base font-semibold block"
+                  className="text-[#C8F231] hover:underline text-lg sm:text-xl font-medium tracking-wide block"
                 >
                   +91 987 6543 210
                 </a>
@@ -50,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
               <p>
                 <a
                   href="mailto:contactskymyst@gmail.com"
-                  className="text-[#d8f95c] hover:underline block"
+                  className="text-[#C8F231] hover:underline text-sm sm:text-base font-normal block"
                 >
                   contactskymyst@gmail.com
                 </a>
@@ -59,29 +61,33 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
           </div>
 
           {/* Right Column: Subscribe & Links */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-5 sm:space-y-8">
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
             <div>
-              <h3 className="font-serif text-xl sm:text-2xl text-white mb-3 sm:mb-4">Subscribe</h3>
+              <h3 className="font-serif text-3xl sm:text-4xl text-white mb-4 sm:mb-6 font-normal">
+                Subscribe
+              </h3>
 
-              {/* Newsletter form */}
-              <form onSubmit={handleSubscribe} className="relative max-w-md">
-                <div className="flex items-center rounded-full bg-[#002f22] border border-emerald-800/80 p-1.5 focus-within:border-emerald-500 transition">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Sign up to our newsletter"
-                    required
-                    className="w-full bg-transparent px-4 py-2 text-sm text-white placeholder:text-emerald-300/60 focus:outline-none"
-                  />
+              {/* Newsletter form exact to reference image */}
+              <form onSubmit={handleSubscribe} className="relative">
+                <div className="flex items-center gap-3">
+                  <div className="flex-1 rounded-full bg-[#00392B] border border-[#003326] px-5 py-3 flex items-center">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Sign up to our newsletter"
+                      required
+                      className="w-full bg-transparent text-sm text-white placeholder:text-stone-300/70 focus:outline-none"
+                    />
+                  </div>
                   <button
                     type="submit"
-                    className="px-5 py-2 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-xs font-semibold tracking-wide uppercase transition shrink-0"
+                    className="px-7 py-3 rounded-full bg-[#00281F] hover:bg-[#001D17] text-white text-xs sm:text-sm font-medium tracking-wide transition shrink-0 cursor-pointer shadow-md"
                   >
                     {subscribed ? (
-                      <span className="flex items-center space-x-1 text-emerald-400">
-                        <Check className="w-3.5 h-3.5" />
-                        <span>Done</span>
+                      <span className="flex items-center space-x-1 text-[#C8F231]">
+                        <Check className="w-4 h-4" />
+                        <span>Subscribed</span>
                       </span>
                     ) : (
                       'Sign Up'
@@ -89,21 +95,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
                   </button>
                 </div>
                 {subscribed && (
-                  <p className="text-xs text-[#d8f95c] mt-2">
+                  <p className="text-xs text-[#C8F231] mt-2">
                     Thank you for subscribing to Skymyst updates!
                   </p>
                 )}
               </form>
             </div>
 
-            {/* Quick Navigation Links */}
-            <div className="space-y-3 pt-4 border-t border-emerald-900/50">
+            {/* Quick Navigation Links exact match to image */}
+            <div className="border-t border-[#003B2C]">
               <button
                 onClick={() => onNavigate('about')}
-                className="w-full flex items-center justify-between py-2 text-sm text-stone-200 hover:text-white group border-b border-emerald-900/40 text-left transition"
+                className="w-full flex items-center justify-between py-3.5 text-sm sm:text-base text-white/90 hover:text-white group border-b border-[#003B2C] text-left transition cursor-pointer"
               >
                 <span>About Us</span>
-                <ChevronRight className="w-4 h-4 text-stone-400 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-white/70 group-hover:translate-x-1 transition-transform" />
               </button>
 
               <button
@@ -112,45 +118,45 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
                   const faqSection = document.getElementById('faq-section');
                   if (faqSection) faqSection.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full flex items-center justify-between py-2 text-sm text-stone-200 hover:text-white group border-b border-emerald-900/40 text-left transition"
+                className="w-full flex items-center justify-between py-3.5 text-sm sm:text-base text-white/90 hover:text-white group border-b border-[#003B2C] text-left transition cursor-pointer"
               >
                 <span>FAQ</span>
-                <ChevronRight className="w-4 h-4 text-stone-400 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-white/70 group-hover:translate-x-1 transition-transform" />
               </button>
 
               <button
                 onClick={() => onNavigate('partner')}
-                className="w-full flex items-center justify-between py-2 text-sm text-stone-200 hover:text-white group border-b border-emerald-900/40 text-left transition"
+                className="w-full flex items-center justify-between py-3.5 text-sm sm:text-base text-white/90 hover:text-white group border-b border-[#003B2C] text-left transition cursor-pointer"
               >
                 <span>Become a partner</span>
-                <ChevronRight className="w-4 h-4 text-stone-400 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-white/70 group-hover:translate-x-1 transition-transform" />
               </button>
 
               <button
                 onClick={() => onNavigate('about')}
-                className="w-full flex items-center justify-between py-2 text-sm text-stone-200 hover:text-white group text-left transition"
+                className="w-full flex items-center justify-between py-3.5 text-sm sm:text-base text-white/90 hover:text-white group border-b border-[#003B2C] text-left transition cursor-pointer"
               >
                 <span>Testimonials</span>
-                <ChevronRight className="w-4 h-4 text-stone-400 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 h-4 text-white/70 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
         </div>
 
         {/* Bottom Legal & Socials */}
-        <div className="pt-5 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-3 sm:gap-4">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+        <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm text-stone-200/90 gap-4">
+          <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1">
             <span>© Skymyst 2026, Inc</span>
-            <span className="text-emerald-800">|</span>
-            <button onClick={() => alert('Terms of Service: Skymyst homestay terms & partner agreements apply.')} className="hover:text-white transition">
+            <span className="text-white/40">|</span>
+            <button onClick={() => alert('Terms of Service: Skymyst homestay terms & partner agreements apply.')} className="hover:text-white transition cursor-pointer">
               Terms
             </button>
-            <span className="text-emerald-800">|</span>
-            <button onClick={() => alert('Privacy Policy: Skymyst GDPR & CCPA compliant data handling.')} className="hover:text-white transition">
+            <span className="text-white/40">|</span>
+            <button onClick={() => alert('Privacy Policy: Skymyst GDPR & CCPA compliant data handling.')} className="hover:text-white transition cursor-pointer">
               Privacy
             </button>
-            <span className="text-emerald-800">|</span>
-            <button onClick={() => alert('Refund Policy: Standard strict and flexible booking cancellation tiers.')} className="hover:text-white transition">
+            <span className="text-white/40">|</span>
+            <button onClick={() => alert('Refund Policy: Standard strict and flexible booking cancellation tiers.')} className="hover:text-white transition cursor-pointer">
               Refund policy
             </button>
           </div>
@@ -161,18 +167,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="w-8 h-8 rounded-full bg-[#002f22] hover:bg-emerald-900 flex items-center justify-center text-stone-300 hover:text-white transition"
+              className="w-10 h-10 rounded-full bg-[#00382B] hover:bg-[#002D22] flex items-center justify-center text-white transition cursor-pointer"
             >
-              <Instagram className="w-4 h-4" />
+              <Instagram className="w-5 h-5" />
             </a>
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="w-8 h-8 rounded-full bg-[#002f22] hover:bg-emerald-900 flex items-center justify-center text-stone-300 hover:text-white transition"
+              className="w-10 h-10 rounded-full bg-[#00382B] hover:bg-[#002D22] flex items-center justify-center text-white transition cursor-pointer"
             >
-              <Facebook className="w-4 h-4" />
+              <Facebook className="w-5 h-5 fill-current" />
             </a>
           </div>
         </div>

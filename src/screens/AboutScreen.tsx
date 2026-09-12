@@ -21,12 +21,12 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
   return (
     <div className="w-full bg-white font-sans antialiased text-stone-800 pt-16 sm:pt-20">
       {/* 1. Header & Team Members Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
+      <section className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 py-12 sm:py-16 md:py-20">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
           <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-1.5">
             Who are we
           </span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal tracking-tight">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight">
             Meet our expert teams
           </h1>
         </div>
@@ -58,12 +58,12 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
 
       {/* 2. Testimonials (Why Choose Us / We've planned everything for you:) */}
       <section className="bg-[#FFF9E8] py-16 sm:py-24 border-t border-b border-[#EAE3D2]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
             <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-1.5">
               Why Choose Us
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal tracking-tight">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight">
               We&apos;ve planned everything for you:
             </h2>
           </div>
@@ -161,24 +161,24 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
 
       {/* 3. FAQ Section */}
       <section className="bg-white py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Header Column */}
             <div className="md:col-span-5 lg:col-span-4">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal leading-[1.15] tracking-tight">
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal leading-[1.15] tracking-tight">
                 Frequently<br />Asked Questions
               </h2>
             </div>
 
             {/* Right Accordion Column */}
-            <div className="md:col-span-7 lg:col-span-8 border-t border-[#E7E0CE]">
+            <div className="md:col-span-7 lg:col-span-8 border-t-2 border-[#CFC5AF]">
               {FAQS.map((faq, idx) => {
                 const isOpen = openFaqs.includes(idx);
                 return (
                   <div
                     key={idx}
-                    className={`border-b transition-colors ${
-                      isOpen ? 'border-b-2 border-[#00704A]' : 'border-[#E7E0CE]'
+                    className={`border-b-2 transition-colors ${
+                      isOpen ? 'border-[#00704A]' : 'border-[#CFC5AF]'
                     }`}
                   >
                     <button

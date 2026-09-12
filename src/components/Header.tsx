@@ -37,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
           : 'bg-gradient-to-b from-black/70 via-black/30 to-transparent py-2.5 sm:py-4 md:py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-12 flex items-center justify-between">
+      <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 flex items-center justify-between">
         {/* Left Side: White Skymyst Logo with Arch Emblem */}
         <div className="flex items-center">
           <SkymystLogo

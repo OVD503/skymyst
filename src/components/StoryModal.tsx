@@ -46,7 +46,7 @@ export const StoryModal: React.FC<StoryModalProps> = ({ isOpen, onClose }) => {
           <span className="text-xs font-semibold text-stone-500 tracking-wider uppercase mb-1">
             About Us
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 mb-4 sm:mb-6 font-normal">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-stone-900 mb-4 sm:mb-6 font-normal">
             Our Experience
           </h2>
 

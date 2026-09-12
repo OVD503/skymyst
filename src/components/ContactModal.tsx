@@ -63,7 +63,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             <span className="text-[11px] font-semibold text-stone-400 tracking-[0.2em] uppercase block mb-1">
               CONTACT US
             </span>
-            <h2 className="font-casiome-impera text-2xl sm:text-3xl md:text-4xl text-[#004030] font-normal leading-tight tracking-tight mb-4 sm:mb-6">
+            <h2 className="font-casiome-impera text-3xl sm:text-4xl md:text-5xl text-[#004030] font-normal leading-tight tracking-tight mb-4 sm:mb-6">
               Allow us to find you.
             </h2>
 

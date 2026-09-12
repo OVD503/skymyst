@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Search, ChevronDown, ChevronUp, ChevronRight, ChevronLeft, Calendar, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ScreenPage } from '../types';
-import { DESTINATIONS, PROPERTIES } from '../data/Data';
+import { DESTINATIONS } from '../data/Data';
 import { UserAvatar } from '../components/UserAvatar';
 
 interface HomeScreenProps {
+  properties: import('../types').Property[];
   onNavigate: (page: ScreenPage) => void;
   onSelectProperty: (propertyId: string) => void;
   onOpenContact: () => void;
@@ -13,6 +14,7 @@ interface HomeScreenProps {
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
+  properties,
   onNavigate,
   onSelectProperty,
   onOpenContact,
@@ -66,7 +68,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
         {/* Hero Title - Exact match from image */}
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-4 -mt-16 sm:-mt-12">
-          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[76px] text-white font-normal tracking-tight leading-[1.12] drop-shadow-md">
+          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[84px] text-white font-normal tracking-tight leading-[1.12] drop-shadow-md">
             Exceptional Stays.
             <br />
             Seamlessly managed.
@@ -235,13 +237,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 2. Featured Properties Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
+      <section className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 pt-10 sm:pt-14 md:pt-16 pb-3 sm:pb-4 md:pb-6">
         <div className="flex flex-wrap items-end justify-between gap-3 mb-6 sm:mb-8">
           <div>
-            <span className="text-xs font-normal text-stone-500 block mb-1">
+            <span className="text-sm font-medium text-stone-500 block mb-1">
               Featured Properties
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 font-normal">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-stone-900 font-normal">
               Handpick stays, just for you.
             </h2>
           </div>
@@ -278,9 +280,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         {/* Property Cards Slider */}
         <div
           id="featured-properties-slider"
-          className="flex overflow-x-auto gap-6 pb-6 pt-2 scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="flex overflow-x-auto gap-6 pb-2 pt-2 scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
-          {PROPERTIES.map((prop, idx) => (
+          {properties.map((prop, idx) => (
             <motion.div
               key={prop.id}
               initial={{ opacity: 0, y: 24 }}
@@ -347,27 +349,55 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 3. Curated Collection (Stays for every kind of gateway) */}
-      <section className="bg-[#FFF9E8] py-12 sm:py-16 md:py-20 border-y border-stone-200/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-[#FFF9E8] pt-6 sm:pt-8 md:pt-10 pb-12 sm:pb-16 md:pb-20 border-y border-stone-200/60">
+        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="flex flex-wrap items-end justify-between gap-3 mb-8 sm:mb-10">
             <div>
-              <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-1">
+              <span className="text-sm font-semibold text-stone-500 uppercase tracking-widest block mb-1">
                 Curated Collection
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-stone-900 font-normal">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-stone-900 font-normal">
                 Stays for every kind of gateway
               </h2>
             </div>
+
+            {/* Right side slider controls */}
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => {
+                  const container = document.getElementById('curated-collection-slider');
+                  if (container) container.scrollBy({ left: -480, behavior: 'smooth' });
+                }}
+                className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white transition cursor-pointer"
+                aria-label="Previous collection"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => {
+                  const container = document.getElementById('curated-collection-slider');
+                  if (container) container.scrollBy({ left: 480, behavior: 'smooth' });
+                }}
+                className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white transition cursor-pointer"
+                aria-label="Next collection"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 items-center">
-            {/* Card 1: Bonfire Nights (Larger, unequal left card) */}
+          <div
+            id="curated-collection-slider"
+            className="flex overflow-x-auto gap-5 sm:gap-6 pb-6 pt-2 scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          >
+            {/* Card 1: Bonfire Nights */}
             <motion.div
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5 }}
-              className="md:col-span-7 group relative h-72 sm:h-96 md:h-[450px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
+              onClick={() => onNavigate('search')}
+              className="group relative w-[320px] sm:w-[480px] md:w-[560px] lg:w-[620px] shrink-0 snap-start h-72 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
             >
               <img
                 src="/assets/bonfire.png"
@@ -376,7 +406,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
-                <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-amber-200">
+                <h3 className="font-serif text-3xl sm:text-4xl md:text-[44px] font-medium text-amber-200">
                   Bonfire Nights
                 </h3>
                 <p className="text-xs sm:text-sm text-stone-200/90 max-w-md leading-relaxed font-light">
@@ -385,13 +415,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </div>
             </motion.div>
 
-            {/* Card 2: Romantic Honeymoon (Smaller right card) */}
+            {/* Card 2: Romantic Honeymoon */}
             <motion.div
               initial={{ opacity: 0, y: 32 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="md:col-span-5 group relative h-60 sm:h-80 md:h-[400px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
+              transition={{ duration: 0.5, delay: 0.08 }}
+              onClick={() => onNavigate('search')}
+              className="group relative w-[280px] sm:w-[420px] md:w-[480px] lg:w-[520px] shrink-0 snap-start h-72 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
             >
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGnhL5sBR68yyc6vGRzcfaYfmMGzZGhO152h5jSNRHOM7ekG_euwp6KlTa&s=10"
@@ -400,12 +431,62 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
-                <h3 className="font-serif text-2xl sm:text-3xl font-medium text-amber-200">
+                <h3 className="font-serif text-3xl sm:text-4xl font-medium text-amber-200">
                   Romantic Honeymoon
                 </h3>
                 <p className="text-xs sm:text-sm text-stone-200/90 max-w-md leading-relaxed font-light">
                   Every vibration asks for your attention. Waves never ask anything from you. They
                   simply arrive.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 3: Chasing Sunsets */}
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.16 }}
+              onClick={() => onNavigate('search')}
+              className="group relative w-[300px] sm:w-[450px] md:w-[520px] lg:w-[560px] shrink-0 snap-start h-72 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
+            >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHYsVh-BGVtNNag0oxnusHdsrWflJ7IV4l8ZBTeVl2yUmuukoedBjUw_ll&s=10"
+                alt="Chasing Sunsets"
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
+                <h3 className="font-serif text-3xl sm:text-4xl font-medium text-amber-200">
+                  Chasing Sunsets
+                </h3>
+                <p className="text-xs sm:text-sm text-stone-200/90 max-w-md leading-relaxed font-light">
+                  Golden hour over serene mountain peaks. Watch the horizon fade into starlit nights.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Card 4: Moonlit Escapes */}
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.24 }}
+              onClick={() => onNavigate('search')}
+              className="group relative w-[300px] sm:w-[450px] md:w-[520px] lg:w-[560px] shrink-0 snap-start h-72 sm:h-96 md:h-[440px] rounded-3xl overflow-hidden shadow-lg cursor-pointer"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80"
+                alt="Moonlit Escapes"
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
+                <h3 className="font-serif text-3xl sm:text-4xl font-medium text-amber-200">
+                  Moonlit Escapes
+                </h3>
+                <p className="text-xs sm:text-sm text-stone-200/90 max-w-md leading-relaxed font-light">
+                  Quiet starry skies, cozy fireplaces, and late night conversations under the moonlight.
                 </p>
               </div>
             </motion.div>
@@ -425,12 +506,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-[#FFF9E8]/20" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="text-left text-white mb-6 sm:mb-10">
-            <span className="text-xs font-semibold text-white/80 uppercase tracking-widest block mb-1">
+            <span className="text-sm font-semibold text-white/80 uppercase tracking-widest block mb-1">
               Destinations
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal drop-shadow-sm">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal drop-shadow-sm">
               Explore by destination
             </h2>
           </div>
@@ -474,15 +555,15 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 5. Guest Stories (Exact match to reference image) */}
       <section className="w-full bg-[#FFF9E8] py-12 sm:py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
             {/* Left Column: Heading, Body, and Button */}
             <div className="lg:col-span-4 flex flex-col justify-between py-2 space-y-6">
               <div>
-                <span className="text-xs sm:text-sm font-normal text-[#6C6656] block mb-3">
+                <span className="text-sm sm:text-base font-medium text-[#6C6656] block mb-3">
                   Guest Stories
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] text-[#2D281E] font-normal leading-[1.15]">
+                <h2 className="font-serif text-4xl sm:text-5xl lg:text-[50px] text-[#2D281E] font-normal leading-[1.15]">
                   Loved by many of
                   <br />
                   travellers
@@ -522,7 +603,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </span>
 
                 <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
-                  <h3 className="font-serif text-2xl sm:text-3xl font-normal leading-tight drop-shadow-sm">
+                  <h3 className="font-serif text-3xl sm:text-4xl font-normal leading-tight drop-shadow-sm">
                     Discover the
                     <br />
                     Island&apos;s Secrets
@@ -583,13 +664,13 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 6. Guest Reviews Cards Section (Exact match to reference screenshot with top & bottom fade mask) */}
       <section className="bg-[#FFFFFF] py-12 sm:py-16 md:py-24 border-t border-stone-200/70 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           {/* Header */}
           <div className="text-center mb-8 sm:mb-12 relative z-30">
-            <span className="text-xs sm:text-sm font-semibold text-[#6C6656] uppercase tracking-wider block mb-1">
+            <span className="text-sm sm:text-base font-semibold text-[#6C6656] uppercase tracking-wider block mb-1">
               Why Choose Us
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2D281E] font-normal tracking-tight">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2D281E] font-normal tracking-tight">
               We&apos;ve planned everything for you:
             </h2>
           </div>
@@ -734,28 +815,28 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 7. Why Choose Us Accordion (We've planned everything for you:) */}
-      <section className="bg-[#FFF9E8] py-12 sm:py-16 md:py-24 border-t border-[#EAE3D2]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-[#FFF9E8] py-12 sm:py-16 md:py-24 border-t border-[#EAE3D2]">
+        <div className="relative max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="mb-8 sm:mb-10 text-left">
-            <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-1.5">
+            <span className="text-sm font-semibold text-stone-500 uppercase tracking-widest block mb-1.5">
               WHY CHOOSE US
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal tracking-tight">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight">
               We&apos;ve planned everything for you:
             </h2>
           </div>
 
-          {/* Accordion List with full width thin divider lines */}
-          <div className="border-t border-[#E7E0CE]">
+          {/* Accordion List with full width prominent divider lines */}
+          <div className="border-t-2 border-[#CFC5AF]">
             {/* Step 1 */}
-            <div className="border-b border-[#E7E0CE] py-5 sm:py-6">
+            <div className="border-b-2 border-[#CFC5AF] py-5 sm:py-6">
               <button
                 onClick={() => setExpandedStep(expandedStep === 1 ? 0 : 1)}
-                className="w-full flex items-center justify-between text-left group"
+                className="w-full flex items-center justify-between text-left group cursor-pointer"
               >
                 <div>
                   <span className="text-xs text-stone-500 font-normal block mb-1">Step 1</span>
-                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#2C2926] font-normal">
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#2C2926] font-normal">
                     Arrival and Meet the Crew
                   </h3>
                 </div>
@@ -771,14 +852,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
 
             {/* Step 2 (Expanded state matching reference screenshot) */}
-            <div className="border-b border-[#E7E0CE] py-5 sm:py-6">
+            <div className="border-b-2 border-[#CFC5AF] py-5 sm:py-6">
               <button
                 onClick={() => setExpandedStep(expandedStep === 2 ? 0 : 2)}
-                className="w-full flex items-center justify-between text-left group"
+                className="w-full flex items-center justify-between text-left group cursor-pointer"
               >
                 <div>
                   <span className="text-xs text-stone-500 font-normal block mb-1">Step 2</span>
-                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#2C2926] font-normal">
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#2C2926] font-normal">
                     Check in and Hospitality
                   </h3>
                 </div>
@@ -788,9 +869,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </button>
 
               {expandedStep === 2 && (
-                <div className="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
+                <div className="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
                   {/* Left content area */}
-                  <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
+                  <div className="lg:col-span-7 flex flex-col justify-between py-1">
                     <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10">
                       <span className="text-xs sm:text-sm text-stone-800 font-medium underline underline-offset-4 decoration-stone-400 shrink-0 pt-0.5">
                         Description
@@ -800,10 +881,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                       </p>
                     </div>
 
-                    <div className="pt-2">
+                    <div className="pt-4 sm:pt-0 sm:pl-[118px]">
                       <button
                         onClick={onOpenContact}
-                        className="bg-[#00704A] hover:bg-[#00583A] text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium transition-all shadow-sm active:scale-95"
+                        className="bg-[#00704A] hover:bg-[#00583A] text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium transition-all shadow-sm active:scale-95 cursor-pointer"
                       >
                         Book a Call
                       </button>
@@ -811,11 +892,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   </div>
 
                   {/* Right landscape image */}
-                  <div className="lg:col-span-5 relative">
+                  <div className="lg:col-span-5 relative h-[260px] sm:h-[320px] md:h-[360px]">
                     <img
                       src="/assets/1.png"
                       alt="Lush green mountain landscape"
-                      className="rounded-[32px] w-full h-full sm:h-full object-cover shadow-sm"
+                      className="rounded-[32px] w-full h-full object-cover shadow-sm"
                     />
                   </div>
                 </div>
@@ -823,14 +904,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
 
             {/* Step 3 */}
-            <div className="border-b border-[#E7E0CE] py-5 sm:py-6">
+            <div className="border-b-2 border-[#CFC5AF] py-5 sm:py-6">
               <button
                 onClick={() => setExpandedStep(expandedStep === 3 ? 0 : 3)}
-                className="w-full flex items-center justify-between text-left group"
+                className="w-full flex items-center justify-between text-left group cursor-pointer"
               >
                 <div>
                   <span className="text-xs text-stone-500 font-normal block mb-1">Step 3</span>
-                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#2C2926] font-normal">
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#2C2926] font-normal">
                     First Waves & Mountain Vibes
                   </h3>
                 </div>
@@ -847,14 +928,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
 
             {/* Step 4 */}
-            <div className="border-b border-[#E7E0CE] py-5 sm:py-6">
+            <div className="border-b-2 border-[#CFC5AF] py-5 sm:py-6">
               <button
                 onClick={() => setExpandedStep(expandedStep === 4 ? 0 : 4)}
-                className="w-full flex items-center justify-between text-left group"
+                className="w-full flex items-center justify-between text-left group cursor-pointer"
               >
                 <div>
                   <span className="text-xs text-stone-500 font-normal block mb-1">Step 4</span>
-                  <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-[#2C2926] font-normal">
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-[#2C2926] font-normal">
                     Final Meet and Check Out
                   </h3>
                 </div>
@@ -872,17 +953,25 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           </div>
 
           {/* Floating tilted campfire card peeking at bottom center */}
-
+          <div className="absolute left-[54%] -translate-x-1/2 bottom-[-15px] sm:bottom-[-25px] md:bottom-[-35px] z-30 pointer-events-none transform -rotate-[14deg]">
+            <div className="w-32 sm:w-44 md:w-52 h-44 sm:h-60 md:h-72 rounded-[28px] overflow-hidden shadow-2xl border-4 border-[#FFF9E8]">
+              <img
+                src="/assets/2.png"
+                alt="Bonfire camping under trees"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 8. Body, soul, mind, and connection — we've got it all (Exact match) */}
-      <section className="bg-[#FFF9E8] py-12 sm:py-16 md:py-24 border-t border-stone-200/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 8. Body, soul, mind, and connection — we've got it all (Full bleed layout, zero left side gap, zero bottom gap to footer) */}
+      <section className="bg-[#FFF9E8] pt-12 sm:pt-16 md:pt-24 pb-0 border-t border-stone-200/70 w-full overflow-hidden">
+        <div className="w-full pl-0 pr-3 sm:pr-6 lg:pr-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
-            {/* Left Column: Mountain View Room Image with Glassmorphism Card Overlay */}
+            {/* Left Column: Mountain View Room Image with Glassmorphism Card Overlay (Touches left edge) */}
             <div className="lg:col-span-7">
-              <div className="relative h-full min-h-[360px] sm:min-h-[460px] md:min-h-[560px] rounded-[32px] overflow-hidden shadow-xl">
+              <div className="relative h-full min-h-[380px] sm:min-h-[480px] md:min-h-[580px] rounded-none overflow-hidden shadow-xl">
                 <img
                   src="/assets/peace.png"
                   alt="Sunlit mountain view room with glass table and seating"
@@ -890,9 +979,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent" />
 
-                <div className="absolute top-6 left-6 right-6 sm:top-8 sm:left-8 sm:right-8">
+                <div className="absolute top-6 left-6 right-6 sm:top-10 sm:left-10 sm:right-10">
                   <div className="bg-black/35 backdrop-blur-xl border border-white/20 rounded-[24px] p-6 sm:p-8 text-white space-y-3 shadow-2xl">
-                    <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal leading-tight text-white">
+                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal leading-tight text-white">
                       Body, soul, mind, and connection — we&apos;ve got it all
                     </h2>
                     <p className="text-xs sm:text-sm text-white/90 font-light leading-relaxed">
@@ -904,7 +993,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
 
             {/* Right Column: 3 Stacked White Pill Cards */}
-            <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+            <div className="lg:col-span-5 flex flex-col justify-between space-y-4 py-1">
               {/* Card 1 */}
               <div className="bg-white p-6 sm:p-7 rounded-[28px] border border-stone-200/70 shadow-2xs space-y-2 relative flex-1">
                 <span className="text-[11px] text-stone-400 font-normal block uppercase tracking-wider">
@@ -912,7 +1001,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </span>
                 <div className="flex items-start justify-between">
                   <div className="space-y-1.5 max-w-sm">
-                    <h3 className="font-serif text-xl sm:text-2xl text-stone-900 font-normal">
+                    <h3 className="font-serif text-2xl sm:text-3xl text-stone-900 font-normal">
                       Yoga and Meditation
                     </h3>
                     <p className="text-xs text-stone-500 leading-relaxed font-light">
@@ -932,7 +1021,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </span>
                 <div className="flex items-start justify-between">
                   <div className="space-y-1.5 max-w-sm">
-                    <h3 className="font-serif text-xl sm:text-2xl text-stone-900 font-normal">
+                    <h3 className="font-serif text-2xl sm:text-3xl text-stone-900 font-normal">
                       Culture and Growth
                     </h3>
                     <p className="text-xs text-stone-500 leading-relaxed font-light">
@@ -952,7 +1041,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </span>
                 <div className="flex items-start justify-between">
                   <div className="space-y-1.5 max-w-sm">
-                    <h3 className="font-serif text-xl sm:text-2xl text-stone-900 font-normal">
+                    <h3 className="font-serif text-2xl sm:text-3xl text-stone-900 font-normal">
                       Adventures Together
                     </h3>
                     <p className="text-xs text-stone-500 leading-relaxed font-light">

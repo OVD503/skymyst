@@ -69,6 +69,21 @@
   h1, h2, h3, h4, h5, h6, .font-serif, .font-heading, .font-kristy {
     font-family: var(--font-kristy);
   }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 4.5rem);
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3.5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  h3 {
+    font-size: clamp(1.35rem, 2.5vw, 2.25rem);
+    line-height: 1.2;
+  }
 }
 
 /* Hero section headings use Casiome Impera / Ayona luxury serif font */

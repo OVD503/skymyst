@@ -12,11 +12,12 @@ import { PropertyScreen } from './screens/PropertyScreen';
 import { PartnerScreen } from './screens/PartnerScreen';
 import { AboutScreen } from './screens/AboutScreen';
 import { SearchScreen } from './screens/SearchScreen';
-import { PROPERTIES } from './data/Data';
+import { useProperties } from './hooks/useProperties';
 
 export function App() {
   const [currentPage, setCurrentPage] = useState<ScreenPage>('home');
   const [selectedPropertyId, setSelectedPropertyId] = useState<string>('bhimsarovar');
+  const { properties } = useProperties();
 
   // Modals state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +31,7 @@ export function App() {
   }, [currentPage]);
 
   const activeProperty =
-    PROPERTIES.find((p) => p.id === selectedPropertyId) || PROPERTIES[0];
+    properties.find((p) => p.id === selectedPropertyId) || properties[0];
 
   const handleNavigate = (page: ScreenPage) => {
     setCurrentPage(page);
@@ -50,6 +51,7 @@ export function App() {
       <main className={`flex-1 ${currentPage !== 'home' && currentPage !== 'partner' ? 'pt-14 sm:pt-20 md:pt-24' : ''}`}>
         {currentPage === 'home' && (
           <HomeScreen
+            properties={properties}
             onNavigate={handleNavigate}
             onSelectProperty={(id) => setSelectedPropertyId(id)}
             onOpenContact={() => setIsContactOpen(true)}
@@ -59,6 +61,7 @@ export function App() {
 
         {currentPage === 'property' && (
           <PropertyScreen
+            properties={properties}
             propertyId={selectedPropertyId}
             onOpenContact={() => setIsContactOpen(true)}
             onOpenGallery={() => setIsGalleryOpen(true)}
@@ -80,6 +83,7 @@ export function App() {
 
         {currentPage === 'search' && (
           <SearchScreen
+            properties={properties}
             onNavigate={handleNavigate}
             onSelectProperty={(id) => setSelectedPropertyId(id)}
           />

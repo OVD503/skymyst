@@ -31,7 +31,7 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-4 pt-12">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-normal leading-tight tracking-tight">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-normal leading-tight tracking-tight">
             List Your Property on Skymyst Group
           </h1>
           <p className="text-xs sm:text-sm md:text-base text-stone-200 max-w-2xl mx-auto leading-relaxed font-sans font-light">
@@ -42,9 +42,9 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
 
       {/* 2. Three Value Propositions Section */}
       <section className="bg-white py-16 sm:py-24 border-b border-[#EAE3D2]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 text-center">
           <div className="max-w-2xl mx-auto mb-12 sm:mb-16">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal tracking-tight mb-3">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight mb-3">
               Bring the right guests within reach
             </h2>
             <p className="text-xs sm:text-sm text-stone-500 font-sans leading-relaxed max-w-xl mx-auto font-light">
@@ -97,9 +97,9 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
 
       {/* 3. Partner Spotlight Section */}
       <section className="bg-[#FFF9E8] py-16 sm:py-24 border-b border-[#EAE3D2]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 text-center">
           <div className="max-w-2xl mx-auto mb-10">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal tracking-tight mb-3">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight mb-3">
               Drive demand like our hotel partners
             </h2>
             <p className="text-xs sm:text-sm text-stone-600 font-sans leading-relaxed max-w-xl mx-auto font-light">
@@ -140,24 +140,24 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
 
       {/* 4. FAQ Section */}
       <section id="faq-section" className="bg-white py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Header Column */}
             <div className="md:col-span-5 lg:col-span-4">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal leading-[1.15] tracking-tight">
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal leading-[1.15] tracking-tight">
                 Frequently<br />Asked Questions
               </h2>
             </div>
 
             {/* Right Accordion Column */}
-            <div className="md:col-span-7 lg:col-span-8 border-t border-[#E7E0CE]">
+            <div className="md:col-span-7 lg:col-span-8 border-t-2 border-[#CFC5AF]">
               {FAQS.map((faq, idx) => {
                 const isOpen = openFaqs.includes(idx);
                 return (
                   <div
                     key={idx}
-                    className={`border-b transition-colors ${
-                      isOpen ? 'border-b-2 border-[#00704A]' : 'border-[#E7E0CE]'
+                    className={`border-b-2 transition-colors ${
+                      isOpen ? 'border-[#00704A]' : 'border-[#CFC5AF]'
                     }`}
                   >
                     <button

@@ -20,21 +20,22 @@ import {
   MapPin,
 } from 'lucide-react';
 import { Property } from '../types';
-import { PROPERTIES } from '../data/Data';
 
 interface PropertyScreenProps {
+  properties: Property[];
   propertyId?: string;
   onOpenContact: () => void;
   onOpenGallery: () => void;
 }
 
 export const PropertyScreen: React.FC<PropertyScreenProps> = ({
+  properties,
   propertyId = 'bhimsarovar',
   onOpenContact,
   onOpenGallery,
 }) => {
   const property: Property =
-    PROPERTIES.find((p) => p.id === propertyId) || PROPERTIES[0];
+    properties.find((p) => p.id === propertyId) || properties[0];
 
   const [activeTab, setActiveTab] = useState<'overview' | 'amenities' | 'rooms' | 'policies'>('overview');
   const [expandedAmenities, setExpandedAmenities] = useState<Record<string, boolean>>({
@@ -66,10 +67,10 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
 
   return (
     <div className="w-full bg-white font-sans antialiased text-stone-800 pt-16 sm:pt-20 pb-16 sm:pb-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
         {/* Title */}
         <div className="mb-6">
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#2C2926] font-normal tracking-tight">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight">
             {property.name}
           </h1>
         </div>
@@ -276,7 +277,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
 
             {/* Popular Amenities */}
             <div id="property-amenities-section" className="border-t border-[#E7E0CE] pt-8 space-y-6">
-              <h3 className="font-serif text-2xl text-[#2C2926] font-normal">Popular Amenities</h3>
+              <h3 className="font-serif text-3xl sm:text-4xl text-[#2C2926] font-normal">Popular Amenities</h3>
 
               {/* Facilities Accordion */}
               <div className="border border-[#E7E0CE] rounded-2xl overflow-hidden">
@@ -429,7 +430,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
 
             {/* Rooms Section */}
             <div id="property-rooms-section" className="border-t border-[#E7E0CE] pt-8 space-y-6">
-              <h3 className="font-serif text-2xl text-[#2C2926] font-normal">Rooms</h3>
+              <h3 className="font-serif text-3xl sm:text-4xl text-[#2C2926] font-normal">Rooms</h3>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {[
@@ -458,7 +459,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
 
             {/* Policies Section */}
             <div id="property-policies-section" className="border-t border-[#E7E0CE] pt-8 space-y-6">
-              <h3 className="font-serif text-2xl text-[#2C2926] font-normal">Policies</h3>
+              <h3 className="font-serif text-3xl sm:text-4xl text-[#2C2926] font-normal">Policies</h3>
 
               {/* House Rules */}
               <div className="border border-[#E7E0CE] rounded-2xl overflow-hidden">

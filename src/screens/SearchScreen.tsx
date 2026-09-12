@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { ScreenPage } from '../types';
-import { PROPERTIES } from '../data/Data';
+import { Property, ScreenPage } from '../types';
 
 interface SearchScreenProps {
+  properties: Property[];
   onNavigate: (page: ScreenPage) => void;
   onSelectProperty: (id: string) => void;
 }
 
 export const SearchScreen: React.FC<SearchScreenProps> = ({
+  properties,
   onNavigate,
   onSelectProperty,
 }) => {
@@ -17,17 +18,17 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
     <div className="w-full bg-white font-sans antialiased text-stone-800 pt-16 sm:pt-20 pb-16 sm:pb-24">
       {/* 1. Main Page Title Header */}
       <div className="text-center py-6 sm:py-10">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl text-stone-900 font-semibold tracking-tight font-sans">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl text-stone-900 font-semibold tracking-tight font-sans">
           Over 1,000 homes within map area
         </h1>
       </div>
 
       {/* 2. Main Split Content: Property Cards List + Interactive Map */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left Column: Property Listings (6 cols) */}
           <div className="lg:col-span-6 space-y-8 sm:space-y-10">
-            {PROPERTIES.map((prop) => (
+            {properties.map((prop) => (
               <div
                 key={prop.id}
                 id={`property-listing-${prop.id}`}
