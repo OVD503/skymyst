@@ -110,26 +110,26 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
           {/* Centered Image Card */}
           <div className="mb-8 max-w-lg mx-auto">
             <img
-              src=""
+              src=''
               className="rounded-[28px] w-full h-64 sm:h-80 object-cover shadow-sm"
             />
           </div>
 
-          {/* Contact Us + Book a Call Button below image */}
-          <div className="max-w-lg mx-auto flex items-center justify-between pt-2">
-            <div className="text-left">
-              <span className="text-xs text-stone-500 font-sans block mb-0.5">Contact Us</span>
+          {/* Contact Us + Book a Call Button below image (Larger text) */}
+          <div className="max-w-xl mx-auto flex flex-col items-center text-center space-y-4 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:space-y-0 pt-3">
+            <div>
+              <span className="text-sm sm:text-base text-stone-600 font-sans font-medium block mb-1">Contact Us</span>
               <a
                 href="tel:+919876543210"
-                className="text-xl sm:text-2xl font-serif text-[#2C2926] font-normal hover:underline"
+                className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#2C2926] font-medium tracking-tight hover:underline block"
               >
                 +91 987 6543 210
               </a>
             </div>
-            <div>
+            <div className="pt-2 sm:pt-0">
               <button
                 onClick={onOpenContact}
-                className="bg-[#00704A] hover:bg-[#00583A] text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium transition-all shadow-sm active:scale-95"
+                className="bg-[#00704A] hover:bg-[#00583A] text-white px-9 py-3.5 rounded-full text-sm sm:text-base font-semibold transition-all shadow-md active:scale-95 cursor-pointer"
               >
                 Book a call
               </button>
@@ -156,9 +156,8 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
                 return (
                   <div
                     key={idx}
-                    className={`border-b-2 transition-colors ${
-                      isOpen ? 'border-[#00704A]' : 'border-[#CFC5AF]'
-                    }`}
+                    className={`border-b-2 transition-colors ${isOpen ? 'border-[#00704A]' : 'border-[#CFC5AF]'
+                      }`}
                   >
                     <button
                       onClick={() => toggleFaq(idx)}

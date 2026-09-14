@@ -15,15 +15,16 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
   propertyName,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const safeImages = images.length > 0 ? images : ['/assets/bg.png'];
 
   if (!isOpen) return null;
 
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setCurrentIndex((prev) => (prev + 1) % safeImages.length);
   };
 
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentIndex((prev) => (prev - 1 + safeImages.length) % safeImages.length);
   };
 
   return (
@@ -36,7 +37,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
         <div>
           <h3 className="text-sm font-medium tracking-wide">{propertyName}</h3>
           <p className="text-xs text-stone-400">
-            Photo {currentIndex + 1} of {images.length}
+            Photo {currentIndex + 1} of {safeImages.length}
           </p>
         </div>
         <button
@@ -61,7 +62,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
 
         <div className="w-full h-full max-h-[70vh] flex items-center justify-center overflow-hidden rounded-2xl">
           <img
-            src={images[currentIndex]}
+            src={safeImages[currentIndex]}
             alt={`${propertyName} photo ${currentIndex + 1}`}
             className="max-h-full max-w-full object-contain rounded-xl shadow-2xl"
             referrerPolicy="no-referrer"
@@ -79,7 +80,7 @@ export const GalleryModal: React.FC<GalleryModalProps> = ({
 
       {/* Thumbnail Strip */}
       <div className="max-w-4xl mx-auto w-full overflow-x-auto py-2 flex items-center space-x-3 justify-center">
-        {images.map((img, idx) => (
+        {safeImages.map((img, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}

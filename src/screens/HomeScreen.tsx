@@ -238,8 +238,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 2. Featured Properties Section */}
       <section className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 pt-10 sm:pt-14 md:pt-16 pb-3 sm:pb-4 md:pb-6">
-        <div className="flex flex-wrap items-end justify-between gap-3 mb-6 sm:mb-8">
-          <div>
+        <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-3 mb-6 sm:mb-8 text-center sm:text-left">
+          <div className="w-full sm:w-auto">
             <span className="text-sm font-medium text-stone-500 block mb-1">
               Featured Properties
             </span>
@@ -247,13 +247,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               Handpick stays, just for you.
             </h2>
           </div>
-          <div className="flex items-center space-x-3">
+          {/* Desktop Controls (Arrows + See All) */}
+          <div className="hidden sm:flex items-center space-x-3">
             <button
               onClick={() => {
                 const container = document.getElementById('featured-properties-slider');
                 if (container) container.scrollBy({ left: -320, behavior: 'smooth' });
               }}
-              className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white transition"
+              className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white transition cursor-pointer"
               aria-label="Previous properties"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -263,14 +264,14 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 const container = document.getElementById('featured-properties-slider');
                 if (container) container.scrollBy({ left: 320, behavior: 'smooth' });
               }}
-              className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white transition"
+              className="p-2.5 rounded-full border border-stone-300 text-stone-700 hover:bg-stone-900 hover:text-white transition cursor-pointer"
               aria-label="Next properties"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => onNavigate('search')}
-              className="px-6 py-2.5 rounded-full border border-stone-700 text-stone-800 text-xs sm:text-sm font-medium hover:bg-stone-900 hover:text-white transition shrink-0"
+              className="px-6 py-2.5 rounded-full border border-stone-700 text-stone-800 text-xs sm:text-sm font-medium hover:bg-stone-900 hover:text-white transition shrink-0 cursor-pointer"
             >
               See All
             </button>
@@ -346,23 +347,33 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </motion.div>
           ))}
         </div>
+
+        {/* Mobile View Bottom See All Button */}
+        <div className="flex sm:hidden justify-center mt-6">
+          <button
+            onClick={() => onNavigate('search')}
+            className="px-8 py-3 rounded-full border border-stone-800 text-stone-800 text-sm font-medium hover:bg-stone-900 hover:text-white transition shadow-xs cursor-pointer active:scale-95"
+          >
+            See All
+          </button>
+        </div>
       </section>
 
       {/* 3. Curated Collection (Stays for every kind of gateway) */}
       <section className="bg-[#FFF9E8] pt-6 sm:pt-8 md:pt-10 pb-12 sm:pb-16 md:pb-20 border-y border-stone-200/60">
         <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
-          <div className="flex flex-wrap items-end justify-between gap-3 mb-8 sm:mb-10">
+          <div className="relative flex flex-col items-center justify-center text-center gap-2 sm:gap-3 mb-6 sm:mb-10">
             <div>
-              <span className="text-sm font-semibold text-stone-500 uppercase tracking-widest block mb-1">
+              <span className="text-xs sm:text-sm font-semibold text-stone-500 uppercase tracking-widest block mb-1">
                 Curated Collection
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-stone-900 font-normal">
+              <h2 className="font-serif text-xl sm:text-3xl md:text-4xl lg:text-5xl text-stone-900 font-normal whitespace-nowrap">
                 Stays for every kind of gateway
               </h2>
             </div>
 
-            {/* Right side slider controls */}
-            <div className="flex items-center space-x-3">
+            {/* Desktop slider controls only (Hidden on mobile) */}
+            <div className="hidden sm:flex sm:absolute sm:right-0 sm:bottom-0 items-center space-x-3">
               <button
                 onClick={() => {
                   const container = document.getElementById('curated-collection-slider');
@@ -507,11 +518,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
 
         <div className="relative z-10 max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
-          <div className="text-left text-white mb-6 sm:mb-10">
-            <span className="text-sm font-semibold text-white/80 uppercase tracking-widest block mb-1">
+          <div className="text-center text-white mb-8 sm:mb-12">
+            <span className="text-sm sm:text-base font-semibold text-white/80 uppercase tracking-widest block mb-2">
               Destinations
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal drop-shadow-sm">
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal drop-shadow-sm">
               Explore by destination
             </h2>
           </div>
@@ -558,30 +569,33 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
             {/* Left Column: Heading, Body, and Button */}
-            <div className="lg:col-span-4 flex flex-col justify-between py-2 space-y-6">
+            <div className="lg:col-span-4 flex flex-col justify-between py-2 space-y-6 text-center lg:text-left items-center lg:items-start">
               <div>
                 <span className="text-sm sm:text-base font-medium text-[#6C6656] block mb-3">
                   Guest Stories
                 </span>
-                <h2 className="font-serif text-4xl sm:text-5xl lg:text-[50px] text-[#2D281E] font-normal leading-[1.15]">
-                  Loved by many of
-                  <br />
-                  travellers
-                  <br />
-                  — Bali
+                <h2 className="font-serif text-xl sm:text-3xl md:text-4xl lg:text-[50px] text-[#2D281E] font-normal leading-[1.15]">
+                  <span className="lg:hidden whitespace-nowrap">Loved by many of travelers - Bali</span>
+                  <span className="hidden lg:inline">
+                    Loved by many of
+                    <br />
+                    travellers
+                    <br />
+                    — Bali
+                  </span>
                 </h2>
               </div>
 
-              <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.7] max-w-sm">
+              <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.7] max-w-sm mx-auto lg:mx-0">
                 Bali has drawn surfers since the 70s: a legendary destination with waves for every
                 level. Surf every day, explore the island, and connect with people from all around the
                 world. This is the kind of trip that stays with you long after you leave.
               </p>
 
-              <div className="pt-2">
+              <div className="pt-2 flex justify-center lg:justify-start w-full">
                 <button
                   onClick={onOpenContact}
-                  className="px-7 py-3 rounded-full bg-[#005B41] hover:bg-[#004030] text-white text-xs sm:text-sm font-semibold transition-all shadow-xs active:scale-95"
+                  className="px-7 py-3 rounded-full bg-[#005B41] hover:bg-[#004030] text-white text-xs sm:text-sm font-semibold transition-all shadow-xs active:scale-95 cursor-pointer"
                 >
                   Book a Call
                 </button>
@@ -817,11 +831,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       {/* 7. Why Choose Us Accordion (We've planned everything for you:) */}
       <section className="relative bg-[#FFF9E8] py-12 sm:py-16 md:py-24 border-t border-[#EAE3D2]">
         <div className="relative max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
-          <div className="mb-8 sm:mb-10 text-left">
+          <div className="mb-8 sm:mb-10 text-center sm:text-left">
             <span className="text-sm font-semibold text-stone-500 uppercase tracking-widest block mb-1.5">
               WHY CHOOSE US
             </span>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight">
               We&apos;ve planned everything for you:
             </h2>
           </div>
@@ -845,7 +859,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 </div>
               </button>
               {expandedStep === 1 && (
-                <div className="mt-4 text-xs sm:text-sm text-[#4E4A43] leading-relaxed font-sans max-w-2xl">
+                <div className="mt-4 text-xs sm:text-sm text-[#4E4A43] leading-relaxed font-sans max-w-2xl text-center sm:text-left">
                   Personal airport pickup and scenic mountain transfer to our homestay estate. Meet the community managers and get settled into your private suite with warm local refreshments.
                 </div>
               )}
@@ -871,17 +885,17 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               {expandedStep === 2 && (
                 <div className="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
                   {/* Left content area */}
-                  <div className="lg:col-span-7 flex flex-col justify-between py-1">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10">
-                      <span className="text-xs sm:text-sm text-stone-800 font-medium underline underline-offset-4 decoration-stone-400 shrink-0 pt-0.5">
+                  <div className="lg:col-span-7 flex flex-col justify-between py-1 space-y-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-10 text-center sm:text-left">
+                      <span className="text-xs sm:text-sm text-stone-800 font-medium underline underline-offset-4 decoration-stone-400 shrink-0 pt-0.5 block text-center sm:text-left">
                         Description
                       </span>
-                      <p className="text-xs sm:text-sm text-[#4E4A43] leading-relaxed font-sans">
+                      <p className="text-xs sm:text-sm text-[#4E4A43] leading-relaxed font-sans text-center sm:text-left">
                         Morning surf session focusing on technique — pop-ups, positioning, reading waves. You&apos;ll already feel more confident than yesterday. In the afternoon, we&apos;re heading to one of Canggu&apos;s famous beach clubs for lunch, drinks, and good vibes. It&apos;s the perfect mid-week energy — sun, music, ocean views, and your new best friends.
                       </p>
                     </div>
 
-                    <div className="pt-4 sm:pt-0 sm:pl-[118px]">
+                    <div className="pt-2 sm:pt-0 sm:pl-[118px] flex justify-center sm:justify-start">
                       <button
                         onClick={onOpenContact}
                         className="bg-[#00704A] hover:bg-[#00583A] text-white px-7 py-3 rounded-full text-xs sm:text-sm font-medium transition-all shadow-sm active:scale-95 cursor-pointer"
@@ -952,8 +966,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
           </div>
 
-          {/* Floating tilted campfire card peeking at bottom center */}
-          <div className="absolute left-[54%] -translate-x-1/2 bottom-[-15px] sm:bottom-[-25px] md:bottom-[-35px] z-30 pointer-events-none transform -rotate-[14deg]">
+          {/* Floating tilted campfire card peeking at bottom center (Hidden on mobile view) */}
+          <div className="hidden sm:block absolute left-[54%] -translate-x-1/2 bottom-[-25px] md:bottom-[-35px] z-30 pointer-events-none transform -rotate-[14deg]">
             <div className="w-32 sm:w-44 md:w-52 h-44 sm:h-60 md:h-72 rounded-[28px] overflow-hidden shadow-2xl border-4 border-[#FFF9E8]">
               <img
                 src="/assets/2.png"
@@ -981,8 +995,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
                 <div className="absolute top-6 left-6 right-6 sm:top-10 sm:left-10 sm:right-10">
                   <div className="bg-black/35 backdrop-blur-xl border border-white/20 rounded-[24px] p-6 sm:p-8 text-white space-y-3 shadow-2xl">
-                    <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal leading-tight text-white">
-                      Body, soul, mind, and connection — we&apos;ve got it all
+                    <h2 className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-[36px] xl:text-[40px] font-normal leading-tight text-white">
+                      Body, soul, mind, and connection
+                      <br />
+                      — we&apos;ve got it all
                     </h2>
                     <p className="text-xs sm:text-sm text-white/90 font-light leading-relaxed">
                       This camp isn&apos;t just about surfing. It&apos;s about the whole experience.
