@@ -34,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 font-sans ${
         isScrolled
           ? 'bg-stone-950/90 backdrop-blur-md border-b border-white/10 py-2 sm:py-3 md:py-4 shadow-xl'
-          : 'bg-gradient-to-b from-black/70 via-black/30 to-transparent py-2.5 sm:py-4 md:py-6'
+          : 'bg-gradient-to-b from-black/35 via-transparent to-transparent py-2.5 sm:py-4 md:py-6'
       }`}
     >
       <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 flex items-center justify-between">

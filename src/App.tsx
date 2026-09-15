@@ -48,7 +48,7 @@ export function App() {
       />
 
       {/* Screen View Container */}
-      <main className={`flex-1 ${currentPage === 'home' || currentPage === 'partner' || currentPage === 'property' ? 'pt-0 md:pt-24' : 'pt-14 sm:pt-20 md:pt-24'}`}>
+      <main className={`flex-1 ${currentPage === 'home' || currentPage === 'partner' || currentPage === 'property' ? 'pt-0' : 'pt-14 sm:pt-20 md:pt-24'}`}>
         {currentPage === 'home' && (
           <HomeScreen
             properties={properties}

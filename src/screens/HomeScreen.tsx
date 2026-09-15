@@ -55,20 +55,20 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   return (
     <div className="w-full bg-[#FFF9E8] font-sans antialiased text-stone-800">
       {/* 1. Hero Section (Uses bg.png background image with curved bottom edges) */}
-      <section className="relative h-[95vh] min-h-[580px] max-h-[850px] w-full flex items-center justify-center overflow-hidden rounded-b-[45px] sm:rounded-b-[75px] md:rounded-b-[110px] shadow-sm">
+      <section className="relative h-[100vh] min-h-[580px] max-h-[840px] w-full flex items-center justify-center overflow-hidden rounded-b-[35px] sm:rounded-b-[60px] md:rounded-b-[85px] shadow-sm">
         {/* Background Image bg.png */}
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-b-[45px] sm:rounded-b-[75px] md:rounded-b-[110px]">
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-b-[35px] sm:rounded-b-[60px] md:rounded-b-[85px]">
           <img
             src="/assets/bg.png"
             alt="Skymyst Mountain Stays"
-            className="w-full h-full object-cover object-center brightness-[0.80]"
+            className="w-full h-full object-cover object-center brightness-[0.88]"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
         </div>
 
-        {/* Hero Title - Exact match from image */}
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-4 -mt-16 sm:-mt-12">
-          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-[84px] text-white font-normal tracking-tight leading-[1.12] drop-shadow-md">
+        {/* Hero Title - Exact match from reference image */}
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-4 -mt-16 sm:-mt-10">
+          <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-[76px] text-white font-normal tracking-tight leading-[1.14] drop-shadow-md">
             Exceptional Stays.
             <br />
             Seamlessly managed.
@@ -76,7 +76,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
 
         {/* Floating Search Bar (Exact pill style matching image) */}
-        <div className="absolute bottom-8 sm:bottom-10 md:bottom-12 left-0 right-0 z-30 px-3 sm:px-6">
+        <div className="absolute bottom-6 sm:bottom-7 md:bottom-8 left-0 right-0 z-30 px-3 sm:px-6">
           <form
             onSubmit={handleSearchSubmit}
             className="max-w-4xl mx-auto bg-white rounded-2xl md:rounded-full shadow-2xl p-2 sm:p-2.5 pl-6 sm:pl-8 flex flex-col md:flex-row items-center justify-between border border-stone-200/80 transition-all gap-3 md:gap-0"
@@ -237,7 +237,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 2. Featured Properties Section */}
-      <section className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 pt-10 sm:pt-14 md:pt-16 pb-3 sm:pb-4 md:pb-6">
+      <section className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 pt-3 sm:pt-5 md:pt-6 pb-3 sm:pb-4 md:pb-6">
         <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-3 mb-6 sm:mb-8 text-center sm:text-left">
           <div className="w-full sm:w-auto">
             <span className="text-sm font-medium text-stone-500 block mb-1">
