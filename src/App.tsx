@@ -6,7 +6,6 @@ import { ContactModal } from './components/ContactModal';
 import { MenuOverlay } from './components/MenuOverlay';
 import { StoryModal } from './components/StoryModal';
 import { GalleryModal } from './components/GalleryModal';
-import { BackToTop } from './components/BackToTop';
 import { HomeScreen } from './screens/homepage';
 import { PropertyScreen } from './screens/PropertyScreen';
 import { PartnerScreen } from './screens/PartnerScreen';
@@ -48,7 +47,7 @@ export function App() {
       />
 
       {/* Screen View Container */}
-      <main className={`flex-1 ${currentPage === 'home' || currentPage === 'partner' || currentPage === 'property' ? 'pt-0' : 'pt-14 sm:pt-20 md:pt-24'}`}>
+      <main className="flex-1 pt-0">
         {currentPage === 'home' && (
           <HomeScreen
             properties={properties}
@@ -122,8 +121,6 @@ export function App() {
         propertyName={activeProperty.name}
       />
 
-      {/* Floating Back to Top Button */}
-      <BackToTop threshold={500} />
     </div>
   );
 }

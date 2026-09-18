@@ -15,16 +15,16 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
   const [selectedPropertyId, setSelectedPropertyId] = useState<string>('bhimsarovar');
 
   return (
-    <div className="w-full bg-white font-sans antialiased text-stone-800 pt-16 sm:pt-20 pb-16 sm:pb-24">
+    <div className="w-full bg-white font-sans antialiased text-stone-800 pt-4 sm:pt-6 pb-16 sm:pb-24">
       {/* 1. Main Page Title Header */}
-      <div className="text-center py-6 sm:py-10">
-        <h1 className="text-display-2 text-stone-900 font-semibold tracking-tight font-sans">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 pt-6 sm:pt-10 pb-8 sm:pb-12 text-center">
+        <h1 className="!font-sans font-medium text-[24px] sm:text-[32px] leading-[100%] tracking-normal text-black text-center">
           Over 1,000 homes within map area
         </h1>
       </div>
 
       {/* 2. Main Split Content: Property Cards List + Interactive Map */}
-      <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left Column: Property Listings (6 cols) */}
           <div className="lg:col-span-6 space-y-8 sm:space-y-10">
@@ -39,8 +39,8 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
                 }}
                 className="group cursor-pointer flex flex-col sm:flex-row gap-5 items-start transition"
               >
-                {/* Property Image with rounded corners and 30% off badge */}
-                <div className="relative w-full sm:w-64 h-48 sm:h-44 shrink-0 rounded-[24px] overflow-hidden bg-stone-100 shadow-xs">
+                {/* Property Image with rounded corners matching Figma specs */}
+                <div className="relative w-full sm:w-[328px] h-[212px] shrink-0 rounded-[32px] overflow-hidden bg-[#E4CCCC] shadow-xs">
                   <img
                     src={prop.images[0]}
                     alt={prop.name}
@@ -50,12 +50,12 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
                 </div>
 
                 {/* Property Details */}
-                <div className="flex-1 flex flex-col justify-between h-full py-0.5 space-y-2">
+                <div className="w-full sm:w-[328px] h-auto sm:h-[212px] flex flex-col justify-between py-[8px]">
                   <div>
-                    <h3 className="font-sans font-medium text-[16px] leading-[20px] tracking-[0.02em] text-[#042E23] group-hover:text-[#00704A] transition leading-snug">
+                    <h3 className="!font-sans font-medium text-[18px] leading-[100%] tracking-normal text-black group-hover:text-[#00704A] transition">
                       {prop.name}
                     </h3>
-                    <p className="text-caption-light text-stone-500 font-sans mt-1">
+                    <p className="!font-sans font-normal text-[14px] leading-[100%] tracking-[0.02em] text-[#4E4E4E] mt-1 whitespace-nowrap truncate">
                       {prop.guests} guests · {prop.bedrooms} bedrooms · {prop.beds} beds · {prop.bathrooms} bathrooms
                     </p>
 
@@ -76,16 +76,17 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
                         ₹{prop.pricePerNight.toLocaleString()}
                       </span>
                       {prop.originalPricePerNight && (
-                        <span className="text-caption-light text-stone-400 line-through">
+                        <span className="!font-sans font-medium text-[14px] leading-[100%] tracking-normal text-[#4E4E4E] line-through">
                           ₹{prop.originalPricePerNight.toLocaleString()}
                         </span>
                       )}
                       <span className="text-caption-light text-stone-500">per night</span>
                     </div>
-                    <p className="text-caption-light text-stone-500 mt-0.5">
-                      ₹{prop.totalPrice.toLocaleString()} total
-                    </p>
-                    <p className="text-caption-light text-stone-400">
+                    <p className="!font-sans font-normal text-[12px] leading-[130%] tracking-[0.02em] text-[#4E4E4E] mt-1">
+                      <span className="underline underline-offset-2 decoration-[#4E4E4E]">
+                        ₹{prop.totalPrice.toLocaleString()} total
+                      </span>
+                      <br />
                       includes taxes & fees
                     </p>
                   </div>
@@ -95,7 +96,7 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
           </div>
 
           {/* Right Column: Topographic Interactive Map View (6 cols) */}
-          <div className="lg:col-span-6 sticky top-24 h-[500px] sm:h-[600px] rounded-[36px] sm:rounded-[44px] overflow-hidden border border-stone-200/80 shadow-sm relative bg-[#DDF0E6]">
+          <div className="lg:col-span-6 sticky top-24 w-full max-w-[680px] h-[550px] sm:h-[724px] rounded-[48px] overflow-hidden border border-stone-200/80 shadow-sm relative bg-[#DDF0E6]">
             {/* Map Topography Background SVG */}
             <div className="absolute inset-0 z-0">
               <svg

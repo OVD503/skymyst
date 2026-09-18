@@ -83,6 +83,7 @@ export interface TeamMember {
   name: string;
   role: string;
   image: string;
+  imagePosition?: string;
 }
 
 export interface Testimonial {

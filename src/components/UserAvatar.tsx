@@ -12,7 +12,7 @@ interface UserAvatarProps {
 
 export const UserAvatar: React.FC<UserAvatarProps> = ({
   name,
-  image,
+  image = '/assets/avatar.png',
   size = 'md',
   isDark = false,
   className = '',

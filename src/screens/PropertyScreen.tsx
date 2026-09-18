@@ -83,7 +83,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
   const galleryCount = property.images?.length || 0;
 
   return (
-    <div className="w-full bg-white font-sans antialiased text-stone-800 pt-0 md:pt-16 pb-0 md:pb-24">
+    <div className="w-full bg-white font-sans antialiased text-stone-800 pt-4 sm:pt-6 md:pt-8 pb-16 sm:pb-24">
       {/* Mobile View Hero Header (Full bleed image under global header) */}
       <div className="md:hidden relative h-[360px] sm:h-[440px] w-full overflow-hidden mb-4">
         <img

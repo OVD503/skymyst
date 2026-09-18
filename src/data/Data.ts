@@ -154,7 +154,7 @@ export const PROPERTIES: Property[] = [
     isPremium: true,
     coordinates: { x: 24, y: 62, label: '₹4,950', lat: 29.5971, lng: 79.6591 },
     images: [
-      '/cover/SukoonStay.png',
+      '/cover/sukoonstay.jpg',
       createPlaceholderImage('The Sukoon Stay', 'Exterior & Mountain View'),
       createPlaceholderImage('The Sukoon Stay', 'Nature Living Area'),
       createPlaceholderImage('The Sukoon Stay', 'Private Garden'),
@@ -595,17 +595,20 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     name: 'Jatin Singh Mehra',
     role: 'Founder & CEO',
-    image: createAvatarPlaceholder('Jatin Singh Mehra'),
+    image: '/host/jatin.jpg',
+    imagePosition: 'object-top',
   },
   {
     name: 'Nikita Wadhawan',
     role: 'Operations',
-    image: createAvatarPlaceholder('Nikita Wadhawan'),
+    image: '/host/nikita.jpg',
+    imagePosition: 'object-top',
   },
   {
     name: 'Vinay Kumar',
     role: 'Media Manager',
-    image: createAvatarPlaceholder('Vinay Kumar'),
+    image: '/host/vinay.jpg',
+    imagePosition: 'object-center',
   },
 ];
 
@@ -613,28 +616,28 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     name: 'David Lee',
     title: 'Professor',
-    avatar: createAvatarPlaceholder('David Lee'),
+    avatar: '/assets/avatar.png',
     quote:
       'Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.',
   },
   {
     name: 'Sarah Machillie',
     title: 'Doctor',
-    avatar: createAvatarPlaceholder('Sarah Machillie'),
+    avatar: '/assets/avatar.png',
     quote:
       'Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world.',
   },
   {
     name: 'David Lee',
     title: 'Professor',
-    avatar: createAvatarPlaceholder('David Lee'),
+    avatar: '/assets/avatar.png',
     quote:
       'Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.',
   },
   {
     name: 'Sarah Machillie',
     title: 'Doctor',
-    avatar: createAvatarPlaceholder('Sarah Machillie'),
+    avatar: '/assets/avatar.png',
     quote:
       'Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world.',
   },

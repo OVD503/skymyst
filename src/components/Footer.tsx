@@ -22,8 +22,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   return (
-    <footer id="main-footer" className="bg-[#015E47] text-white p-[24px] sm:p-[32px] font-sans w-full min-h-[535px]">
-      <div className="max-w-[1440px] mx-auto">
+    <footer id="main-footer" className="bg-[#015E47] text-white font-sans w-full min-h-[535px] flex flex-col justify-between">
+      <div className="w-full max-w-[1440px] mx-auto p-[24px] sm:p-[32px] pb-6 sm:pb-8 flex-1">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 pb-10 sm:pb-16 border-b border-[#014D3A]">
           {/* Left Column (Frame 67): Brand, Address, Contact info */}
           <div className="lg:col-span-6 flex flex-col justify-start items-center lg:items-start">
@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 <img
                   src="/assets/logo.png"
                   alt="Skymyst Logo"
-                  className="w-[153px] h-[64px] object-contain filter brightness-0 invert"
+                  className="w-[180px] sm:w-[210px] h-[75px] sm:h-[88px] object-contain filter brightness-0 invert drop-shadow-[0_2px_10px_rgba(255,255,255,0.2)]"
                 />
               </div>
 
@@ -152,35 +152,37 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Legal & Socials */}
-        <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-x-4">
-            <span className="font-sans text-[20px] font-normal text-white leading-[100%] tracking-normal inline-block">
+      {/* Full-Width Bottom Strip (Edge-to-edge, bg-[#00000033], min-h 96px, py 16px, px 32px) */}
+      <div className="w-full bg-[#00000033] py-[16px] min-h-[96px] flex items-center">
+        <div className="w-full max-w-[1440px] mx-auto px-[20px] sm:px-[32px] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+            <span className="font-sans text-[20px] font-normal text-white leading-[100%] tracking-[0%] inline-block">
               © Skymyst 2026, Inc
             </span>
-            <div className="flex items-center space-x-3">
-              <button onClick={() => alert('Terms of Service: Skymyst homestay terms & partner agreements apply.')} className="hover:text-[#EAB308] transition cursor-pointer">
+            <div className="flex items-center space-x-3 text-[20px] font-normal text-white leading-[100%]">
+              <button onClick={() => alert('Terms of Service: Skymyst homestay terms & partner agreements apply.')} className="hover:text-[#FCE700] hover:underline transition cursor-pointer">
                 Terms
               </button>
-              <span className="text-white/40">|</span>
-              <button onClick={() => alert('Privacy Policy: Skymyst GDPR & CCPA compliant data handling.')} className="hover:text-[#EAB308] transition cursor-pointer">
+              <span className="text-white/60">|</span>
+              <button onClick={() => alert('Privacy Policy: Skymyst GDPR & CCPA compliant data handling.')} className="hover:text-[#FCE700] hover:underline transition cursor-pointer">
                 Privacy
               </button>
-              <span className="text-white/40">|</span>
-              <button onClick={() => alert('Refund Policy: Standard strict and flexible booking cancellation tiers.')} className="hover:text-[#EAB308] transition cursor-pointer">
+              <span className="text-white/60">|</span>
+              <button onClick={() => alert('Refund Policy: Standard strict and flexible booking cancellation tiers.')} className="hover:text-[#FCE700] hover:underline transition cursor-pointer">
                 Refund policy
               </button>
             </div>
           </div>
 
-          <div className="flex items-center justify-center space-x-3 pt-2 sm:pt-0">
+          <div className="flex items-center justify-center space-x-3">
             <a
               href="https://instagram.com"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="w-11 h-11 rounded-full bg-[#014B39] hover:bg-[#013B2C] flex items-center justify-center text-white transition cursor-pointer border border-[#01543F]"
+              className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition cursor-pointer"
             >
               <Instagram className="w-5 h-5" />
             </a>
@@ -189,7 +191,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
-              className="w-11 h-11 rounded-full bg-[#014B39] hover:bg-[#013B2C] flex items-center justify-center text-white transition cursor-pointer border border-[#01543F]"
+              className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition cursor-pointer"
             >
               <Facebook className="w-5 h-5 fill-current" />
             </a>

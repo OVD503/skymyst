@@ -9,6 +9,7 @@ interface LogoProps {
 
 export const SkymystLogo: React.FC<LogoProps> = ({
   className = '',
+  variant = 'light',
   size = 'md',
   onClick,
 }) => {
@@ -29,7 +30,11 @@ export const SkymystLogo: React.FC<LogoProps> = ({
       <img
         src="/assets/logo.png"
         alt="Skymyst Logo"
-        className={`${heightClass} w-auto object-contain filter brightness-0 invert drop-shadow-[0_2px_10px_rgba(255,255,255,0.4)]`}
+        className={`${heightClass} w-auto object-contain ${
+          variant === 'light'
+            ? 'filter brightness-0 invert drop-shadow-[0_2px_10px_rgba(255,255,255,0.4)]'
+            : 'filter brightness-0 drop-shadow-sm'
+        }`}
       />
     </div>
   );

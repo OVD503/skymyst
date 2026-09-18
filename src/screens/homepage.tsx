@@ -239,7 +239,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <section className="max-w-[1440px] mx-auto bg-white px-3 sm:px-6 lg:px-8 xl:px-10 pt-4 sm:pt-7 lg:pt-8 xl:pt-10 pb-5 sm:pb-7 lg:pb-8 xl:pb-10 flex flex-col justify-center">
         <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-2 sm:gap-4 mb-4 sm:mb-7 text-center sm:text-left">
           <div className="w-full sm:w-auto">
-            <span className="text-[16px] leading-[140%] font-normal text-[#1E1E1E] tracking-normal block mb-1 font-sans">
+            <span className="text-[16px] leading-[140%] font-normal text-[#1E1E1E] tracking-normal block mb-3 sm:mb-4 font-sans">
               Featured Properties
             </span>
             <h2 className="font-lustria text-[26px] sm:text-[40px] leading-[110%] tracking-[-0.01em] font-normal text-[#1E1E1E]">
@@ -260,7 +260,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         {/* Property Cards Slider */}
         <div
           id="featured-properties-slider"
-          className="flex overflow-x-auto gap-2.5 sm:gap-5 lg:gap-6 pb-1 pt-1 scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          className="flex overflow-x-auto gap-2.5 sm:gap-5 lg:gap-6 pt-5 pb-5 -mt-3 -mb-3 scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         >
           {properties.map((prop, idx) => (
             <motion.div
@@ -342,7 +342,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="w-full max-w-[1440px] mx-auto px-4 lg:px-[24px]">
           <div className="relative flex flex-col items-center justify-center text-center gap-1.5 sm:gap-3 mb-6 lg:mb-10">
             <div>
-              <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#042E23] block mb-1.5 h-[20px]">
+              <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#042E23] block mb-6 sm:mb-8">
                 Curated Collection
               </span>
               <h2 className="font-lustria text-[26px] sm:text-[40px] leading-[100%] tracking-normal font-normal text-[#042E23] whitespace-nowrap">
@@ -427,7 +427,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </h2>
           </div>
 
-          <div className="flex overflow-x-auto gap-3 sm:gap-4 pb-2 pt-1 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-6 lg:gap-4 lg:overflow-visible lg:pb-0 lg:pt-0">
+          <div className="flex overflow-x-auto gap-3 sm:gap-4 pt-5 pb-5 -mt-3 -mb-3 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-6 lg:gap-4 lg:overflow-visible lg:pb-0 lg:pt-0">
             {DESTINATIONS.map((dest, idx) => (
               <motion.div
                 key={dest.id}
@@ -466,7 +466,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
       {/* 5. Guest Stories (Exact match to reference image) */}
       <section className="w-full bg-[#FFF9E8] py-10 lg:py-16 min-h-0 lg:min-h-[900px] flex items-center justify-center">
-        <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-[80px]">
+        <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8 xl:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-stretch">
             {/* Left Column: Heading, Body, and Button */}
             <div className="lg:col-span-4 flex flex-col justify-between py-1 text-center lg:text-left items-center lg:items-start h-full min-h-0 lg:min-h-[704px]">
@@ -614,7 +614,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="bg-[#F6F5F1]/90 opacity-50 p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
                 <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
                   <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
-                    <UserAvatar name="David Lee" image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250" size="lg" />
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
                   </div>
                   <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
                     <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
@@ -630,7 +630,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
                 <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
                   <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
-                    <UserAvatar name="David Lee" image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250" size="lg" />
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
                   </div>
                   <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
                     <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
@@ -646,7 +646,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
                 <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
                   <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
-                    <UserAvatar name="Sarah Machillie" image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=250" size="lg" />
+                    <UserAvatar name="Sarah Machillie" image="/assets/avatar.png" size="lg" />
                   </div>
                   <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
                     <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">Sarah Machillie</h4>
@@ -665,7 +665,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="bg-[#F6F5F1]/90 opacity-50 p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
                 <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
                   <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
-                    <UserAvatar name="David Lee" image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250" size="lg" />
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
                   </div>
                   <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
                     <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
@@ -681,7 +681,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
                 <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
                   <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
-                    <UserAvatar name="David Lee" image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250" size="lg" />
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
                   </div>
                   <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
                     <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
@@ -697,7 +697,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
                 <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
                   <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
-                    <UserAvatar name="Sarah Machillie" image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=250" size="lg" />
+                    <UserAvatar name="Sarah Machillie" image="/assets/avatar.png" size="lg" />
                   </div>
                   <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
                     <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">Sarah Machillie</h4>
@@ -716,7 +716,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="bg-[#F6F5F1]/90 opacity-50 p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
                 <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
                   <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
-                    <UserAvatar name="David Lee" image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250" size="lg" />
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
                   </div>
                   <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
                     <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
@@ -732,7 +732,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
                 <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
                   <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
-                    <UserAvatar name="David Lee" image="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=250" size="lg" />
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
                   </div>
                   <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
                     <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
@@ -748,7 +748,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
                 <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
                   <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
-                    <UserAvatar name="Sarah Machillie" image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=250" size="lg" />
+                    <UserAvatar name="Sarah Machillie" image="/assets/avatar.png" size="lg" />
                   </div>
                   <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
                     <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">Sarah Machillie</h4>
@@ -768,7 +768,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       <section className="relative bg-[#FFF9E8] py-12 sm:py-16 md:py-24 border-t border-[#EAE3D2]">
         <div className="relative max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="mb-8 sm:mb-10 text-center sm:text-left">
-            <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1.5">
+            <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-6 sm:mb-8">
               Why Choose Us
             </span>
             <h2 className="font-lustria font-normal text-[28px] sm:text-[36px] lg:text-[40px] leading-[110%] tracking-[-0.01em] text-[#1E1E1E] max-w-[631px] min-h-[44px]">
@@ -780,131 +780,100 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="border-t border-[#CECECE] max-w-[1328px] mx-auto w-full">
             {/* Step 1 */}
             <div className="border-b border-[#CECECE] py-[32px]">
-              <button
-                onClick={() => setExpandedStep(expandedStep === 1 ? 0 : 1)}
-                className="w-full flex items-center justify-between text-left group cursor-pointer"
-              >
+              <div className="w-full flex items-center justify-between text-left">
                 <div>
                   <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1">Step 1</span>
                   <h3 className="font-lustria font-normal text-[20px] sm:text-[26px] md:text-[32px] leading-[100%] tracking-normal text-[#1E1E1E]">
                     Arrival and Meet the Crew
                   </h3>
                 </div>
-                <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
-                  {expandedStep === 1 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#EFE9D8] flex items-center justify-center shrink-0 text-stone-600">
+                  <ChevronDown className="w-4 h-4" />
                 </div>
-              </button>
-              {expandedStep === 1 && (
-                <div className="mt-4 font-sans font-normal text-[16px] leading-[24px] tracking-[0.02em] text-[#1E1E1E] max-w-2xl text-center sm:text-left">
-                  Personal airport pickup and scenic mountain transfer to our homestay estate. Meet the community managers and get settled into your private suite with warm local refreshments.
-                </div>
-              )}
+              </div>
             </div>
 
-            {/* Step 2 (Expanded state matching reference screenshot) */}
+            {/* Step 2 (Always open state) */}
             <div className="border-b border-[#CECECE] py-[32px]">
-              <button
-                onClick={() => setExpandedStep(expandedStep === 2 ? 0 : 2)}
-                className="w-full flex items-center justify-between text-left group cursor-pointer"
-              >
+              <div className="w-full flex items-center justify-between text-left">
                 <div>
                   <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1">Step 2</span>
                   <h3 className="font-lustria font-normal text-[20px] sm:text-[26px] md:text-[32px] leading-[100%] tracking-normal text-[#1E1E1E]">
                     Check in and Hospitality
                   </h3>
                 </div>
-                <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
-                  {expandedStep === 2 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#EFE9D8] flex items-center justify-center shrink-0 text-stone-600">
+                  <ChevronUp className="w-4 h-4" />
                 </div>
-              </button>
+              </div>
 
-              {expandedStep === 2 && (
-                <div className="mt-4 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-stretch">
-                  {/* Left content area */}
-                  <div className="lg:col-span-7 flex flex-col justify-between py-1">
-                    <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-10 text-center sm:text-left">
-                      <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] underline underline-offset-4 shrink-0 pt-0.5 block text-center sm:text-left">
-                        Description
-                      </span>
+              <div className="mt-4 sm:mt-8 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-stretch">
+                {/* Left content area */}
+                <div className="lg:col-span-7 flex flex-col justify-between py-1">
+                  <div className="flex flex-col sm:flex-row sm:items-start gap-6 sm:gap-16 lg:gap-32 text-center sm:text-left">
+                    <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] underline underline-offset-4 shrink-0 pt-0.5 block text-center sm:text-left">
+                      Description
+                    </span>
 
-                      {/* Frame 56 Container (Vertical Flow, Width 463px, Height 447px, Justify space-between) */}
-                      <div className="flex flex-col justify-between w-full max-w-[463px] lg:h-[447px] space-y-6 lg:space-y-0">
-                        <p className="font-sans font-normal text-[16px] leading-[24px] tracking-[0.02em] text-[#1E1E1E] text-center sm:text-left">
-                          Morning surf session focusing on technique — pop-ups, positioning, reading waves. You&apos;ll already feel more confident than yesterday. In the afternoon, we&apos;re heading to one of Canggu&apos;s famous beach clubs for lunch, drinks, and good vibes. It&apos;s the perfect mid-week energy — sun, music, ocean views, and your new best friends.
-                        </p>
+                    {/* Frame 56 Container (Vertical Flow, Width 463px, Height 447px, Justify space-between) */}
+                    <div className="flex flex-col justify-between w-full max-w-[463px] lg:h-[447px] space-y-6 lg:space-y-0">
+                      <p className="font-sans font-normal text-[16px] leading-[24px] tracking-[0.02em] text-[#1E1E1E] text-center sm:text-left">
+                        Morning surf session focusing on technique — pop-ups, positioning, reading waves. You&apos;ll already feel more confident than yesterday. In the afternoon, we&apos;re heading to one of Canggu&apos;s famous beach clubs for lunch, drinks, and good vibes. It&apos;s the perfect mid-week energy — sun, music, ocean views, and your new best friends.
+                      </p>
 
-                        <div className="flex justify-center sm:justify-start">
-                          <button
-                            onClick={onOpenContact}
-                            className="bg-[#00704A] hover:bg-[#00583A] px-6 sm:px-7 py-2.5 sm:py-3 rounded-full transition-all shadow-sm active:scale-95 cursor-pointer flex items-center justify-center"
-                          >
-                            <span className="font-sans font-medium text-[16px] leading-[100%] tracking-normal bg-gradient-to-r from-[#8FDCFF] to-[#F7FFE1] bg-clip-text text-transparent">
-                              Book a Call
-                            </span>
-                          </button>
-                        </div>
+                      <div className="flex justify-center sm:justify-start">
+                        <button
+                          onClick={onOpenContact}
+                          className="bg-[#00704A] hover:bg-[#00583A] px-6 sm:px-7 py-2.5 sm:py-3 rounded-full transition-all shadow-sm active:scale-95 cursor-pointer flex items-center justify-center"
+                        >
+                          <span className="font-sans font-medium text-[16px] leading-[100%] tracking-normal bg-gradient-to-r from-[#8FDCFF] to-[#F7FFE1] bg-clip-text text-transparent">
+                            Book a Call
+                          </span>
+                        </button>
                       </div>
                     </div>
                   </div>
-
-                  {/* Right landscape image (Figma Specs: Radius 56px, Height 447px, Width 463px) */}
-                  <div className="lg:col-span-5 relative w-full max-w-[463px] h-[260px] sm:h-[360px] lg:h-[447px] justify-self-center lg:justify-self-end">
-                    <img
-                      src="/assets/check in hospitality.jpg"
-                      alt="Lush green mountain landscape"
-                      className="rounded-[28px] sm:rounded-[56px] w-full h-full object-cover shadow-sm"
-                    />
-                  </div>
                 </div>
-              )}
+
+                {/* Right landscape image (Figma Specs: Radius 56px, Height 447px, Width 463px) */}
+                <div className="lg:col-span-5 relative w-full max-w-[463px] h-[260px] sm:h-[360px] lg:h-[447px] justify-self-center lg:justify-self-end">
+                  <img
+                    src="/assets/check in hospitality.jpg"
+                    alt="Lush green mountain landscape"
+                    className="rounded-[28px] sm:rounded-[56px] w-full h-full object-cover shadow-sm"
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Step 3 (Has green 3px bottom border #007C4D per Figma specs) */}
             <div className="border-b-[3px] border-[#007C4D] py-[32px]">
-              <button
-                onClick={() => setExpandedStep(expandedStep === 3 ? 0 : 3)}
-                className="w-full flex items-center justify-between text-left group cursor-pointer"
-              >
+              <div className="w-full flex items-center justify-between text-left">
                 <div>
                   <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1">Step 3</span>
                   <h3 className="font-lustria font-normal text-[20px] sm:text-[26px] md:text-[32px] leading-[100%] tracking-normal text-[#1E1E1E]">
                     First Waves & Mountain Vibes
                   </h3>
                 </div>
-                <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
-                  {expandedStep === 3 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#EFE9D8] flex items-center justify-center shrink-0 text-stone-600">
+                  <ChevronDown className="w-4 h-4" />
                 </div>
-              </button>
-
-              {expandedStep === 3 && (
-                <div className="mt-4 font-sans font-normal text-[16px] leading-[24px] tracking-[0.02em] text-[#1E1E1E] max-w-2xl">
-                  Guided morning treks, panoramic sunrise breakfasts, and afternoon excursions immersing in local culture and heritage workshops.
-                </div>
-              )}
+              </div>
             </div>
 
             {/* Step 4 */}
             <div className="border-b border-[#CECECE] py-[32px]">
-              <button
-                onClick={() => setExpandedStep(expandedStep === 4 ? 0 : 4)}
-                className="w-full flex items-center justify-between text-left group cursor-pointer"
-              >
+              <div className="w-full flex items-center justify-between text-left">
                 <div>
                   <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1">Step 4</span>
                   <h3 className="font-lustria font-normal text-[20px] sm:text-[26px] md:text-[32px] leading-[100%] tracking-normal text-[#1E1E1E]">
                     Final Meet and Check Out
                   </h3>
                 </div>
-                <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
-                  {expandedStep === 4 ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#EFE9D8] flex items-center justify-center shrink-0 text-stone-600">
+                  <ChevronDown className="w-4 h-4" />
                 </div>
-              </button>
-
-              {expandedStep === 4 && (
-                <div className="mt-4 font-sans font-normal text-[16px] leading-[24px] tracking-[0.02em] text-[#1E1E1E] max-w-2xl">
-                  Farewell brunch with handcrafted souvenirs, memories capture session, and seamless concierge transfer onwards.
-                </div>
-              )}
+              </div>
             </div>
           </div>
 

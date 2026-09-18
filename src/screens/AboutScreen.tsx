@@ -19,173 +19,258 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
   };
 
   return (
-    <div className="w-full bg-white font-sans antialiased text-stone-800 pt-16 sm:pt-20">
+    <div className="w-full bg-white font-sans antialiased text-stone-800 pt-4 sm:pt-6">
       {/* 1. Header & Team Members Section */}
-      <section className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 py-12 sm:py-16 md:py-20">
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-          <span className="text-caption-bold text-stone-500 uppercase tracking-widest block mb-1.5">
+      <section className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-[148px] pt-12 md:pt-[96px] pb-12 md:pb-[96px] flex flex-col gap-[45px]">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="!font-sans font-normal text-[16px] leading-[140%] tracking-normal text-[#1E1E1E] text-center block mb-1.5">
             Who are we
           </span>
-          <h1 className="text-display-1 text-[#2C2926] font-normal tracking-tight">
+          <h1 className="font-lustria font-normal text-[28px] sm:text-[36px] md:text-[40px] leading-[110%] tracking-[-0.01em] text-[#1E1E1E]">
             Meet our expert teams
           </h1>
         </div>
 
         {/* Team Members Grid (with Image Placeholders + Avatar) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
           {TEAM_MEMBERS.map((member, idx) => (
             <div key={idx} className="flex flex-col space-y-3">
-              {/* Image Placeholder container matching reference */}
-              <div className="w-full h-64 sm:h-72 bg-[#EFECE6] rounded-[28px] flex flex-col items-center justify-center border border-stone-200/80 overflow-hidden relative shadow-xs">
-                <UserAvatar name={member.name} size="xl" className="shadow-md mb-2" />
-                <span className="text-[11px] text-stone-400 font-sans tracking-wide">Image Placeholder</span>
+              {/* Team Member Image */}
+              <div className="w-full sm:w-[354.67px] h-[272px] rounded-[32px] overflow-hidden relative shadow-xs bg-[#E4CCCC]">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className={`w-full h-full object-cover ${member.imagePosition || 'object-center'}`}
+                />
               </div>
               <div className="text-left pt-1">
-                <h3 className="text-body-1 font-bold text-[#2C2926] font-sans">{member.name}</h3>
-                <p className="text-caption-light text-stone-500 font-sans mt-0.5">{member.role}</p>
+                <h3 className="!font-sans font-medium text-[16px] leading-[20px] tracking-[0.02em] text-[#042E23]">
+                  {member.name}
+                </h3>
+                <p className="!font-sans font-normal text-[16px] leading-[140%] tracking-normal text-[#4E4E4E] mt-0.5">
+                  {member.role}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
         {/* GDPR Notice Paragraph */}
-        <div className="max-w-4xl mx-auto text-center mt-12 sm:mt-16 mb-6 px-4">
-          <p className="text-body-2 text-stone-500 font-sans font-light">
+        <div className="max-w-[1139px] mx-auto text-center px-4">
+          <p className="!font-sans font-medium text-[16px] leading-[24px] tracking-normal text-[#747474] text-center">
             Please read this Subpage carefully. It contains important information we are required by the General Data Protection Regulation (&quot;GDPR&quot;) and, in some cases other laws, to disclose, including (i) legal bases, (ii) your legal rights, (iii) safeguards we rely on for transferring your personal information outside the European Economic Area (&quot;EEA&quot;) and (v) the contact details of the Data Protection Officer. If you have any questions,
           </p>
         </div>
       </section>
 
       {/* 2. Testimonials (Why Choose Us / We've planned everything for you:) */}
-      <section className="bg-[#FFF9E8] py-16 sm:py-24 border-t border-b border-[#EAE3D2]">
-        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
-          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-            <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1.5">
+      <section className="bg-[#FFFFFF] min-h-[900px] h-[900px] overflow-hidden relative border-t border-stone-100 flex items-center justify-center">
+        <div className="w-full max-w-[1440px] h-[900px] mx-auto px-4 sm:px-8 lg:px-[80px] relative overflow-hidden">
+
+          {/* Absolute Positioned Header (Floats over top cards matching Figma spec) */}
+          <div className="absolute top-[64px] left-1/2 -translate-x-1/2 z-30 text-center w-auto px-4 pointer-events-none flex flex-col items-center gap-[16px]">
+            <span className="font-sans font-normal text-[16px] leading-[20px] tracking-normal text-[#1E1E1E] h-[20px] whitespace-nowrap">
               Why Choose Us
             </span>
-            <h2 className="font-lustria font-normal text-[28px] sm:text-[36px] lg:text-[40px] leading-[110%] tracking-[-0.01em] text-[#1E1E1E] max-w-[631px] mx-auto min-h-[44px]">
+            <h2 className="font-lustria font-normal text-[24px] sm:text-[32px] lg:text-[40px] leading-[110%] tracking-[-0.01em] text-[#1E1E1E] whitespace-nowrap">
               We&apos;ve planned everything for you:
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
-            {/* Column 1 */}
-            <div className="space-y-5">
-              <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
-                <div className="flex items-center space-x-3">
-                  <UserAvatar name="David Lee" size="lg" />
-                  <div>
-                    <h4 className="text-heading-3 font-bold text-[#004030]">David Lee</h4>
-                    <p className="text-caption-light text-[#6C6656]">Professor</p>
+          {/* Top Fade Gradient Overlay (Rectangle 2: 231px height) */}
+          <div
+            className="absolute top-0 left-0 right-0 h-[231px] z-20 pointer-events-none"
+            style={{ background: 'linear-gradient(180deg, #FFFFFF 30.95%, rgba(255, 255, 255, 0) 130.74%)' }}
+          />
+
+          {/* Bottom Fade Gradient Overlay (Rectangle 3: 135px height) */}
+          <div
+            className="absolute bottom-0 left-0 right-0 h-[135px] z-20 pointer-events-none"
+            style={{ background: 'linear-gradient(0deg, #FFFFFF 30.95%, rgba(255, 255, 255, 0) 130.74%)' }}
+          />
+
+          {/* Fading Cards Grid Container (Starts at top 0, filling section) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 justify-items-center h-full w-full relative z-10 pt-4">
+            {/* Column 1 (Frame 97: Top -119px offset) */}
+            <div className="space-y-4 lg:-mt-[119px] w-full max-w-[420px]">
+              {/* Card 1 (iPhone 17 - 8: Opacity 0.5, Bg rgba(246,245,241,0.9)) */}
+              <div className="bg-[#F6F5F1]/90 opacity-50 p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
+                <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
+                  <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
+                  </div>
+                  <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
+                    <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
+                    <p className="font-sans font-medium text-[16px] leading-[20px] text-[#4E4E4E]">Professor</p>
                   </div>
                 </div>
-                <p className="text-body-2 text-[#4C4638] font-light">
+                <p className="font-sans font-medium text-[16px] leading-[24px] text-[#747474] max-w-[356px]">
+                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
+                </p>
+              </div>
+
+              {/* Card 2 (iPhone 17 - 4: Standard Bg #F6F5F1, Height 486px) */}
+              <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
+                <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
+                  <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
+                  </div>
+                  <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
+                    <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
+                    <p className="font-sans font-medium text-[16px] leading-[20px] text-[#4E4E4E]">Professor</p>
+                  </div>
+                </div>
+                <p className="font-sans font-medium text-[16px] leading-[24px] text-[#747474] max-w-[356px]">
+                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave. Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
+                </p>
+              </div>
+
+              {/* Card 3 (iPhone 17 - 5: Standard Bg #F6F5F1, Height 366px) */}
+              <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
+                <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
+                  <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
+                    <UserAvatar name="Sarah Machillie" image="/assets/avatar.png" size="lg" />
+                  </div>
+                  <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
+                    <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">Sarah Machillie</h4>
+                    <p className="font-sans font-medium text-[16px] leading-[20px] text-[#4E4E4E]">Doctor</p>
+                  </div>
+                </div>
+                <p className="font-sans font-medium text-[16px] leading-[24px] text-[#747474] max-w-[356px]">
+                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
+                </p>
+              </div>
+            </div>
+
+            {/* Column 2 (Frame 99: Top -183px offset) */}
+            <div className="space-y-4 lg:-mt-[183px] w-full max-w-[420px]">
+              {/* Card 1 (iPhone 17 - 9: Opacity 0.5, Bg rgba(246,245,241,0.9)) */}
+              <div className="bg-[#F6F5F1]/90 opacity-50 p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
+                <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
+                  <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
+                  </div>
+                  <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
+                    <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
+                    <p className="font-sans font-medium text-[16px] leading-[20px] text-[#4E4E4E]">Professor</p>
+                  </div>
+                </div>
+                <p className="font-sans font-medium text-[16px] leading-[24px] text-[#747474] max-w-[356px]">
+                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
+                </p>
+              </div>
+
+              {/* Card 2 (iPhone 17 - 2: Standard Bg #F6F5F1, Height 366px) */}
+              <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
+                <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
+                  <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
+                  </div>
+                  <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
+                    <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
+                    <p className="font-sans font-medium text-[16px] leading-[20px] text-[#4E4E4E]">Professor</p>
+                  </div>
+                </div>
+                <p className="font-sans font-medium text-[16px] leading-[24px] text-[#747474] max-w-[356px]">
+                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
+                </p>
+              </div>
+
+              {/* Card 3 (iPhone 17 - 3: Standard Bg #F6F5F1, Height 366px) */}
+              <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
+                <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
+                  <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
+                    <UserAvatar name="Sarah Machillie" image="/assets/avatar.png" size="lg" />
+                  </div>
+                  <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
+                    <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">Sarah Machillie</h4>
+                    <p className="font-sans font-medium text-[16px] leading-[20px] text-[#4E4E4E]">Doctor</p>
+                  </div>
+                </div>
+                <p className="font-sans font-medium text-[16px] leading-[24px] text-[#747474] max-w-[356px]">
+                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
+                </p>
+              </div>
+            </div>
+
+            {/* Column 3 (Frame 98: Top -119px offset) */}
+            <div className="space-y-4 lg:-mt-[119px] w-full max-w-[420px]">
+              {/* Card 1 (iPhone 17 - 10: Opacity 0.5, Bg rgba(246,245,241,0.9)) */}
+              <div className="bg-[#F6F5F1]/90 opacity-50 p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
+                <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
+                  <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
+                  </div>
+                  <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
+                    <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
+                    <p className="font-sans font-medium text-[16px] leading-[20px] text-[#4E4E4E]">Professor</p>
+                  </div>
+                </div>
+                <p className="font-sans font-medium text-[16px] leading-[24px] text-[#747474] max-w-[356px]">
+                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
+                </p>
+              </div>
+
+              {/* Card 2 (iPhone 17 - 6: Standard Bg #F6F5F1, Height 414px) */}
+              <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
+                <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
+                  <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
+                    <UserAvatar name="David Lee" image="/assets/avatar.png" size="lg" />
+                  </div>
+                  <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
+                    <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">David Lee</h4>
+                    <p className="font-sans font-medium text-[16px] leading-[20px] text-[#4E4E4E]">Professor</p>
+                  </div>
+                </div>
+                <p className="font-sans font-medium text-[16px] leading-[24px] text-[#747474] max-w-[356px]">
                   Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave. Bali has drawn surfers since the 70s: a legendary destination with waves for every level.
                 </p>
               </div>
 
-              <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
-                <div className="flex items-center space-x-3">
-                  <UserAvatar name="Sarah Machillie" size="lg" />
-                  <div>
-                    <h4 className="text-base sm:text-lg font-bold text-[#004030]">Sarah Machillie</h4>
-                    <p className="text-xs text-[#6C6656]">Doctor</p>
+              {/* Card 3 (iPhone 17 - 7: Standard Bg #F6F5F1, Height 366px) */}
+              <div className="bg-[#F6F5F1] p-[32px] rounded-[40px] flex flex-col gap-[32px] w-full max-w-[420px] shadow-xs">
+                <div className="flex flex-col gap-[16px] w-full max-w-[356px]">
+                  <div className="w-[56px] h-[56px] rounded-full overflow-hidden shrink-0 bg-[#D9D9D9]">
+                    <UserAvatar name="Sarah Machillie" image="/assets/avatar.png" size="lg" />
+                  </div>
+                  <div className="flex flex-col gap-[4px] w-full max-w-[356px]">
+                    <h4 className="font-sans font-medium text-[24px] leading-[30px] text-[#042E23]">Sarah Machillie</h4>
+                    <p className="font-sans font-medium text-[16px] leading-[20px] text-[#4E4E4E]">Doctor</p>
                   </div>
                 </div>
-                <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
-                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world.
-                </p>
-              </div>
-            </div>
-
-            {/* Column 2 */}
-            <div className="space-y-5">
-              <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
-                <div className="flex items-center space-x-3">
-                  <UserAvatar name="David Lee" size="lg" />
-                  <div>
-                    <h4 className="text-base sm:text-lg font-bold text-[#004030]">David Lee</h4>
-                    <p className="text-xs text-[#6C6656]">Professor</p>
-                  </div>
-                </div>
-                <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                <p className="font-sans font-medium text-[16px] leading-[24px] text-[#747474] max-w-[356px]">
                   Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
-                </p>
-              </div>
-
-              <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
-                <div className="flex items-center space-x-3">
-                  <UserAvatar name="Sarah Machillie" size="lg" />
-                  <div>
-                    <h4 className="text-base sm:text-lg font-bold text-[#004030]">Sarah Machillie</h4>
-                    <p className="text-xs text-[#6C6656]">Doctor</p>
-                  </div>
-                </div>
-                <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
-                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island.
-                </p>
-              </div>
-            </div>
-
-            {/* Column 3 */}
-            <div className="space-y-5">
-              <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
-                <div className="flex items-center space-x-3">
-                  <UserAvatar name="David Lee" size="lg" />
-                  <div>
-                    <h4 className="text-base sm:text-lg font-bold text-[#004030]">David Lee</h4>
-                    <p className="text-xs text-[#6C6656]">Professor</p>
-                  </div>
-                </div>
-                <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
-                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave.
-                </p>
-              </div>
-
-              <div className="bg-[#F8F6F0] p-6 sm:p-7 rounded-[28px] border border-[#ECE7DA] space-y-3">
-                <div className="flex items-center space-x-3">
-                  <UserAvatar name="Sarah Machillie" size="lg" />
-                  <div>
-                    <h4 className="text-base sm:text-lg font-bold text-[#004030]">Sarah Machillie</h4>
-                    <p className="text-xs text-[#6C6656]">Doctor</p>
-                  </div>
-                </div>
-                <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
-                  Bali has drawn surfers since the 70s: a legendary destination with waves for every level.
                 </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-
       {/* 3. FAQ Section */}
-      <section className="bg-white py-16 sm:py-24">
-        <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left Header Column */}
-            <div className="md:col-span-5 lg:col-span-4">
-              <h2 className="text-display-1 text-[#2C2926] font-normal tracking-tight">
+      <section className="bg-white">
+        <div className="max-w-[1440px] min-h-[600px] mx-auto px-5 sm:px-8 lg:px-[32px] pt-8 md:pt-[48px] pb-8 md:pb-[48px] flex flex-col md:flex-row justify-between items-start gap-8 lg:gap-12">
+          {/* Left Header Column */}
+          <div className="w-full md:w-[580px] shrink-0">
+              <h2 className="font-lustria font-normal text-[28px] sm:text-[36px] lg:text-[40px] leading-[100%] tracking-normal text-[#1E1E1E] max-w-[580px]">
                 Frequently<br />Asked Questions
               </h2>
             </div>
 
             {/* Right Accordion Column */}
-            <div className="md:col-span-7 lg:col-span-8 border-t-2 border-[#CFC5AF]">
+            <div className="md:col-span-7 lg:col-span-8">
               {FAQS.map((faq, idx) => {
                 const isOpen = openFaqs.includes(idx);
                 return (
                   <div
                     key={idx}
-                    className={`border-b-2 transition-colors ${
-                      isOpen ? 'border-[#00704A]' : 'border-[#CFC5AF]'
-                    }`}
+                    className={`border-b-2 transition-colors ${isOpen ? 'border-[#00704A]' : 'border-[#CFC5AF]'
+                      }`}
                   >
                     <button
                       onClick={() => toggleFaq(idx)}
                       className="w-full py-5 sm:py-6 text-left flex items-center justify-between group"
                     >
-                      <span className="text-body-2 font-bold text-[#2C2926] font-sans pr-4 leading-snug">
+                      <span className="!font-sans font-medium text-[20px] leading-[24px] tracking-[0.02em] text-[#232323] pr-4 max-w-[620px]">
                         {faq.question}
                       </span>
                       <div className="w-7 h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
@@ -194,7 +279,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
                     </button>
 
                     {isOpen && (
-                      <div className="pb-5 sm:pb-6 text-body-2 text-stone-600 font-sans font-light">
+                      <div className="pb-5 sm:pb-6 !font-sans font-normal text-[16px] leading-[24px] tracking-[0.02em] text-[#4E4E4E] max-w-[620px]">
                         {faq.answer}
                       </div>
                     )}
@@ -202,7 +287,6 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
                 );
               })}
             </div>
-          </div>
         </div>
       </section>
     </div>

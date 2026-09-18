@@ -14,8 +14,20 @@ export function useProperties() {
     return name.startsWith('The ') ? name : `The ${name}`;
   };
 
+  const fixImage = (img: string) => {
+    if (!img) return img;
+    if (img.toLowerCase().includes('sukoonstay')) {
+      return '/cover/sukoonstay.jpg';
+    }
+    return img;
+  };
+
   const [properties, setProperties] = useState<Property[]>(() =>
-    FALLBACK_PROPERTIES.map((p) => ({ ...p, name: formatName(p.name) }))
+    FALLBACK_PROPERTIES.map((p) => ({
+      ...p,
+      name: formatName(p.name),
+      images: p.images ? p.images.map(fixImage) : p.images,
+    }))
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,10 +44,12 @@ export function useProperties() {
       (snapshot) => {
         const data = snapshot.docs.map((doc) => {
           const item = doc.data() as Property;
+          const images = item.images ? item.images.map(fixImage) : item.images;
           return {
             ...item,
             id: doc.id,
             name: formatName(item.name || doc.id),
+            images,
           };
         }) as Property[];
 
