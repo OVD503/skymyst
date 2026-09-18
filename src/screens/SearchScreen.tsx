@@ -18,7 +18,7 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
     <div className="w-full bg-white font-sans antialiased text-stone-800 pt-16 sm:pt-20 pb-16 sm:pb-24">
       {/* 1. Main Page Title Header */}
       <div className="text-center py-6 sm:py-10">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl text-stone-900 font-semibold tracking-tight font-sans">
+        <h1 className="text-display-2 text-stone-900 font-semibold tracking-tight font-sans">
           Over 1,000 homes within map area
         </h1>
       </div>
@@ -52,40 +52,40 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
                 {/* Property Details */}
                 <div className="flex-1 flex flex-col justify-between h-full py-0.5 space-y-2">
                   <div>
-                    <h3 className="font-bold text-base sm:text-lg text-stone-900 font-sans group-hover:text-[#00704A] transition leading-snug">
+                    <h3 className="font-sans font-medium text-[16px] leading-[20px] tracking-[0.02em] text-[#042E23] group-hover:text-[#00704A] transition leading-snug">
                       {prop.name}
                     </h3>
-                    <p className="text-xs text-stone-500 font-sans font-light mt-1">
+                    <p className="text-caption-light text-stone-500 font-sans mt-1">
                       {prop.guests} guests · {prop.bedrooms} bedrooms · {prop.beds} beds · {prop.bathrooms} bathrooms
                     </p>
 
                     {/* Rating Badge */}
                     <div className="flex items-center space-x-1.5 mt-2">
-                      <span className="bg-[#00704A] text-white font-bold text-xs px-1.5 py-0.5 rounded-md">
+                      <span className="bg-[#00704A] text-white font-bold text-caption-bold px-1.5 py-0.5 rounded-md">
                         {prop.rating.toFixed(1)}
                       </span>
-                      <span className="font-bold text-xs text-stone-900">Wonderful</span>
-                      <span className="text-xs text-stone-500">({prop.reviewsCount} reviews)</span>
+                      <span className="text-caption-bold text-stone-900">Wonderful</span>
+                      <span className="text-caption-light text-stone-500">({prop.reviewsCount} reviews)</span>
                     </div>
                   </div>
 
                   {/* Pricing */}
                   <div className="pt-2">
                     <div className="flex items-baseline space-x-2">
-                      <span className="font-bold text-base text-stone-900 font-sans">
+                      <span className="text-body-1 font-bold text-stone-900 font-sans">
                         ₹{prop.pricePerNight.toLocaleString()}
                       </span>
                       {prop.originalPricePerNight && (
-                        <span className="text-xs text-stone-400 line-through">
+                        <span className="text-caption-light text-stone-400 line-through">
                           ₹{prop.originalPricePerNight.toLocaleString()}
                         </span>
                       )}
-                      <span className="text-xs text-stone-500 font-normal">per night</span>
+                      <span className="text-caption-light text-stone-500">per night</span>
                     </div>
-                    <p className="text-xs text-stone-500 font-light mt-0.5">
+                    <p className="text-caption-light text-stone-500 mt-0.5">
                       ₹{prop.totalPrice.toLocaleString()} total
                     </p>
-                    <p className="text-[11px] text-stone-400 font-light">
+                    <p className="text-caption-light text-stone-400">
                       includes taxes & fees
                     </p>
                   </div>

@@ -9,7 +9,14 @@ import { PROPERTIES as FALLBACK_PROPERTIES } from '../data/Data';
  * Falls back to hardcoded data if Firebase is not configured or on error.
  */
 export function useProperties() {
-  const [properties, setProperties] = useState<Property[]>(FALLBACK_PROPERTIES);
+  const formatName = (name: string) => {
+    if (!name) return name;
+    return name.startsWith('The ') ? name : `The ${name}`;
+  };
+
+  const [properties, setProperties] = useState<Property[]>(() =>
+    FALLBACK_PROPERTIES.map((p) => ({ ...p, name: formatName(p.name) }))
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -23,10 +30,14 @@ export function useProperties() {
     const unsubscribe = onSnapshot(
       collection(db, 'homestays'),
       (snapshot) => {
-        const data = snapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        })) as Property[];
+        const data = snapshot.docs.map((doc) => {
+          const item = doc.data() as Property;
+          return {
+            ...item,
+            id: doc.id,
+            name: formatName(item.name || doc.id),
+          };
+        }) as Property[];
 
         // Only use Firestore data if we actually got results
         if (data.length > 0) {

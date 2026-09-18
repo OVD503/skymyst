@@ -7,7 +7,7 @@ import { MenuOverlay } from './components/MenuOverlay';
 import { StoryModal } from './components/StoryModal';
 import { GalleryModal } from './components/GalleryModal';
 import { BackToTop } from './components/BackToTop';
-import { HomeScreen } from './screens/HomeScreen';
+import { HomeScreen } from './screens/homepage';
 import { PropertyScreen } from './screens/PropertyScreen';
 import { PartnerScreen } from './screens/PartnerScreen';
 import { AboutScreen } from './screens/AboutScreen';

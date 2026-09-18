@@ -31,7 +31,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 font-sans ${
+      className={`absolute top-0 left-0 right-0 z-40 transition-all duration-300 font-sans ${
         isScrolled
           ? 'bg-stone-950/90 backdrop-blur-md border-b border-white/10 py-2 sm:py-3 md:py-4 shadow-xl'
           : 'bg-gradient-to-b from-black/35 via-transparent to-transparent py-2.5 sm:py-4 md:py-6'
@@ -53,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="nav-book-a-call-btn"
             onClick={onOpenContact}
-            className="px-3 sm:px-5 md:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-[#004030] hover:bg-[#002f23] text-white text-[11px] sm:text-xs md:text-sm font-medium transition-all shadow-md hover:shadow-emerald-950/20 active:scale-95 shrink-0"
+            className="px-3 sm:px-5 md:px-6 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-[#004030] hover:bg-[#002f23] text-white text-caption-bold transition-all shadow-md hover:shadow-emerald-950/20 active:scale-95 shrink-0"
           >
             Book a call
           </button>
@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="nav-become-a-partner-btn"
             onClick={() => onNavigate('partner')}
-            className="hidden sm:inline-flex px-4 md:px-6 py-1.5 md:py-2.5 rounded-full bg-white hover:bg-stone-100 text-stone-900 text-xs md:text-sm font-medium transition-all shadow-md active:scale-95 shrink-0"
+            className="hidden sm:inline-flex px-4 md:px-6 py-1.5 md:py-2.5 rounded-full bg-white hover:bg-stone-100 text-stone-900 text-caption-bold transition-all shadow-md active:scale-95 shrink-0"
           >
             Become a partner
           </button>

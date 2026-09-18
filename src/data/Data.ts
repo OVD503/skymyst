@@ -39,7 +39,7 @@ const createAvatarPlaceholder = (name: string) => {
 export const PROPERTIES: Property[] = [
   {
     id: 'bhimsarovar',
-    name: 'Bhimsarovar Kumaoni Stay',
+    name: 'The Bhimsarovar Kumaoni Stay',
     location: 'Bhimtal',
     state: 'Uttrakhand',
     propertyType: '2-Bedroom Budget-Friendly Homestay',
@@ -59,10 +59,10 @@ export const PROPERTIES: Property[] = [
     coordinates: { x: 38, y: 32, label: '₹12,320', lat: 29.3500, lng: 79.5530 },
     images: [
       '/cover/bhimsarowar.JPG',
-      createPlaceholderImage('Bhimsarovar Kumaoni Stay', 'Exterior & Garden'),
-      createPlaceholderImage('Bhimsarovar Kumaoni Stay', 'Living Room Hall'),
-      createPlaceholderImage('Bhimsarovar Kumaoni Stay', 'Mountain View Terrace'),
-      createPlaceholderImage('Bhimsarovar Kumaoni Stay', 'Dining & Outdoor Area'),
+      createPlaceholderImage('The Bhimsarovar Kumaoni Stay', 'Exterior & Garden'),
+      createPlaceholderImage('The Bhimsarovar Kumaoni Stay', 'Living Room Hall'),
+      createPlaceholderImage('The Bhimsarovar Kumaoni Stay', 'Mountain View Terrace'),
+      createPlaceholderImage('The Bhimsarovar Kumaoni Stay', 'Dining & Outdoor Area'),
     ],
     description:
       'A highly budget-friendly, welcoming retreat designed to give guests a taste of authentic Kumaon life. It operates as a peaceful homestay experience featuring amazing 360-degree mountain and valley views.',
@@ -135,7 +135,7 @@ export const PROPERTIES: Property[] = [
   },
   {
     id: 'sukoon',
-    name: 'Sukoon Stay & Mountain View',
+    name: 'The Sukoon Stay & Mountain View',
     location: 'Pandeygoan, Almora',
     state: 'Uttrakhand',
     propertyType: '2-Bedroom Entire Home',
@@ -155,11 +155,11 @@ export const PROPERTIES: Property[] = [
     coordinates: { x: 24, y: 62, label: '₹4,950', lat: 29.5971, lng: 79.6591 },
     images: [
       '/cover/SukoonStay.png',
-      createPlaceholderImage('Sukoon Stay', 'Exterior & Mountain View'),
-      createPlaceholderImage('Sukoon Stay', 'Nature Living Area'),
-      createPlaceholderImage('Sukoon Stay', 'Private Garden'),
-      createPlaceholderImage('Sukoon Stay', 'Almora Valley View'),
-      createPlaceholderImage('Sukoon Stay', 'Kitchen & Dining'),
+      createPlaceholderImage('The Sukoon Stay', 'Exterior & Mountain View'),
+      createPlaceholderImage('The Sukoon Stay', 'Nature Living Area'),
+      createPlaceholderImage('The Sukoon Stay', 'Private Garden'),
+      createPlaceholderImage('The Sukoon Stay', 'Almora Valley View'),
+      createPlaceholderImage('The Sukoon Stay', 'Kitchen & Dining'),
     ],
     description:
       'A highly aesthetic and beautifully designed home perfect for families looking to unwind amidst breathtaking mountains and starry skies. Every detail of the home is thoughtfully designed for relaxation and connection.',
@@ -323,7 +323,7 @@ export const PROPERTIES: Property[] = [
   },
   {
     id: 'silvara',
-    name: 'Silvara',
+    name: 'The Silvara',
     location: 'Bhimtal',
     state: 'Uttrakhand',
     propertyType: '4-Bedroom Boutique Villa',
@@ -343,9 +343,9 @@ export const PROPERTIES: Property[] = [
     coordinates: { x: 42, y: 35, label: '₹14,500', lat: 29.3520, lng: 79.5550 },
     images: [
       '/cover/silvara.jpeg',
-      createPlaceholderImage('Silvara Boutique Villa', 'Lawn Patio'),
-      createPlaceholderImage('Silvara Boutique Villa', 'Family Lounge'),
-      createPlaceholderImage('Silvara Boutique Villa', '180° Balcony View'),
+      createPlaceholderImage('The Silvara Boutique Villa', 'Lawn Patio'),
+      createPlaceholderImage('The Silvara Boutique Villa', 'Family Lounge'),
+      createPlaceholderImage('The Silvara Boutique Villa', '180° Balcony View'),
     ],
     description:
       'A luxury 4-bedroom boutique hilltop villa featuring expansive 180° mountain and sky views. Designed with step-free ground floor access, themed bedrooms, a dedicated cook & caretaker, and landscaped lawn patio.',
@@ -437,7 +437,7 @@ export const PROPERTIES: Property[] = [
   },
   {
     id: 'woodwalk',
-    name: 'WoodWalk Nature Stay',
+    name: 'The WoodWalk Nature Stay',
     location: 'Bhimtal',
     state: 'Uttrakhand',
     propertyType: '4BHK Traditional Stone Cottage',
@@ -457,9 +457,9 @@ export const PROPERTIES: Property[] = [
     coordinates: { x: 48, y: 38, label: '₹8,500', lat: 29.3510, lng: 79.5540 },
     images: [
       '/cover/woodwalk.jpg',
-      createPlaceholderImage('WoodWalk Nature Stay', 'Garden Sitting Area'),
-      createPlaceholderImage('WoodWalk Nature Stay', 'Covered Terrace'),
-      createPlaceholderImage('WoodWalk Nature Stay', 'Village Surroundings'),
+      createPlaceholderImage('The WoodWalk Nature Stay', 'Garden Sitting Area'),
+      createPlaceholderImage('The WoodWalk Nature Stay', 'Covered Terrace'),
+      createPlaceholderImage('The WoodWalk Nature Stay', 'Village Surroundings'),
     ],
     description:
       'A peaceful 4BHK traditional stone cottage tucked in a mountain village (Chauria, Mehragaon, Bhimtal). Surrounded by green valley views and fresh mountain air, it offers a true nature-stay retreat away from road noise.',
@@ -552,40 +552,40 @@ export const DESTINATIONS: Destination[] = [
   {
     id: 'uttrakhand',
     name: 'Uttrakhand',
-    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/uttrakhand.jpg',
     available: true,
   },
   {
     id: 'himachal',
     name: 'Himachal Pradesh',
-    image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/himachal pradesh.jpg',
     available: true,
   },
   {
     id: 'kerala',
     name: 'Kerala',
-    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/kerela.jpg',
     badge: 'Coming Soon',
     available: false,
   },
   {
     id: 'rajasthan',
     name: 'Rajasthan',
-    image: 'https://images.unsplash.com/photo-1599661046827-dacff0c0f09a?auto=format&fit=crop&w=800&q=80',
+    image: '/assets/rajasthan.jpg',
     badge: 'Coming Soon',
     available: false,
   },
   {
     id: 'goa',
     name: 'Goa',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKAwNaV7VFt0w2VFZ790LnepTZfbwRUGBeBFOl1bVbXg&s=10',
+    image: '/assets/goa.jpg',
     badge: 'Coming Soon',
     available: false,
   },
   {
     id: 'karnataka',
     name: 'Karnataka',
-    image: 'https://s7ap1.scene7.com/is/image/incredibleindia/virupaksha-temple-hampi-karnataka-1-attr-nearby?qlt=82&ts=1742170327508',
+    image: '/assets/karnataka.jpg',
     badge: 'Coming Soon',
     available: false,
   },

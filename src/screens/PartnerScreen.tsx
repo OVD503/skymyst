@@ -31,10 +31,10 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center space-y-4 pt-12">
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-normal leading-tight tracking-tight">
+          <h1 className="text-display-1 text-white font-normal tracking-tight">
             List Your Property on Skymyst Group
           </h1>
-          <p className="text-xs sm:text-sm md:text-base text-stone-200 max-w-2xl mx-auto leading-relaxed font-sans font-light">
+          <p className="text-body-2 text-stone-200 max-w-2xl mx-auto font-sans font-light">
             When you list with Skymyst Group, you&apos;ll enjoy extended reach that can lead to more diverse travellers and more opportunity for your business.
           </p>
         </div>
@@ -44,10 +44,10 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
       <section className="bg-white py-16 sm:py-24 border-b border-[#EAE3D2]">
         <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 text-center">
           <div className="max-w-2xl mx-auto mb-12 sm:mb-16">
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight mb-3">
+            <h2 className="text-display-1 text-[#2C2926] font-normal tracking-tight mb-3">
               Bring the right guests within reach
             </h2>
-            <p className="text-xs sm:text-sm text-stone-500 font-sans leading-relaxed max-w-xl mx-auto font-light">
+            <p className="text-body-2 text-stone-500 font-sans max-w-xl mx-auto font-light">
               Connect with millions of people whose purpose, taste and budget make your property the perfect place to stay.
             </p>
           </div>
@@ -58,10 +58,10 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
               <div className="w-10 h-10 rounded-full bg-[#D2F1E4] flex items-center justify-center text-[#005B41] mb-2">
                 <Home className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-sm sm:text-base text-[#2C2926] font-sans">
+              <h3 className="text-heading-3 font-bold text-[#2C2926] font-sans">
                 Reach a wealth of travellers
               </h3>
-              <p className="text-xs text-stone-500 font-sans leading-relaxed max-w-xs font-light">
+              <p className="text-caption-light text-stone-500 font-sans max-w-xs">
                 Access guests who stay longer, cancel less, and spend more across our travel brands and global B2B distribution network.
               </p>
             </div>
@@ -99,10 +99,10 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
       <section className="bg-[#FFF9E8] py-16 sm:py-24 border-b border-[#EAE3D2]">
         <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 text-center">
           <div className="max-w-2xl mx-auto mb-10">
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight mb-3">
+            <h2 className="text-display-1 text-[#2C2926] font-normal tracking-tight mb-3">
               Drive demand like our hotel partners
             </h2>
-            <p className="text-xs sm:text-sm text-stone-600 font-sans leading-relaxed max-w-xl mx-auto font-light">
+            <p className="text-body-2 text-stone-600 font-sans max-w-xl mx-auto font-light">
               Hear how Skymyst Group helps Edwardian Hotels London to reach higher-value travellers across our global market from Commercial Director Hasnain Alloo.
             </p>
           </div>
@@ -118,10 +118,10 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
           {/* Contact Us + Book a Call Button below image (Larger text) */}
           <div className="max-w-xl mx-auto flex flex-col items-center text-center space-y-4 sm:flex-row sm:items-center sm:justify-between sm:text-left sm:space-y-0 pt-3">
             <div>
-              <span className="text-sm sm:text-base text-stone-600 font-sans font-medium block mb-1">Contact Us</span>
+              <span className="text-body-2 text-stone-600 font-sans font-medium block mb-1">Contact Us</span>
               <a
                 href="tel:+919876543210"
-                className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#2C2926] font-medium tracking-tight hover:underline block"
+                className="text-display-1 text-[#2C2926] font-medium tracking-tight hover:underline block"
               >
                 +91 987 6543 210
               </a>
@@ -129,7 +129,7 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
             <div className="pt-2 sm:pt-0">
               <button
                 onClick={onOpenContact}
-                className="bg-[#00704A] hover:bg-[#00583A] text-white px-9 py-3.5 rounded-full text-sm sm:text-base font-semibold transition-all shadow-md active:scale-95 cursor-pointer"
+                className="bg-[#00704A] hover:bg-[#00583A] text-white px-9 py-3.5 rounded-full text-body-2 font-semibold transition-all shadow-md active:scale-95 cursor-pointer"
               >
                 Book a call
               </button>
@@ -144,7 +144,7 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Header Column */}
             <div className="md:col-span-5 lg:col-span-4">
-              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal leading-[1.15] tracking-tight">
+              <h2 className="text-display-1 text-[#2C2926] font-normal tracking-tight">
                 Frequently<br />Asked Questions
               </h2>
             </div>
@@ -163,7 +163,7 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
                       onClick={() => toggleFaq(idx)}
                       className="w-full py-5 sm:py-6 text-left flex items-center justify-between group"
                     >
-                      <span className="font-bold text-xs sm:text-sm text-[#2C2926] font-sans pr-4 leading-snug">
+                      <span className="text-body-2 font-bold text-[#2C2926] font-sans pr-4 leading-snug">
                         {faq.question}
                       </span>
                       <div className="w-7 h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
@@ -172,7 +172,7 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
                     </button>
 
                     {isOpen && (
-                      <div className="pb-5 sm:pb-6 text-xs sm:text-sm text-stone-600 font-sans leading-relaxed font-light">
+                      <div className="pb-5 sm:pb-6 text-body-2 text-stone-600 font-sans font-light">
                         {faq.answer}
                       </div>
                     )}

@@ -20,63 +20,59 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
   return (
     <div
       id="fullscreen-menu-overlay"
-      className="fixed inset-0 z-50 overflow-hidden animate-in fade-in duration-300 font-sans"
+      className="fixed inset-0 z-50 overflow-hidden animate-in fade-in duration-300 font-sans flex items-center justify-center"
     >
-      {/* Dark moody mountain sunset background matching Image 2 */}
+      {/* Dark moody mountain sunset background matching Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/bg.png"
+          src="/assets/bg.jpg"
           alt="Atmospheric mountain sunset backdrop"
-          className="w-full h-full object-cover brightness-[0.35] contrast-125"
+          className="w-full h-full object-cover brightness-[0.40] contrast-125"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/60 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/85" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto h-full px-4 sm:px-8 lg:px-16 py-5 sm:py-8 flex flex-col justify-between text-white">
+      <div className="relative z-10 w-full max-w-[1534px] h-full max-h-[1024px] mx-auto px-6 sm:px-12 lg:px-16 py-6 sm:py-10 flex flex-col justify-between text-white">
         {/* Top bar: CLOSE button on far right */}
         <div className="flex justify-end">
           <button
             id="close-fullscreen-menu-btn"
             onClick={onClose}
-            className="text-xs sm:text-sm tracking-[0.25em] uppercase font-semibold text-stone-300 hover:text-white transition py-2 px-3 hover:bg-white/10 rounded-full"
+            className="text-sm tracking-[0.2em] uppercase font-medium text-stone-200 hover:text-white transition py-1 px-3"
           >
             CLOSE
           </button>
         </div>
 
-        {/* Middle Section: Left GDPR Info & Right Massive Underlined Links */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-8 my-auto items-center">
-          {/* Left Column: ABOUT US text */}
-          <div className="md:col-span-6 space-y-3 sm:space-y-4 max-w-lg hidden md:block">
-            <span className="text-xs uppercase tracking-[0.25em] text-stone-400 font-semibold block">
+        {/* Middle Section: Left "ABOUT US", Center GDPR Info, Right Links */}
+        <div className="flex flex-col md:flex-row items-start justify-between gap-6 lg:gap-12 my-auto w-full">
+          {/* 1. Left Label: ABOUT US */}
+          <div className="shrink-0 pt-1">
+            <span className="text-xs sm:text-sm uppercase tracking-[0.25em] text-stone-300 font-semibold block">
               ABOUT US
             </span>
-            <div className="space-y-3 text-xs sm:text-sm text-stone-200/90 leading-relaxed font-light">
-              <p>
-                At our homestay, we believe that travel is not just about visiting a destination — it’s about feeling at home wherever you go. Nestled in a peaceful setting, our property offers a perfect blend of comfort, warmth, and authentic hospitality.
-              </p>
-              <p>
-                Every room is thoughtfully designed to provide a relaxing and memorable stay, while our personalized service ensures that each guest feels welcomed like family. Whether you are seeking a quiet retreat, a nature escape, or a getaway with loved ones, we strive to create experiences that are both comfortable and meaningful.
-              </p>
-              <p>
-                From cozy accommodations to local experiences, we are dedicated to making every stay special. Our goal is simple: to offer a home away from home where guests can relax, reconnect, and create lasting memories.
-              </p>
-              <p className="text-stone-100 font-medium">
-                We look forward to welcoming you and sharing the warmth of our hospitality.
-              </p>
-            </div>
           </div>
 
-          {/* Right Column: Prominent Underlined Links */}
-          <div className="md:col-span-6 flex flex-col items-start md:items-end space-y-3 sm:space-y-5 md:space-y-7">
+          {/* 2. Middle Column: GDPR info text in lowercase */}
+          <div className="w-full max-w-[437px] space-y-4 font-sans font-normal text-[15px] sm:text-[18px] lg:text-[20px] leading-[24px] tracking-normal text-stone-200 lowercase">
+            <p>
+              please read this subpage carefully. it contains important information we are required by the general data protection regulation (&ldquo;gdpr&rdquo;) and, in some cases other laws, to disclose, including (i) legal bases, (ii) your legal rights, (iii)
+            </p>
+            <p>
+              safeguards we rely on for transferring your personal information outside the european economic area (&ldquo;eea&rdquo;) and (v) the contact details of the data protection officer. if you have any questions,
+            </p>
+          </div>
+
+          {/* 3. Right Column: Prominent Underlined Links */}
+          <div className="flex flex-col items-start md:items-end space-y-4 lg:space-y-6 shrink-0 md:ml-auto">
             <button
               id="menu-link-book-a-call"
               onClick={() => {
                 onClose();
                 onOpenContact();
               }}
-              className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-4 sm:underline-offset-8 decoration-1 sm:decoration-2"
+              className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-normal text-white hover:text-emerald-300 transition underline underline-offset-8 decoration-1"
             >
               Book a Call
             </button>
@@ -87,7 +83,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
                 onNavigate('partner');
                 onClose();
               }}
-              className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-4 sm:underline-offset-8 decoration-1 sm:decoration-2"
+              className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-normal text-white hover:text-emerald-300 transition underline underline-offset-8 decoration-1"
             >
               Become a Partner
             </button>
@@ -98,61 +94,50 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
                 onNavigate('about');
                 onClose();
               }}
-              className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-4 sm:underline-offset-8 decoration-1 sm:decoration-2"
+              className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-normal text-white hover:text-emerald-300 transition underline underline-offset-8 decoration-1"
             >
               About Us
-            </button>
-
-            <button
-              id="menu-link-explore-map"
-              onClick={() => {
-                onNavigate('search');
-                onClose();
-              }}
-              className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white hover:text-emerald-300 transition underline underline-offset-4 sm:underline-offset-8 decoration-1 sm:decoration-2"
-            >
-              Explore Stays & Map
             </button>
           </div>
         </div>
 
         {/* Bottom Bar: Socials (Left) and Copyright / Legal (Right) */}
-        <div className="pt-4 sm:pt-6 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-3 sm:gap-4">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-300 gap-4">
           {/* Social Links with Circle Icon + Underlined text */}
           <div className="flex items-center space-x-6">
             <a
               href="https://instagram.com"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center space-x-2 text-stone-200 hover:text-white group"
+              className="flex items-center space-x-3 text-white hover:text-emerald-300 group"
             >
-              <span className="w-8 h-8 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition">
-                <Instagram className="w-4 h-4" />
+              <span className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition">
+                <Instagram className="w-5 h-5" />
               </span>
-              <span className="text-sm font-medium underline underline-offset-4">Instagram</span>
+              <span className="text-base font-normal underline underline-offset-4">Instagram</span>
             </a>
 
             <a
               href="https://facebook.com"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center space-x-2 text-stone-200 hover:text-white group"
+              className="flex items-center space-x-3 text-white hover:text-emerald-300 group"
             >
-              <span className="w-8 h-8 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition">
-                <Facebook className="w-4 h-4" />
+              <span className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white group-hover:bg-white group-hover:text-black transition">
+                <Facebook className="w-5 h-5" />
               </span>
-              <span className="text-sm font-medium underline underline-offset-4">Facebook</span>
+              <span className="text-base font-normal underline underline-offset-4">Facebook</span>
             </a>
           </div>
 
           {/* Legal and copyright */}
           <div className="flex items-center space-x-3 text-stone-300 text-xs sm:text-sm font-light">
             <span>© Skymyst 2026, Inc</span>
-            <span className="text-stone-500 font-normal">Terms</span>
+            <span className="text-stone-300 font-normal">Terms</span>
             <span className="text-stone-500">|</span>
-            <span className="text-stone-500 font-normal">Privacy</span>
+            <span className="text-stone-300 font-normal">Privacy</span>
             <span className="text-stone-500">|</span>
-            <span className="text-stone-500 font-normal">Refund policy</span>
+            <span className="text-stone-300 font-normal">Refund policy</span>
           </div>
         </div>
       </div>

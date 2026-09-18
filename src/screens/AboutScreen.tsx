@@ -23,10 +23,10 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
       {/* 1. Header & Team Members Section */}
       <section className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6 py-12 sm:py-16 md:py-20">
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-          <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-1.5">
+          <span className="text-caption-bold text-stone-500 uppercase tracking-widest block mb-1.5">
             Who are we
           </span>
-          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight">
+          <h1 className="text-display-1 text-[#2C2926] font-normal tracking-tight">
             Meet our expert teams
           </h1>
         </div>
@@ -41,8 +41,8 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
                 <span className="text-[11px] text-stone-400 font-sans tracking-wide">Image Placeholder</span>
               </div>
               <div className="text-left pt-1">
-                <h3 className="font-bold text-sm sm:text-base text-[#2C2926] font-sans">{member.name}</h3>
-                <p className="text-xs text-stone-500 font-sans font-normal mt-0.5">{member.role}</p>
+                <h3 className="text-body-1 font-bold text-[#2C2926] font-sans">{member.name}</h3>
+                <p className="text-caption-light text-stone-500 font-sans mt-0.5">{member.role}</p>
               </div>
             </div>
           ))}
@@ -50,7 +50,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
 
         {/* GDPR Notice Paragraph */}
         <div className="max-w-4xl mx-auto text-center mt-12 sm:mt-16 mb-6 px-4">
-          <p className="text-xs sm:text-sm text-stone-500 leading-relaxed font-sans font-light">
+          <p className="text-body-2 text-stone-500 font-sans font-light">
             Please read this Subpage carefully. It contains important information we are required by the General Data Protection Regulation (&quot;GDPR&quot;) and, in some cases other laws, to disclose, including (i) legal bases, (ii) your legal rights, (iii) safeguards we rely on for transferring your personal information outside the European Economic Area (&quot;EEA&quot;) and (v) the contact details of the Data Protection Officer. If you have any questions,
           </p>
         </div>
@@ -60,10 +60,10 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
       <section className="bg-[#FFF9E8] py-16 sm:py-24 border-t border-b border-[#EAE3D2]">
         <div className="max-w-[1536px] mx-auto px-3 sm:px-5 lg:px-6">
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-            <span className="text-xs font-semibold text-stone-500 uppercase tracking-widest block mb-1.5">
+            <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1.5">
               Why Choose Us
             </span>
-            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal tracking-tight">
+            <h2 className="font-lustria font-normal text-[28px] sm:text-[36px] lg:text-[40px] leading-[110%] tracking-[-0.01em] text-[#1E1E1E] max-w-[631px] mx-auto min-h-[44px]">
               We&apos;ve planned everything for you:
             </h2>
           </div>
@@ -75,11 +75,11 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
                 <div className="flex items-center space-x-3">
                   <UserAvatar name="David Lee" size="lg" />
                   <div>
-                    <h4 className="text-base sm:text-lg font-bold text-[#004030]">David Lee</h4>
-                    <p className="text-xs text-[#6C6656]">Professor</p>
+                    <h4 className="text-heading-3 font-bold text-[#004030]">David Lee</h4>
+                    <p className="text-caption-light text-[#6C6656]">Professor</p>
                   </div>
                 </div>
-                <p className="text-xs sm:text-sm text-[#4C4638] leading-[1.65] font-light">
+                <p className="text-body-2 text-[#4C4638] font-light">
                   Bali has drawn surfers since the 70s: a legendary destination with waves for every level. Surf every day, explore the island, and connect with people from all around the world. This is the kind of trip that stays with you long after you leave. Bali has drawn surfers since the 70s: a legendary destination with waves for every level.
                 </p>
               </div>
@@ -165,7 +165,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Header Column */}
             <div className="md:col-span-5 lg:col-span-4">
-              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl text-[#2C2926] font-normal leading-[1.15] tracking-tight">
+              <h2 className="text-display-1 text-[#2C2926] font-normal tracking-tight">
                 Frequently<br />Asked Questions
               </h2>
             </div>
@@ -185,7 +185,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
                       onClick={() => toggleFaq(idx)}
                       className="w-full py-5 sm:py-6 text-left flex items-center justify-between group"
                     >
-                      <span className="font-bold text-xs sm:text-sm text-[#2C2926] font-sans pr-4 leading-snug">
+                      <span className="text-body-2 font-bold text-[#2C2926] font-sans pr-4 leading-snug">
                         {faq.question}
                       </span>
                       <div className="w-7 h-7 rounded-full bg-[#EFE9D8] group-hover:bg-[#E7E0CE] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
@@ -194,7 +194,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
                     </button>
 
                     {isOpen && (
-                      <div className="pb-5 sm:pb-6 text-xs sm:text-sm text-stone-600 font-sans leading-relaxed font-light">
+                      <div className="pb-5 sm:pb-6 text-body-2 text-stone-600 font-sans font-light">
                         {faq.answer}
                       </div>
                     )}
