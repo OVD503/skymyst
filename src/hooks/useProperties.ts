@@ -44,12 +44,16 @@ export function useProperties() {
       (snapshot) => {
         const data = snapshot.docs.map((doc) => {
           const item = doc.data() as Property;
+          const fallback = FALLBACK_PROPERTIES.find(
+            (p) => p.id === doc.id || p.id.toLowerCase() === doc.id.toLowerCase()
+          );
           const images = item.images ? item.images.map(fixImage) : item.images;
           return {
             ...item,
+            ...(fallback ? fallback : {}),
             id: doc.id,
-            name: formatName(item.name || doc.id),
-            images,
+            name: formatName(fallback?.name || item.name || doc.id),
+            images: images && images.length ? images : fallback?.images,
           };
         }) as Property[];
 
