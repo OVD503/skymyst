@@ -30,7 +30,7 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
           className="w-full h-full object-cover brightness-[0.40] contrast-125"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/85" />
+        <div className="absolute inset-0 bg-gradient-to-b " />
       </div>
 
       <div className="relative z-10 w-full max-w-[1534px] h-full max-h-[1024px] mx-auto px-6 sm:px-12 lg:px-16 py-6 sm:py-10 flex flex-col justify-between text-white">

@@ -492,7 +492,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
             <div id="property-rooms-section" className="border-t border-[#E7E0CE] pt-8 space-y-6">
               <h3 className="font-sans text-[22px] font-medium leading-[100%] tracking-[0.02em] text-[#000000]">Rooms</h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-4 gap-y-6 max-w-[680px]">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-x-4 sm:gap-y-6 max-w-[680px]">
                 {[
                   {
                     name: property.rooms?.[0]?.name || 'Bedroom 1',
@@ -514,9 +514,9 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                   <div
                     key={`${room.name}-${idx}`}
                     onClick={onOpenGallery}
-                    className="cursor-pointer group flex flex-col w-[216px] max-w-full"
+                    className="cursor-pointer group flex flex-col w-full sm:w-[216px] max-w-full"
                   >
-                    <div className="w-[216px] h-[160px] max-w-full rounded-[24px] overflow-hidden bg-stone-100 mb-2 shrink-0">
+                    <div className="w-full aspect-square sm:aspect-auto sm:w-[216px] sm:h-[160px] max-w-full rounded-[20px] sm:rounded-[24px] overflow-hidden bg-stone-100 mb-2 shrink-0">
                       <img
                         src={room.image}
                         alt={room.name}
@@ -525,7 +525,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                       />
                     </div>
                     <div>
-                      <h4 className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#232323] w-[216px] max-w-full">
+                      <h4 className="font-sans text-[14px] sm:text-[16px] font-medium leading-[20px] sm:leading-[24px] tracking-[0.02em] text-[#232323] w-full sm:w-[216px] max-w-full">
                         {room.name}
                       </h4>
                     </div>

@@ -19,7 +19,7 @@ export const SkymystLogo: React.FC<LogoProps> = ({
       ? 'h-10 sm:h-12'
       : size === 'lg'
       ? 'h-20 sm:h-24'
-      : 'h-14 sm:h-16 md:h-20';
+      : 'h-[68px] sm:h-16 md:h-20';
 
   return (
     <div

@@ -50,7 +50,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               id="nav-book-a-call-btn"
               onClick={onOpenContact}
-              className="inline-flex items-center justify-center h-[48px] px-6 rounded-full bg-[#015E47] hover:bg-[#004d3a] text-white text-caption-bold transition-all shadow-md active:scale-95 shrink-0"
+              className="hidden sm:inline-flex items-center justify-center h-[48px] px-6 rounded-full bg-[#015E47] hover:bg-[#004d3a] text-white text-caption-bold transition-all shadow-md active:scale-95 shrink-0"
             >
               Book a call
             </button>
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             id="nav-book-a-call-btn"
             onClick={onOpenContact}
-            className="inline-flex items-center justify-center h-[48px] px-6 rounded-full bg-[#015E47] hover:bg-[#004d3a] text-white text-caption-bold transition-all shadow-md active:scale-95 shrink-0"
+            className="hidden sm:inline-flex items-center justify-center h-[48px] px-6 rounded-full bg-[#015E47] hover:bg-[#004d3a] text-white text-caption-bold transition-all shadow-md active:scale-95 shrink-0"
           >
             Book a call
           </button>

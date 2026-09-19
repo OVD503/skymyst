@@ -54,10 +54,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
 
   return (
     <div className="w-full bg-[#FFF9E8] font-sans antialiased text-stone-800">
-      {/* 1. Hero Section (Uses bg.png background image with curved bottom edges) */}
-      <section className="relative h-[350px] sm:h-[600px] lg:h-[780px] xl:h-[900px] w-full max-w-[1440px] mx-auto flex items-center justify-center overflow-hidden rounded-b-[40px] sm:rounded-b-[80px] lg:rounded-b-[160px] shadow-sm bg-white">
+      {/* 1. Hero Section (Uses bg.png background image) */}
+      <section className="relative h-[874px] sm:h-[600px] lg:h-[780px] xl:h-[900px] w-full max-w-[1440px] mx-auto flex items-center justify-center overflow-hidden rounded-none sm:rounded-b-[80px] lg:rounded-b-[160px] shadow-sm bg-white">
         {/* Background Image bg.png */}
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-b-[40px] sm:rounded-b-[80px] lg:rounded-b-[160px]">
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-none sm:rounded-b-[80px] lg:rounded-b-[160px]">
           <img
             src="/assets/bg.jpg"
             alt="Skymyst Mountain Stays"
@@ -67,18 +67,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
 
         {/* Hero Title - Exact match from Figma spec */}
-        <div className="relative z-10 text-center px-4 w-full max-w-[650px] min-h-[144px] mx-auto flex items-center justify-center -mt-8 sm:-mt-16 lg:-mt-20">
-          <h1 className="font-lustria font-normal text-[28px] sm:text-[44px] lg:text-[56px] leading-[105%] tracking-normal text-white text-center">
-            <span className="block whitespace-nowrap">Exceptional Stays.</span>
-            <span className="block whitespace-nowrap">Seamlessly managed.</span>
+        <div className="relative z-10 text-center px-4 w-[370px] max-w-full h-[132px] sm:w-full sm:max-w-[650px] sm:min-h-[144px] mx-auto flex items-center justify-center -mt-36 sm:-mt-16 lg:-mt-20">
+          <h1 className="font-lustria font-normal text-[32px] sm:text-[44px] lg:text-[56px] leading-[110%] sm:leading-[105%] tracking-normal text-white text-center">
+            <span className="block">Exceptional Stays.</span>
+            <span className="block sm:inline">Seamlessly </span>
+            <span className="block sm:inline">managed.</span>
           </h1>
         </div>
 
         {/* Floating Search Bar (Exact pill style matching image) */}
-        <div className="absolute bottom-14 sm:bottom-20 lg:bottom-24 xl:bottom-28 left-0 right-0 z-30 px-3 sm:px-6 lg:px-8">
+        <div className="absolute top-[560px] md:top-auto md:bottom-20 lg:bottom-24 xl:bottom-28 left-0 right-0 z-30 px-4 md:px-6 lg:px-8 flex justify-center">
           <form
             onSubmit={handleSearchSubmit}
-            className="w-full max-w-[854px] mx-auto bg-white rounded-[24px] md:rounded-[48px] shadow-2xl p-2 md:p-2 flex flex-col md:flex-row items-center justify-between border border-stone-200/80 transition-all gap-2 md:gap-0 md:h-[64px]"
+            className="w-full max-w-[370px] md:max-w-[854px] h-[266px] md:h-[64px] mx-auto bg-white rounded-[24px] md:rounded-[48px] shadow-2xl pt-[16px] pb-[16px] px-[8px] md:p-2 flex flex-col md:flex-row items-center justify-between border border-stone-200/80 transition-all gap-2 md:gap-0"
           >
             {/* 1. Add Destination */}
             <div className="flex-1 w-full md:w-auto h-[40px] md:h-full px-3 md:px-6 border-b md:border-b-0 md:border-r border-stone-200 flex items-center">
@@ -338,20 +339,20 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
       </section>
 
       {/* 3. Curated Collection (Stays for every kind of gateway) */}
-      <section className="bg-[#FFF9E8] min-h-[821px] lg:h-[821px] flex flex-col justify-center py-10 lg:py-0 border-y border-stone-200/60 overflow-hidden">
+      <section className="bg-[#FFF9E8] py-10 lg:py-0 min-h-0 lg:min-h-[821px] lg:h-[821px] flex flex-col justify-center border-y border-stone-200/60 overflow-hidden">
         <div className="w-full max-w-[1440px] mx-auto px-4 lg:px-[24px]">
           <div className="relative flex flex-col items-center justify-center text-center gap-1.5 sm:gap-3 mb-6 lg:mb-10">
             <div>
-              <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#042E23] block mb-6 sm:mb-8">
+              <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#042E23] block mb-3 sm:mb-8">
                 Curated Collection
               </span>
-              <h2 className="font-lustria text-[26px] sm:text-[40px] leading-[100%] tracking-normal font-normal text-[#042E23] whitespace-nowrap">
+              <h2 className="font-lustria text-[26px] sm:text-[40px] leading-[100%] tracking-normal font-normal text-[#042E23] whitespace-normal sm:whitespace-nowrap">
                 Stays for every kind of gateway
               </h2>
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-[12px] w-full">
+          <div className="flex overflow-x-auto gap-3.5 sm:gap-5 lg:gap-[12px] pb-4 pt-1 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:flex-row lg:justify-center lg:overflow-visible w-full px-2 lg:px-0">
             {/* Card 1: Bonfire Nights */}
             <motion.div
               initial={{ opacity: 0, y: 32 }}
@@ -359,19 +360,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5 }}
               onClick={() => onNavigate('search')}
-              className="group relative w-full lg:w-[804px] shrink-0 h-[240px] sm:h-[380px] lg:h-[553px] rounded-[24px] sm:rounded-[48px] overflow-hidden shadow-lg cursor-pointer bg-white"
+              className="group relative w-[273px] sm:w-[380px] lg:w-[804px] shrink-0 h-[281px] sm:h-[440px] lg:h-[553px] rounded-[24px] sm:rounded-[48px] overflow-hidden shadow-lg cursor-pointer bg-white snap-start"
             >
               <img
                 src="/assets/bonfire.jpg"
                 alt="Bonfire Nights with friends playing guitar"
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-10 sm:left-10 sm:right-10 text-white space-y-2">
-                <h3 className="font-lustria text-[22px] sm:text-[32px] font-normal text-[#FFED25] leading-[100%] tracking-normal">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-10 sm:left-10 sm:right-10 text-white space-y-1 sm:space-y-2 text-center">
+                <h3 className="font-lustria text-[20px] sm:text-[32px] font-normal text-[#FFED25] leading-[110%] tracking-normal">
                   Bonfire Nights
                 </h3>
-                <p className="font-sans text-[13px] sm:text-[16px] font-normal text-white leading-[100%] tracking-normal max-w-[579px] w-full">
+                <p className="font-sans text-[12px] sm:text-[16px] font-normal text-white leading-[135%] tracking-normal max-w-[579px] mx-auto w-full">
                   Every morning begins the same. Somewhere along the way, silence became a luxury.
                 </p>
               </div>
@@ -384,19 +385,19 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: 0.08 }}
               onClick={() => onNavigate('search')}
-              className="group relative w-full lg:w-[568px] shrink-0 h-[240px] sm:h-[380px] lg:h-[553px] rounded-[24px] sm:rounded-[48px] overflow-hidden shadow-lg cursor-pointer bg-white"
+              className="group relative w-[273px] sm:w-[380px] lg:w-[568px] shrink-0 h-[281px] sm:h-[440px] lg:h-[553px] rounded-[24px] sm:rounded-[48px] overflow-hidden shadow-lg cursor-pointer bg-white snap-start"
             >
               <img
                 src="/assets/romantic.jpg"
                 alt="Romantic honeymoon couple"
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-10 sm:left-10 sm:right-10 text-white space-y-2">
-                <h3 className="font-lustria text-[22px] sm:text-[32px] font-normal text-[#FFED25] leading-[100%] tracking-normal">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-10 sm:left-10 sm:right-10 text-white space-y-1 sm:space-y-2 text-center">
+                <h3 className="font-lustria text-[20px] sm:text-[32px] font-normal text-[#FFED25] leading-[110%] tracking-normal">
                   Romantic Honeymoon
                 </h3>
-                <p className="font-sans text-[13px] sm:text-[16px] font-normal text-white leading-[100%] tracking-normal max-w-[579px] w-full">
+                <p className="font-sans text-[12px] sm:text-[16px] font-normal text-white leading-[135%] tracking-normal max-w-[579px] mx-auto w-full">
                   Every vibration asks for your attention. Waves never ask anything from you. They simply arrive.
                 </p>
               </div>
@@ -437,7 +438,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 transition={{ duration: 0.4, delay: idx * 0.06 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 onClick={() => dest.available && onNavigate('search')}
-                className={`relative w-[130px] sm:w-[180px] lg:w-full h-[140px] sm:h-[200px] rounded-[16px] sm:rounded-[24px] overflow-hidden shadow-md group shrink-0 lg:shrink snap-start ${dest.available ? 'cursor-pointer' : 'cursor-default'
+                className={`relative w-[213px] sm:w-[180px] lg:w-full h-[200px] rounded-[24px] overflow-hidden shadow-md group shrink-0 lg:shrink snap-start ${dest.available ? 'cursor-pointer' : 'cursor-default'
                   }`}
               >
                 <img
@@ -453,8 +454,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   </span>
                 )}
 
-                <div className="absolute bottom-1.5 left-1 right-1 text-center sm:bottom-3 sm:left-2 sm:right-2">
-                  <h4 className="text-body-2 font-semibold text-white tracking-wide">
+                <div className="absolute bottom-3 left-2 right-2 text-center">
+                  <h4 className="font-sans font-medium text-[16px] sm:text-[18px] text-white tracking-wide">
                     {dest.name}
                   </h4>
                 </div>
@@ -475,9 +476,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                   <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1.5 sm:mb-3 min-h-[20px] flex items-center justify-center lg:justify-start">
                     Guest Stories
                   </span>
-                  <h2 className="font-lustria font-normal text-[26px] sm:text-[32px] lg:text-[40px] leading-[110%] tracking-[-0.01em] text-[#1E1E1E] max-w-[432px]">
-                    <span className="lg:hidden">Loved by many of travellers — Bali</span>
-                    <span className="hidden lg:inline">
+                  <h2 className="font-lustria font-normal text-[#1E1E1E] max-w-[432px]">
+                    <span className="lg:hidden block whitespace-nowrap text-[24px] leading-[30px] tracking-normal text-center w-[370px] max-w-full h-[30px] mx-auto">
+                      Loved by many of travalers - Bali
+                    </span>
+                    <span className="hidden lg:inline text-[40px] leading-[110%] tracking-[-0.01em]">
                       Loved by many of
                       <br />
                       travellers
@@ -506,9 +509,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               </div>
             </div>
 
-            {/* Middle Column: Tall Story Card (Figma Specs: Width 432px, Height 704px, Radius 40px) */}
+            {/* Middle Column: Tall Story Card (Figma Specs: Width 370px, Height 607px, Radius 40px on mobile) */}
             <div className="lg:col-span-4 flex justify-center">
-              <div className="relative w-full max-w-[432px] h-[320px] sm:h-[500px] lg:h-[704px] rounded-[24px] lg:rounded-[40px] overflow-hidden shadow-lg group cursor-pointer bg-[#DFDBCB]">
+              <div className="relative w-[370px] max-w-full lg:max-w-[432px] h-[607px] lg:h-[704px] rounded-[40px] overflow-hidden shadow-lg group cursor-pointer bg-[#DFDBCB]">
                 <img
                   src="/assets/guest stories.png"
                   alt="Discover Bali tropical mountains"
@@ -540,38 +543,38 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               {/* Top: Metadata List (Frame 27 - Fixed 432px, Hug 204px) */}
               <div className="flex flex-col w-full max-w-[432px] min-h-[204px] justify-between divide-y divide-[#E7E0CE] px-1">
                 <div className="flex items-center justify-between py-4 sm:py-5">
-                  <span className="font-sans font-normal text-[16px] text-[#A09A8C] leading-[100%]">Where</span>
+                  <span className="font-sans font-normal text-[16px] text-[#015E47] leading-[140%] tracking-normal">Where</span>
                   <span className="font-sans font-semibold text-[16px] text-[#1E1E1E] leading-[100%] tracking-normal text-right min-h-[20px] flex items-center justify-end">Almora, Uttrakhand</span>
                 </div>
                 <div className="flex items-center justify-between py-4 sm:py-5">
-                  <span className="font-sans font-normal text-[16px] text-[#A09A8C] leading-[100%]">When</span>
+                  <span className="font-sans font-normal text-[16px] text-[#015E47] leading-[140%] tracking-normal">When</span>
                   <span className="font-sans font-semibold text-[16px] text-[#1E1E1E] leading-[100%] tracking-normal text-right min-h-[20px] flex items-center justify-end">Summer Season</span>
                 </div>
                 <div className="flex items-center justify-between py-4 sm:py-5">
-                  <span className="font-sans font-normal text-[16px] text-[#A09A8C] leading-[100%]">Purpose</span>
+                  <span className="font-sans font-normal text-[16px] text-[#015E47] leading-[140%] tracking-normal">Purpose</span>
                   <span className="font-sans font-semibold text-[16px] text-[#1E1E1E] leading-[100%] tracking-normal text-right min-h-[20px] flex items-center justify-end">Family Trip</span>
                 </div>
               </div>
 
               {/* Bottom: White Quote Card */}
-              <div className="bg-white p-4 sm:p-8 rounded-[18px] sm:rounded-[28px] border border-stone-100/80 shadow-xs space-y-4 sm:space-y-6 flex-1 flex flex-col justify-between">
+              <div className="bg-white p-6 sm:p-8 rounded-[28px] border border-stone-100/80 shadow-xs flex-1 flex flex-col justify-between w-[370px] max-w-full min-h-[320px] mx-auto">
                 <div className="flex items-center space-x-3">
                   <UserAvatar name="Guest Traveller" size="lg" />
                 </div>
 
-                <p className="font-sans font-medium text-[18px] sm:text-[20px] leading-[30px] tracking-normal text-[#004030] max-w-[388px]">
+                <p className="font-sans font-normal text-[16px] sm:text-[18px] leading-[26px] sm:leading-[28px] tracking-normal text-[#042E23] my-4">
                   It started as a trip. It became a movement. Now we&apos;re building a community of surfers who choose authentic experiences over everything else.
                 </p>
 
                 <button
                   onClick={onOpenStory}
-                  className="w-full flex items-center justify-between pt-2 group cursor-pointer border-t border-stone-100"
+                  className="w-full flex items-center justify-between group cursor-pointer"
                 >
-                  <span className="font-sans font-medium text-[16px] leading-[30px] tracking-normal text-[#042E23] group-hover:text-[#005B41] transition min-h-[30px] flex items-center">
+                  <span className="font-sans font-medium text-[16px] leading-[24px] tracking-normal text-[#042E23] group-hover:text-[#005B41] transition">
                     Read Our Story
                   </span>
-                  <div className="w-7 h-7 rounded-full bg-stone-100 group-hover:bg-[#005B41] text-stone-500 group-hover:text-white flex items-center justify-center transition-colors">
-                    <ChevronRight className="w-3.5 h-3.5" />
+                  <div className="w-10 h-10 rounded-full bg-[#F4EFEA] group-hover:bg-[#005B41] text-[#042E23] group-hover:text-white flex items-center justify-center transition-colors">
+                    <ChevronRight className="w-4 h-4" />
                   </div>
                 </button>
               </div>
@@ -585,11 +588,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="w-full max-w-[1440px] h-[900px] mx-auto px-4 sm:px-8 lg:px-[80px] relative overflow-hidden">
 
           {/* Absolute Positioned Header (Floats over top cards matching Figma spec) */}
-          <div className="absolute top-[64px] left-1/2 -translate-x-1/2 z-30 text-center w-auto px-4 pointer-events-none flex flex-col items-center gap-[16px]">
+          <div className="absolute top-[64px] left-1/2 -translate-x-1/2 z-30 text-center w-full max-w-[369px] sm:max-w-none px-4 pointer-events-none flex flex-col items-center gap-[16px]">
             <span className="font-sans font-normal text-[16px] leading-[20px] tracking-normal text-[#1E1E1E] h-[20px] whitespace-nowrap">
               Why Choose Us
             </span>
-            <h2 className="font-lustria font-normal text-[24px] sm:text-[32px] lg:text-[40px] leading-[110%] tracking-[-0.01em] text-[#1E1E1E] whitespace-nowrap">
+            <h2 className="font-lustria font-normal text-[24px] sm:text-[32px] lg:text-[40px] leading-[30px] sm:leading-[110%] tracking-normal text-[#1E1E1E] text-center w-[369px] max-w-full h-[60px] sm:h-auto flex items-center justify-center">
               We&apos;ve planned everything for you:
             </h2>
           </div>
@@ -782,8 +785,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="border-b border-[#CECECE] py-[32px]">
               <div className="w-full flex items-center justify-between text-left">
                 <div>
-                  <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1">Step 1</span>
-                  <h3 className="font-lustria font-normal text-[20px] sm:text-[26px] md:text-[32px] leading-[100%] tracking-normal text-[#1E1E1E]">
+                  <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-2">Step 1</span>
+                  <h3 className="font-lustria font-normal text-[22px] sm:text-[26px] md:text-[32px] leading-[28px] sm:leading-[100%] tracking-normal text-[#1E1E1E] max-w-[294px] sm:max-w-none">
                     Arrival and Meet the Crew
                   </h3>
                 </div>
@@ -797,8 +800,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="border-b border-[#CECECE] py-[32px]">
               <div className="w-full flex items-center justify-between text-left">
                 <div>
-                  <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1">Step 2</span>
-                  <h3 className="font-lustria font-normal text-[20px] sm:text-[26px] md:text-[32px] leading-[100%] tracking-normal text-[#1E1E1E]">
+                  <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-2">Step 2</span>
+                  <h3 className="font-lustria font-normal text-[22px] sm:text-[26px] md:text-[32px] leading-[28px] sm:leading-[100%] tracking-normal text-[#1E1E1E] max-w-[294px] sm:max-w-none">
                     Check in and Hospitality
                   </h3>
                 </div>
@@ -850,8 +853,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="border-b-[3px] border-[#007C4D] py-[32px]">
               <div className="w-full flex items-center justify-between text-left">
                 <div>
-                  <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1">Step 3</span>
-                  <h3 className="font-lustria font-normal text-[20px] sm:text-[26px] md:text-[32px] leading-[100%] tracking-normal text-[#1E1E1E]">
+                  <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-2">Step 3</span>
+                  <h3 className="font-lustria font-normal text-[22px] sm:text-[26px] md:text-[32px] leading-[28px] sm:leading-[100%] tracking-normal text-[#1E1E1E] max-w-[294px] sm:max-w-none">
                     First Waves & Mountain Vibes
                   </h3>
                 </div>
@@ -865,8 +868,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             <div className="border-b border-[#CECECE] py-[32px]">
               <div className="w-full flex items-center justify-between text-left">
                 <div>
-                  <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-1">Step 4</span>
-                  <h3 className="font-lustria font-normal text-[20px] sm:text-[26px] md:text-[32px] leading-[100%] tracking-normal text-[#1E1E1E]">
+                  <span className="font-sans font-normal text-[16px] leading-[100%] tracking-normal text-[#1E1E1E] block mb-2">Step 4</span>
+                  <h3 className="font-lustria font-normal text-[22px] sm:text-[26px] md:text-[32px] leading-[28px] sm:leading-[100%] tracking-normal text-[#1E1E1E] max-w-[294px] sm:max-w-none">
                     Final Meet and Check Out
                   </h3>
                 </div>
@@ -896,7 +899,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
             {/* Left Column: Mountain View Room Image with Glassmorphism Card Overlay (Touches left edge) */}
             <div className="lg:col-span-7 w-full max-w-[720px]">
-              <div className="relative h-[300px] sm:h-[480px] lg:h-[749px] rounded-none overflow-hidden shadow-xl bg-white">
+              <div className="relative h-[329px] sm:h-[480px] lg:h-[749px] rounded-none overflow-hidden shadow-xl bg-white">
                 <img
                   src="/assets/purple room.jpg"
                   alt="Sunlit mountain view room with glass table and seating"
@@ -904,14 +907,12 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent" />
 
-                <div className="absolute top-4 left-4 right-4 sm:top-[32px] sm:left-[24px] sm:right-auto z-10 w-full max-w-[672px]">
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/25 rounded-[32px] px-[24px] py-[40px] text-white flex flex-col gap-[20px] shadow-2xl">
-                    <h2 className="font-lustria text-[24px] sm:text-[32px] lg:text-[40px] font-normal text-white leading-[110%] tracking-[-0.01em] max-w-[624px] w-full">
-                      Body, soul, mind, and connection
-                      <br />
-                      — we&apos;ve got it all
+                <div className="absolute top-4 left-4 right-4 sm:top-[32px] sm:left-[24px] sm:right-auto z-10 w-auto sm:w-full max-w-[672px]">
+                  <div className="bg-white/5 backdrop-blur-sm border border-white/25 rounded-[24px] sm:rounded-[32px] p-4 sm:px-[24px] sm:py-[40px] text-white flex flex-col gap-2.5 sm:gap-[20px] shadow-2xl">
+                    <h2 className="font-lustria text-[20px] sm:text-[32px] lg:text-[40px] font-normal text-white leading-[115%] sm:leading-[110%] tracking-[-0.01em] max-w-[624px] w-full">
+                      Body, soul, mind, and connection — we&apos;ve got it all
                     </h2>
-                    <p className="font-sans text-[14px] sm:text-[18px] lg:text-[20px] font-normal text-white leading-[100%] tracking-normal max-w-[624px] w-full">
+                    <p className="font-sans text-[13px] sm:text-[18px] lg:text-[20px] font-normal text-white/90 leading-[130%] sm:leading-[100%] tracking-normal max-w-[624px] w-full">
                       This camp isn&apos;t just about surfing. It&apos;s about the whole experience.
                     </p>
                   </div>
