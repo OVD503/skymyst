@@ -881,7 +881,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           <div className="hidden sm:block absolute left-[54%] -translate-x-1/2 bottom-[-20px] md:bottom-[-30px] z-30 pointer-events-none transform -rotate-[14deg]">
             <div className="w-32 sm:w-44 md:w-52 h-44 sm:h-60 md:h-72 rounded-[28px] overflow-hidden shadow-2xl border-4 border-[#FFF9E8]">
               <img
-                src="/assets/2.png"
+                src="/assets/6ef4c49d8d2aa571c145a4e55935fb0b654af60e.jpg"
                 alt="Bonfire camping under trees"
                 className="w-full h-full object-cover"
               />
