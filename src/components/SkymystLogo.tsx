@@ -13,13 +13,13 @@ export const SkymystLogo: React.FC<LogoProps> = ({
   size = 'md',
   onClick,
 }) => {
-  // Increased sizes: sm -> 48px, md -> 64px-80px, lg -> 96px
+  // Increased sizes: sm -> 56px, md -> 64px-80px, lg -> 96px
   const heightClass =
     size === 'sm'
-      ? 'h-10 sm:h-12'
+      ? 'h-14 sm:h-16'
       : size === 'lg'
-      ? 'h-20 sm:h-24'
-      : 'h-[68px] sm:h-16 md:h-20';
+      ? 'h-24 sm:h-28'
+      : 'h-16 sm:h-20 md:h-24';
 
   return (
     <div

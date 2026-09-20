@@ -497,14 +497,12 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-x-4 sm:gap-y-6 max-w-[680px]">
                 {[
-                  {
-                    name: property.rooms?.[0]?.name || 'Bedroom 1',
-                    image: property.rooms?.[0]?.image || property.images?.[0] || '/cover/bhimsarowar.JPG',
-                  },
-                  {
-                    name: property.rooms?.[1]?.name || 'Bedroom 2',
-                    image: property.rooms?.[1]?.image || property.images?.[1] || property.images?.[0],
-                  },
+                  ...(property.rooms && property.rooms.length > 0
+                    ? property.rooms.slice(0, 2).map((r) => ({ name: r.name, image: r.image }))
+                    : [
+                        { name: 'Bedroom 1', image: property.images?.[0] || '/cover/bhimsarowar.JPG' },
+                        { name: 'Bedroom 2', image: property.images?.[1] || property.images?.[0] },
+                      ]),
                   {
                     name: 'Living Area',
                     image: property.images?.[2] || property.images?.[0],

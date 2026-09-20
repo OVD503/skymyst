@@ -195,10 +195,10 @@ export const PROPERTIES: Property[] = [
       { name: 'Jageshwar Dham', driveTime: '1 hour' },
     ],
     highlights: [
-      { icon: 'sunset', title: 'Glittering Night View', desc: 'Spectacular night view of Almora city after sunset.' },
-      { icon: 'heart', title: 'Aesthetic Family Vibe', desc: 'Designed for unwinding under mountain skies.' },
-      { icon: 'coffee', title: 'Self Check-In & Private Garden', desc: 'Lockbox check-in & private outdoor garden.' },
-      { icon: 'map-pin', title: 'Cultural Neighborhood', desc: 'Surrounded by traditional Kumaoni houses.' },
+      { icon: '❤️', title: 'Loved by couples', desc: 'This property received multiple 10/10 ratings from couples.' },
+      { icon: '☕', title: 'Top rated breakfast', desc: 'Experience delightful mornings with the top rated breakfast.' },
+      { icon: '💎', title: 'Rooftop terrace', desc: 'A rare find - enjoy stunning views from the rooftop terrace.' },
+      { icon: '👍', title: 'Easy to get around', desc: 'Guests love the convenient spot for exploring the area' },
     ],
     amenities: {
       facilities: ['Wifi', 'Television', 'Work Space', 'Private Garden', 'Lockbox Self Check-In', 'Equipped Kitchen'],
@@ -210,12 +210,12 @@ export const PROPERTIES: Property[] = [
     rooms: [
       {
         name: 'Bedroom 1',
-        image: createPlaceholderImage('Bedroom 1', 'Queen bed · Back support mattress'),
+        image: createPlaceholderImage('Bedroom 1', 'King bed · Attached bath'),
         details: 'Queen bed · Back support mattress · Mountain view',
       },
       {
         name: 'Bedroom 2',
-        image: createPlaceholderImage('Bedroom 2', 'Double bed · Back support mattress'),
+        image: createPlaceholderImage('Bedroom 2', 'King bed · Attached bath'),
         details: 'Double bed · Back support mattress · Garden view',
       },
     ],
@@ -290,10 +290,10 @@ export const PROPERTIES: Property[] = [
       'Guests clean kitchen utensils after self-cooking use.',
     ],
     highlights: [
-      { icon: 'sunset', title: 'Private 3BHK Hillside Cottage', desc: 'Exclusive entire villa access with garden & terrace.' },
-      { icon: 'heart', title: 'Near Kainchi Dham (9 km)', desc: 'Peaceful base for Neem Karoli Baba Ashram visits.' },
-      { icon: 'coffee', title: 'Fully Equipped Kitchen', desc: 'Gas, induction, kettle, toaster & crockery.' },
-      { icon: 'map-pin', title: '2 Private Car Parking', desc: 'Dedicated parking on premises.' },
+      { icon: '❤️', title: 'Loved by couples', desc: 'This property received multiple 10/10 ratings from couples.' },
+      { icon: '☕', title: 'Top rated breakfast', desc: 'Experience delightful mornings with the top rated breakfast.' },
+      { icon: '💎', title: 'Rooftop terrace', desc: 'A rare find - enjoy stunning views from the rooftop terrace.' },
+      { icon: '👍', title: 'Easy to get around', desc: 'Guests love the convenient spot for exploring the area' },
     ],
     amenities: {
       facilities: ['High-Speed Wi-Fi', 'Full Kitchen Access', 'Private Garden', 'Power Backup', 'Dedicated 2-Car Parking'],
@@ -304,19 +304,14 @@ export const PROPERTIES: Property[] = [
     },
     rooms: [
       {
-        name: 'Ground Floor Room',
-        image: createPlaceholderImage('Ground Floor Room', 'King bed · Attached bath'),
+        name: 'Bedroom 1',
+        image: createPlaceholderImage('Bedroom 1', 'King bed · Attached bath'),
         details: 'King bed · Attached bath · Ground floor access',
       },
       {
-        name: 'First Floor Balcony Room',
-        image: createPlaceholderImage('First Floor Balcony Room', 'King bed · Private balcony'),
+        name: 'Bedroom 2',
+        image: createPlaceholderImage('Bedroom 2', 'King bed · Attached bath'),
         details: 'King bed · Attached bath · Private balcony & terrace access',
-      },
-      {
-        name: 'First Floor Room 3',
-        image: createPlaceholderImage('First Floor Room 3', 'King bed · Hill view'),
-        details: 'King bed · Attached bath · Hill view',
       },
     ],
   },
@@ -399,10 +394,10 @@ export const PROPERTIES: Property[] = [
       'Private Bonfire & BBQ setups available (3-4 hours advance notice required)',
     ],
     highlights: [
-      { icon: 'sunset', title: '180° Mountain Views', desc: 'Panoramic sky & mountain vistas.' },
-      { icon: 'heart', title: 'Senior Friendly', desc: 'Step-free ground floor access & bedroom.' },
-      { icon: 'coffee', title: '24/7 Cook & Caretaker', desc: 'Fresh home-cooked meals on-demand.' },
-      { icon: 'map-pin', title: 'Secure SUV Parking', desc: 'Private parking for 3-4 SUVs on site.' },
+      { icon: '❤️', title: 'Loved by couples', desc: 'This property received multiple 10/10 ratings from couples.' },
+      { icon: '☕', title: 'Top rated breakfast', desc: 'Experience delightful mornings with the top rated breakfast.' },
+      { icon: '💎', title: 'Rooftop terrace', desc: 'A rare find - enjoy stunning views from the rooftop terrace.' },
+      { icon: '👍', title: 'Easy to get around', desc: 'Guests love the convenient spot for exploring the area' },
     ],
     amenities: {
       facilities: ['High-Speed Wi-Fi', '55-inch Smart TVs', 'In-Room Heaters', 'Private Parking (3-4 SUVs)', 'On-Site Driver Room'],
@@ -413,24 +408,14 @@ export const PROPERTIES: Property[] = [
     },
     rooms: [
       {
-        name: 'Marigold Room (Orange Theme)',
-        image: createPlaceholderImage('Marigold Room', 'Ground floor · 55" Smart TV'),
+        name: 'Bedroom 1',
+        image: createPlaceholderImage('Bedroom 1', 'King bed · Attached bath'),
         details: 'Ground floor step-free · King bed · 55" Smart TV · Attached bath',
       },
       {
-        name: 'Forget-Me-Not Room (Blue Theme)',
-        image: createPlaceholderImage('Forget-Me-Not Room', 'First floor · Mountain window'),
+        name: 'Bedroom 2',
+        image: createPlaceholderImage('Bedroom 2', 'King bed · Attached bath'),
         details: 'First floor · King bed · 55" Smart TV · Mountain window · Attached bath',
-      },
-      {
-        name: 'Crimson Pine Room (Red Theme)',
-        image: createPlaceholderImage('Crimson Pine Room', 'Private balcony · Dual windows'),
-        details: 'First floor · Panoramic dual windows · Private balcony · Attached bath',
-      },
-      {
-        name: 'Wild Orchid Room (Purple Theme)',
-        image: createPlaceholderImage('Wild Orchid Room', 'Luxury balcony · Valley view'),
-        details: 'First floor luxury · Dual view windows · Private balcony · Attached bath',
       },
     ],
   },
@@ -510,10 +495,10 @@ export const PROPERTIES: Property[] = [
       'Basic Inverter Power Backup for main lights and phone charging points during power cuts',
     ],
     highlights: [
-      { icon: 'sunset', title: '4BHK Traditional Stone Cottage', desc: 'Authentic stone architecture surrounded by nature.' },
-      { icon: 'heart', title: 'Free Caretaker Luggage Service', desc: 'Caretaker carries all luggage from parking.' },
-      { icon: 'coffee', title: 'Fresh Village Home-Cooked Meals', desc: 'Prepared with home-grown spices fresh daily.' },
-      { icon: 'map-pin', title: 'Pet-Friendly & Large Garden', desc: 'Furry friends welcome in spacious garden.' },
+      { icon: '❤️', title: 'Loved by couples', desc: 'This property received multiple 10/10 ratings from couples.' },
+      { icon: '☕', title: 'Top rated breakfast', desc: 'Experience delightful mornings with the top rated breakfast.' },
+      { icon: '💎', title: 'Rooftop terrace', desc: 'A rare find - enjoy stunning views from the rooftop terrace.' },
+      { icon: '👍', title: 'Easy to get around', desc: 'Guests love the convenient spot for exploring the area' },
     ],
     amenities: {
       facilities: ['High-Speed Wi-Fi', 'Power Backup Inverter', 'Private Parking (2-3 Cars)', 'Caretaker Luggage Support', 'Exterior Security Cameras'],
@@ -524,24 +509,14 @@ export const PROPERTIES: Property[] = [
     },
     rooms: [
       {
-        name: 'Family Suite (1st Floor)',
-        image: createPlaceholderImage('Family Suite (1st Floor)', '2 Double beds · Private balcony'),
+        name: 'Bedroom 1',
+        image: createPlaceholderImage('Bedroom 1', 'King bed · Attached bath'),
         details: '2 Double beds · Attached bath · Private balcony with village views',
       },
       {
-        name: 'Garden Room (Ground Floor)',
-        image: createPlaceholderImage('Garden Room', 'Ground floor · Garden facing'),
+        name: 'Bedroom 2',
+        image: createPlaceholderImage('Bedroom 2', 'King bed · Attached bath'),
         details: 'King bed · Attached bath · Located outside facing garden',
-      },
-      {
-        name: 'Classic Room (Ground Floor)',
-        image: createPlaceholderImage('Classic Room', 'Ground floor · Nature view'),
-        details: 'King bed · Attached bath · Nature view',
-      },
-      {
-        name: 'Cozy Room (Ground Floor)',
-        image: createPlaceholderImage('Cozy Room', 'Ground floor · Mountain view'),
-        details: 'Double bed · Attached bath · Mountain view',
       },
     ],
   },

@@ -43,7 +43,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = () => {
                   className={`w-full h-full object-cover ${member.imagePosition || 'object-center'}`}
                 />
               </div>
-              <div className="text-left pt-1">
+              <div className="text-center sm:text-left pt-1">
                 <h3 className="!font-sans font-medium text-[16px] leading-[20px] tracking-[0.02em] text-[#042E23]">
                   {member.name}
                 </h3>

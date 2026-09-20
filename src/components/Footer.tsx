@@ -30,12 +30,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               {/* 1. Logo (Top) */}
               <div
                 onClick={() => onNavigate('home')}
-                className="inline-flex cursor-pointer transition-transform hover:scale-105 lg:-ml-[22px]"
+                className="inline-flex justify-center lg:justify-start cursor-pointer transition-transform hover:scale-105 lg:-ml-[22px] w-full lg:w-auto"
               >
                 <img
                   src="/assets/logo.png"
                   alt="Skymyst Logo"
-                  className="w-[260px] sm:w-[320px] h-[105px] sm:h-[130px] object-contain object-left filter brightness-0 invert drop-shadow-[0_2px_10px_rgba(255,255,255,0.2)]"
+                  className="w-[260px] sm:w-[320px] h-[105px] sm:h-[130px] object-contain object-center lg:object-left filter brightness-0 invert drop-shadow-[0_2px_10px_rgba(255,255,255,0.2)]"
                 />
               </div>
 

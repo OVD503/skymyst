@@ -84,7 +84,7 @@ export const HomeScreenMobile: React.FC<HomeScreenMobileProps> = ({
 
         {/* Floating Top Nav Bar Overlay */}
         <div className="absolute top-0 left-0 right-0 z-30 px-5 py-5 flex items-center justify-between">
-          <SkymystLogo variant="light" onClick={() => onNavigate('home')} size="sm" />
+          <SkymystLogo variant="light" onClick={() => onNavigate('home')} size="md" />
           <button
             type="button"
             onClick={onOpenMenu}
