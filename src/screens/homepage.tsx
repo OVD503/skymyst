@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { ScreenPage } from '../types';
 import { DESTINATIONS } from '../data/Data';
 import { UserAvatar } from '../components/UserAvatar';
+import { HomeScreenMobile } from './homepagemobile';
 
 interface HomeScreenProps {
   properties: import('../types').Property[];
@@ -11,6 +12,7 @@ interface HomeScreenProps {
   onSelectProperty: (propertyId: string) => void;
   onOpenContact: () => void;
   onOpenStory: () => void;
+  onOpenMenu?: () => void;
 }
 
 export const HomeScreen: React.FC<HomeScreenProps> = ({
@@ -19,6 +21,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onSelectProperty,
   onOpenContact,
   onOpenStory,
+  onOpenMenu,
 }) => {
   const [selectedLocation, setSelectedLocation] = useState<string>('Add Destination');
   const [selectedProperty, setSelectedProperty] = useState<string>('all');
@@ -53,9 +56,23 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   };
 
   return (
-    <div className="w-full bg-[#FFF9E8] font-sans antialiased text-stone-800">
-      {/* 1. Hero Section (Uses bg.png background image) */}
-      <section className="relative h-[874px] sm:h-[600px] lg:h-[780px] xl:h-[900px] w-full max-w-[1440px] mx-auto flex items-center justify-center overflow-hidden rounded-none sm:rounded-b-[80px] lg:rounded-b-[160px] shadow-sm bg-white">
+    <>
+      {/* Dedicated Mobile View matching Figma 402px spec */}
+      <div className="block sm:hidden w-full bg-[#FAF9F5] py-0">
+        <HomeScreenMobile
+          properties={properties}
+          onNavigate={onNavigate}
+          onSelectProperty={onSelectProperty}
+          onOpenContact={onOpenContact}
+          onOpenStory={onOpenStory}
+          onOpenMenu={onOpenMenu}
+        />
+      </div>
+
+      {/* Desktop & Tablet View */}
+      <div className="hidden sm:block w-full bg-[#FFF9E8] font-sans antialiased text-stone-800">
+        {/* 1. Hero Section (Uses bg.png background image) */}
+        <section className="relative h-[874px] sm:h-[600px] lg:h-[780px] xl:h-[900px] w-full max-w-[1440px] mx-auto flex items-center justify-center overflow-hidden rounded-none sm:rounded-b-[80px] lg:rounded-b-[160px] shadow-sm bg-white">
         {/* Background Image bg.png */}
         <div className="absolute inset-0 z-0 overflow-hidden rounded-none sm:rounded-b-[80px] lg:rounded-b-[160px]">
           <img
@@ -997,5 +1014,6 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         </div>
       </section>
     </div>
+    </>
   );
 };

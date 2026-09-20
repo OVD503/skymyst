@@ -313,162 +313,165 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
             </div>
 
             {/* Popular Amenities */}
-            <div id="property-amenities-section" className="border-t border-[#E7E0CE] pt-8 space-y-6">
+            <div id="property-amenities-section" className="border-t border-[#E7E0CE] pt-8 space-y-4">
               <h3 className="font-sans text-[22px] font-medium leading-[100%] tracking-[0.02em] text-[#000000]">
                 Popular Amenities
               </h3>
 
-              {/* Facilities Accordion */}
-              <div className="border-b border-[#E7E0CE]">
-                <button
-                  onClick={() => toggleAmenity('facilities')}
-                  className={`w-full py-6 px-2 text-left flex items-center justify-between transition ${expandedAmenities.facilities ? 'border-b-2 border-[#007C4D]' : ''
-                    }`}
-                >
-                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
-                    Facilities
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
-                    {expandedAmenities.facilities ? (
-                      <ChevronUp className="w-4 h-4" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4" />
-                    )}
-                  </div>
-                </button>
+              {/* Accordion Items Container */}
+              <div className="divide-y divide-[#E7E0CE] border-t border-b border-[#E7E0CE]">
+                {/* Facilities Accordion */}
+                <div>
+                  <button
+                    onClick={() => toggleAmenity('facilities')}
+                    className={`w-full py-4 px-2 text-left flex items-center justify-between transition ${expandedAmenities.facilities ? 'border-b-2 border-[#007C4D]' : ''
+                      }`}
+                  >
+                    <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
+                      Facilities
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
+                      {expandedAmenities.facilities ? (
+                        <ChevronUp className="w-4 h-4" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4" />
+                      )}
+                    </div>
+                  </button>
 
-                {expandedAmenities.facilities && (
-                  <div className="pt-6 pb-4 px-2 grid grid-cols-2 gap-y-4 gap-x-8 bg-white">
-                    {property.amenities.facilities.map((facility, idx) => {
-                      return (
-                        <div key={`${facility}-${idx}`} className="flex items-center space-x-2.5">
-                          <span className="text-[20px] leading-none shrink-0 select-none">
-                            {getFacilityEmoji(facility)}
-                          </span>
-                          <span className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]">
-                            {facility}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
+                  {expandedAmenities.facilities && (
+                    <div className="pt-4 pb-3 px-2 grid grid-cols-2 gap-y-3 gap-x-8 bg-white">
+                      {property.amenities.facilities.map((facility, idx) => {
+                        return (
+                          <div key={`${facility}-${idx}`} className="flex items-center space-x-2.5">
+                            <span className="text-[20px] leading-none shrink-0 select-none">
+                              {getFacilityEmoji(facility)}
+                            </span>
+                            <span className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]">
+                              {facility}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
 
-              {/* Food and Drinks */}
-              <div className="border-b border-[#E7E0CE]">
-                <button
-                  onClick={() => toggleAmenity('food')}
-                  className={`w-full py-6 px-2 text-left flex items-center justify-between transition ${expandedAmenities.food ? 'border-b-2 border-[#007C4D]' : ''
-                    }`}
-                >
-                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
-                    Food and Drinks
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
-                    {expandedAmenities.food ? (
-                      <ChevronUp className="w-4 h-4" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4" />
-                    )}
-                  </div>
-                </button>
-                {expandedAmenities.food && (
-                  <div className="pt-6 pb-4 px-2 space-y-3 bg-white">
-                    {property.amenities.foodAndDrinks.map((f, i) => (
-                      <p key={i} className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]">
-                        • {f}
-                      </p>
-                    ))}
-                  </div>
-                )}
-              </div>
+                {/* Food and Drinks */}
+                <div>
+                  <button
+                    onClick={() => toggleAmenity('food')}
+                    className={`w-full py-4 px-2 text-left flex items-center justify-between transition ${expandedAmenities.food ? 'border-b-2 border-[#007C4D]' : ''
+                      }`}
+                  >
+                    <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
+                      Food and Drinks
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
+                      {expandedAmenities.food ? (
+                        <ChevronUp className="w-4 h-4" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4" />
+                      )}
+                    </div>
+                  </button>
+                  {expandedAmenities.food && (
+                    <div className="pt-4 pb-3 px-2 space-y-2 bg-white">
+                      {property.amenities.foodAndDrinks.map((f, i) => (
+                        <p key={i} className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]">
+                          • {f}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-              {/* General */}
-              <div className="border-b border-[#E7E0CE]">
-                <button
-                  onClick={() => toggleAmenity('general')}
-                  className={`w-full py-6 px-2 text-left flex items-center justify-between transition ${expandedAmenities.general ? 'border-b-2 border-[#007C4D]' : ''
-                    }`}
-                >
-                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
-                    General
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
-                    {expandedAmenities.general ? (
-                      <ChevronUp className="w-4 h-4" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4" />
-                    )}
-                  </div>
-                </button>
-                {expandedAmenities.general && (
-                  <div className="pt-6 pb-4 px-2 space-y-3 bg-white">
-                    {property.amenities.general.map((f, i) => (
-                      <p key={i} className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]">
-                        • {f}
-                      </p>
-                    ))}
-                  </div>
-                )}
-              </div>
+                {/* General */}
+                <div>
+                  <button
+                    onClick={() => toggleAmenity('general')}
+                    className={`w-full py-4 px-2 text-left flex items-center justify-between transition ${expandedAmenities.general ? 'border-b-2 border-[#007C4D]' : ''
+                      }`}
+                  >
+                    <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
+                      General
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
+                      {expandedAmenities.general ? (
+                        <ChevronUp className="w-4 h-4" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4" />
+                      )}
+                    </div>
+                  </button>
+                  {expandedAmenities.general && (
+                    <div className="pt-4 pb-3 px-2 space-y-2 bg-white">
+                      {property.amenities.general.map((f, i) => (
+                        <p key={i} className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]">
+                          • {f}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-              {/* Social */}
-              <div className="border-b border-[#E7E0CE]">
-                <button
-                  onClick={() => toggleAmenity('social')}
-                  className={`w-full py-6 px-2 text-left flex items-center justify-between transition ${expandedAmenities.social ? 'border-b-2 border-[#007C4D]' : ''
-                    }`}
-                >
-                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
-                    Social
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
-                    {expandedAmenities.social ? (
-                      <ChevronUp className="w-4 h-4" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4" />
-                    )}
-                  </div>
-                </button>
-                {expandedAmenities.social && (
-                  <div className="pt-6 pb-4 px-2 space-y-3 bg-white">
-                    {property.amenities.social.map((f, i) => (
-                      <p key={i} className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]">
-                        • {f}
-                      </p>
-                    ))}
-                  </div>
-                )}
-              </div>
+                {/* Social */}
+                <div>
+                  <button
+                    onClick={() => toggleAmenity('social')}
+                    className={`w-full py-4 px-2 text-left flex items-center justify-between transition ${expandedAmenities.social ? 'border-b-2 border-[#007C4D]' : ''
+                      }`}
+                  >
+                    <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
+                      Social
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
+                      {expandedAmenities.social ? (
+                        <ChevronUp className="w-4 h-4" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4" />
+                      )}
+                    </div>
+                  </button>
+                  {expandedAmenities.social && (
+                    <div className="pt-4 pb-3 px-2 space-y-2 bg-white">
+                      {property.amenities.social.map((f, i) => (
+                        <p key={i} className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]">
+                          • {f}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
-              {/* Not Included */}
-              <div className="border-b border-[#E7E0CE]">
-                <button
-                  onClick={() => toggleAmenity('notIncluded')}
-                  className={`w-full py-6 px-2 text-left flex items-center justify-between transition ${expandedAmenities.notIncluded ? 'border-b-2 border-[#007C4D]' : ''
-                    }`}
-                >
-                  <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
-                    Not Included
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
-                    {expandedAmenities.notIncluded ? (
-                      <ChevronUp className="w-4 h-4" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4" />
-                    )}
-                  </div>
-                </button>
-                {expandedAmenities.notIncluded && (
-                  <div className="pt-6 pb-4 px-2 space-y-3 bg-white">
-                    {property.amenities.notIncluded.map((f, i) => (
-                      <p key={i} className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]/60 line-through">
-                        • {f}
-                      </p>
-                    ))}
-                  </div>
-                )}
+                {/* Not Included */}
+                <div>
+                  <button
+                    onClick={() => toggleAmenity('notIncluded')}
+                    className={`w-full py-4 px-2 text-left flex items-center justify-between transition ${expandedAmenities.notIncluded ? 'border-b-2 border-[#007C4D]' : ''
+                      }`}
+                  >
+                    <span className="font-sans text-[16px] font-medium leading-[24px] tracking-[0.02em] text-[#000000]">
+                      Not Included
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-[#F4F4F4] flex items-center justify-center text-stone-700 shrink-0">
+                      {expandedAmenities.notIncluded ? (
+                        <ChevronUp className="w-4 h-4" />
+                      ) : (
+                        <ChevronDown className="w-4 h-4" />
+                      )}
+                    </div>
+                  </button>
+                  {expandedAmenities.notIncluded && (
+                    <div className="pt-4 pb-3 px-2 space-y-2 bg-white">
+                      {property.amenities.notIncluded.map((f, i) => (
+                        <p key={i} className="font-sans text-[16px] font-normal leading-[100%] tracking-[0.02em] text-[#25222F]/60 line-through">
+                          • {f}
+                        </p>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Pink Note Callout Box */}

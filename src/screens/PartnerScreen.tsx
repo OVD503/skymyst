@@ -143,7 +143,7 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
 
       {/* 3. FAQ Section */}
       <section className="bg-white">
-        <div className="max-w-[1440px] min-h-[600px] mx-auto px-5 sm:px-8 lg:px-[32px] pt-8 md:pt-[48px] pb-12 md:pb-[48px] flex flex-col md:flex-row justify-between items-start gap-8 lg:gap-12">
+        <div className="max-w-[1440px] w-full min-h-[600px] md:h-[600px] mx-auto px-5 sm:px-8 md:px-[32px] py-[32px] md:py-[48px] flex flex-col md:flex-row justify-between items-start gap-8 md:gap-0">
           {/* Left Header Column */}
           <div className="w-full md:w-[580px] shrink-0 text-center md:text-left">
             <h2 className="font-lustria font-normal text-[26px] sm:text-[36px] lg:text-[40px] leading-[115%] sm:leading-[100%] tracking-normal text-[#1E1E1E] max-w-[580px] mx-auto md:mx-0">
@@ -161,23 +161,23 @@ export const PartnerScreen: React.FC<PartnerScreenProps> = ({ onOpenContact }) =
               return (
                 <div
                   key={idx}
-                  className={`border-b transition-colors pb-4 sm:pb-6 ${isOpen ? 'border-b-2 border-[#00704A]' : 'border-[#EAE3D2]'
+                  className={`border-b transition-colors pb-4 sm:pb-5 ${isOpen ? 'border-b-2 border-[#00704A]' : 'border-[#EAE3D2]'
                     }`}
                 >
                   <button
                     onClick={() => toggleFaq(idx)}
-                    className="w-full text-left flex items-center justify-between group gap-3"
+                    className="w-full text-left flex items-start justify-between group gap-4 py-1"
                   >
-                    <span className="!font-sans font-medium text-[17px] sm:text-[20px] leading-[24px] tracking-[0.01em] text-[#042E23] flex-1">
+                    <span className="font-sans font-medium text-[18px] sm:text-[20px] leading-[24px] tracking-[0.02em] text-[#1E1E1E] flex-1 max-w-[620px]">
                       {faq.question}
                     </span>
-                    <div className="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-[#F4EFEA] group-hover:bg-[#EFE9D8] flex items-center justify-center shrink-0 text-stone-600 transition-colors">
+                    <div className="w-8 h-8 rounded-full bg-[#F4EFEA] group-hover:bg-[#EFE9D8] flex items-center justify-center shrink-0 text-stone-600 transition-colors mt-0.5">
                       {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </div>
                   </button>
 
                   {isOpen && (
-                    <div className="pt-3 pb-1 !font-sans font-normal text-[14px] sm:text-[16px] leading-[22px] sm:leading-[24px] tracking-[0.01em] text-[#4E4E4E]">
+                    <div className="pt-3 pb-1 font-sans font-normal text-[16px] leading-[24px] tracking-[0.02em] text-[#4E4E4E] max-w-[620px]">
                       {faq.answer}
                     </div>
                   )}

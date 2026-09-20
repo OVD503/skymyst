@@ -38,13 +38,15 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-stone-900 selection:bg-[#004030] selection:text-white">
-      {/* Global Header */}
-      <Header
-        currentPage={currentPage}
-        onNavigate={handleNavigate}
-        onOpenMenu={() => setIsMenuOpen(true)}
-        onOpenContact={() => setIsContactOpen(true)}
-      />
+      {/* Global Header (Hidden on mobile home screen as HomeScreenMobile has its own hero overlay top bar) */}
+      <div className={currentPage === 'home' ? 'hidden sm:block' : ''}>
+        <Header
+          currentPage={currentPage}
+          onNavigate={handleNavigate}
+          onOpenMenu={() => setIsMenuOpen(true)}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
+      </div>
 
       {/* Screen View Container */}
       <main className="flex-1 pt-0">
@@ -55,6 +57,7 @@ export function App() {
             onSelectProperty={(id) => setSelectedPropertyId(id)}
             onOpenContact={() => setIsContactOpen(true)}
             onOpenStory={() => setIsStoryOpen(true)}
+            onOpenMenu={() => setIsMenuOpen(true)}
           />
         )}
 
@@ -90,11 +93,13 @@ export function App() {
         )}
       </main>
 
-      {/* Global Dark Emerald Footer */}
-      <Footer
-        onNavigate={handleNavigate}
-        onOpenContact={() => setIsContactOpen(true)}
-      />
+      {/* Global Dark Emerald Footer (Hidden on mobile home screen as HomeScreenMobile has its own dedicated mobile footer) */}
+      <div className={currentPage === 'home' ? 'hidden sm:block' : ''}>
+        <Footer
+          onNavigate={handleNavigate}
+          onOpenContact={() => setIsContactOpen(true)}
+        />
+      </div>
 
       {/* Modals & Overlays */}
       <ContactModal

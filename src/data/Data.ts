@@ -121,8 +121,8 @@ export const PROPERTIES: Property[] = [
     },
     rooms: [
       {
-        name: 'Master Bedroom 1',
-        image: createPlaceholderImage('Master Bedroom 1', 'King bed · Attached bath'),
+        name: 'Bedroom 1',
+        image: createPlaceholderImage('Bedroom 1', 'King bed · Attached bath'),
         details: 'King bed · Attached bath · Mountain view',
       },
       {
@@ -209,8 +209,8 @@ export const PROPERTIES: Property[] = [
     },
     rooms: [
       {
-        name: 'Master Bedroom',
-        image: createPlaceholderImage('Master Bedroom', 'Queen bed · Back support mattress'),
+        name: 'Bedroom 1',
+        image: createPlaceholderImage('Bedroom 1', 'Queen bed · Back support mattress'),
         details: 'Queen bed · Back support mattress · Mountain view',
       },
       {
