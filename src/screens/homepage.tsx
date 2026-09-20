@@ -369,7 +369,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </div>
           </div>
 
-          <div className="flex overflow-x-auto gap-3.5 sm:gap-5 lg:gap-5 pb-4 pt-1 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:flex-row lg:justify-center lg:overflow-visible w-full px-2 lg:px-0">
+          <div className="flex overflow-x-auto gap-3.5 sm:gap-6 lg:gap-8 pb-4 pt-1 snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden lg:flex-row lg:justify-center lg:overflow-visible w-full px-2 lg:px-0">
             {/* Card 1: Bonfire Nights */}
             <motion.div
               initial={{ opacity: 0, y: 32 }}
@@ -385,11 +385,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-10 sm:left-10 sm:right-10 text-white space-y-1 sm:space-y-2 text-center">
-                <h3 className="font-lustria text-[20px] sm:text-[32px] font-normal text-[#FFED25] leading-[110%] tracking-normal">
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-[40px] sm:left-[40px] sm:right-[40px] text-white space-y-1 sm:space-y-2 text-center sm:text-left">
+                <h3 className="font-lustria text-[20px] sm:text-[32px] font-normal text-[#FFED25] leading-[100%] tracking-normal">
                   Bonfire Nights
                 </h3>
-                <p className="font-sans text-[12px] sm:text-[16px] font-normal text-white leading-[135%] tracking-normal max-w-[579px] mx-auto w-full">
+                <p className="font-sans text-[12px] sm:text-[16px] font-normal text-white leading-[135%] tracking-normal max-w-[579px] mx-auto sm:mx-0 w-full">
                   Every morning begins the same. Somewhere along the way, silence became a luxury.
                 </p>
               </div>
@@ -410,11 +410,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-10 sm:left-10 sm:right-10 text-white space-y-1 sm:space-y-2 text-center">
-                <h3 className="font-lustria text-[20px] sm:text-[32px] font-normal text-[#FFED25] leading-[110%] tracking-normal">
+              <div className="absolute bottom-4 left-4 right-4 sm:bottom-[40px] sm:left-[40px] sm:right-[40px] text-white space-y-1 sm:space-y-2 text-center sm:text-left">
+                <h3 className="font-lustria text-[20px] sm:text-[32px] font-normal text-[#FFED25] leading-[100%] tracking-normal">
                   Romantic Honeymoon
                 </h3>
-                <p className="font-sans text-[12px] sm:text-[16px] font-normal text-white leading-[135%] tracking-normal max-w-[579px] mx-auto w-full">
+                <p className="font-sans text-[12px] sm:text-[16px] font-normal text-white leading-[135%] tracking-normal max-w-[579px] mx-auto sm:mx-0 w-full">
                   Every vibration asks for your attention. Waves never ask anything from you. They simply arrive.
                 </p>
               </div>

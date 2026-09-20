@@ -46,9 +46,9 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
         </div>
 
         {/* Middle Section: Left "ABOUT US", Center GDPR Info, Right Links */}
-        <div className="flex flex-col md:flex-row items-start justify-between gap-6 lg:gap-12 my-auto w-full">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-6 lg:gap-24 my-auto w-full">
           {/* 1. Left Label: ABOUT US */}
-          <div className="shrink-0 pt-1">
+          <div className="shrink-0 pt-1 md:mr-8 lg:mr-16">
             <span className="text-xs sm:text-sm uppercase tracking-[0.25em] text-stone-300 font-semibold block">
               ABOUT US
             </span>
