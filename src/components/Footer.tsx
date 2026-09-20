@@ -24,22 +24,30 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     <footer id="main-footer" className="bg-[#005B41] text-white font-sans w-full min-h-[535px] flex flex-col justify-between">
       <div className="w-full max-w-[1440px] mx-auto p-[24px] sm:p-[32px] pb-6 sm:pb-8 flex-1">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 pb-10 sm:pb-16 border-b border-[#004D37]">
-          {/* Left Column (Brand, Contact info, Address) */}
+          {/* Left Column (Brand, Address, Contact info) */}
           <div className="lg:col-span-6 flex flex-col justify-start items-center lg:items-start text-center lg:text-left">
-            <div className="w-full max-w-[355px] flex flex-col items-center lg:items-start gap-4 lg:gap-6">
-              {/* 1. Logo */}
+            <div className="w-full max-w-[355px] lg:w-[355px] lg:h-[354px] flex flex-col items-center lg:items-start justify-between gap-4 lg:gap-0">
+              {/* 1. Logo (Top) */}
               <div
                 onClick={() => onNavigate('home')}
-                className="inline-flex cursor-pointer transition-transform hover:scale-105"
+                className="inline-flex cursor-pointer transition-transform hover:scale-105 lg:-ml-[22px]"
               >
                 <img
                   src="/assets/logo.png"
                   alt="Skymyst Logo"
-                  className="w-[260px] sm:w-[320px] h-[105px] sm:h-[130px] object-contain filter brightness-0 invert drop-shadow-[0_2px_10px_rgba(255,255,255,0.2)]"
+                  className="w-[260px] sm:w-[320px] h-[105px] sm:h-[130px] object-contain object-left filter brightness-0 invert drop-shadow-[0_2px_10px_rgba(255,255,255,0.2)]"
                 />
               </div>
 
-              {/* 2. Phone & Email (Top on mobile, matching screenshot) */}
+              {/* 2. Address (Middle) */}
+              <div className="font-sans text-[15px] sm:text-[16px] font-normal text-white/90 leading-[23px] tracking-[-0.02em] w-full text-center lg:text-left">
+                <p>Waveyu Surf Camp</p>
+                <p>Jalan Pantai Batu Bolong No. 27,</p>
+                <p>Canggu, Kuta Utara, Badung, Bali 80361,</p>
+                <p>Indonesia</p>
+              </div>
+
+              {/* 3. Phone & Email (Bottom) */}
               <div className="space-y-1 font-sans text-center lg:text-left w-full">
                 <p>
                   <a
@@ -58,39 +66,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   </a>
                 </p>
               </div>
-
-              {/* 3. Address */}
-              <div className="font-sans text-[15px] sm:text-[16px] font-normal text-white/90 leading-[23px] tracking-[-0.02em] max-w-[320px] w-full text-center lg:text-left">
-                <p>Waveyu Surf Camp</p>
-                <p>Jalan Pantai Batu Bolong No. 27,</p>
-                <p>Canggu, Kuta Utara, Badung, Bali 80361, Indonesia</p>
-              </div>
             </div>
           </div>
 
           {/* Right Column: Subscribe & Links */}
-          <div className="lg:col-span-6 flex flex-col justify-between space-y-8">
-            <div className="text-left">
-              <h3 className="font-lustria text-[28px] sm:text-[36px] text-white mb-4 sm:mb-6 font-normal">
+          <div className="lg:col-span-6 flex flex-col justify-between space-y-6 lg:space-y-0 lg:w-[387px] lg:h-[354px] lg:justify-self-end">
+            <div className="text-left w-full max-w-[379px]">
+              <h3 className="font-lustria font-normal text-[24px] sm:text-[28px] lg:text-[24px] leading-[32px] lg:leading-[40px] tracking-normal text-white w-full lg:w-[379px] h-[40px] flex items-center mb-3 sm:mb-4">
                 Subscribe
               </h3>
 
               {/* Newsletter form exact to reference image */}
-              <form onSubmit={handleSubscribe} className="relative">
-                <div className="flex items-center gap-3 justify-center lg:justify-start">
-                  <div className="flex-1 rounded-full bg-[#006E50] border border-[#005B41] px-5 py-3.5 flex items-center">
+              <form onSubmit={handleSubscribe} className="relative w-full max-w-[373px]">
+                <div className="flex items-center gap-2 sm:gap-3 justify-start h-[48px] w-full">
+                  <div className="flex-1 h-[48px] rounded-full bg-[#006E50] border border-[#005B41] px-4 sm:px-5 flex items-center">
                     <input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Sign up to our newsletter"
                       required
-                      className="w-full bg-transparent text-sm sm:text-base text-white placeholder:text-white/80 focus:outline-none"
+                      className="w-full bg-transparent font-sans font-bold text-[12px] leading-[20px] tracking-[0.02em] text-white placeholder:text-white focus:outline-none"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="px-6 sm:px-8 py-3.5 rounded-full bg-[#053225] hover:bg-[#03241A] text-white text-sm sm:text-base font-semibold tracking-wide transition shrink-0 cursor-pointer shadow-md active:scale-95"
+                    className="w-[105px] h-[48px] rounded-[104px] px-[24px] py-[16px] gap-[8px] bg-[#042E23] hover:bg-[#022018] text-white transition shrink-0 cursor-pointer shadow-md active:scale-95 flex flex-row items-center justify-center"
                   >
                     {subscribed ? (
                       <span className="flex items-center space-x-1.5 text-[#FFED25]">
@@ -98,7 +99,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                         <span>Subscribed</span>
                       </span>
                     ) : (
-                      'Sign Up'
+                      <span className="font-sans font-normal text-[16px] leading-[140%] tracking-normal text-white text-center whitespace-nowrap">
+                        Sign Up
+                      </span>
                     )}
                   </button>
                 </div>
@@ -110,11 +113,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </form>
             </div>
 
-            {/* Quick Navigation Links exact match to screenshot */}
-            <div className="border-t border-[#007052] pt-1">
+            {/* Quick Navigation Links exact match to screenshot (387px x 224px) */}
+            <div className="border-t border-[#007052] w-full max-w-[387px] h-[224px] flex flex-col justify-between">
               <button
                 onClick={() => onNavigate('about')}
-                className="w-full flex items-center justify-between py-3.5 font-sans text-[16px] font-normal text-white hover:text-[#FFED25] group border-b border-[#007052] text-left transition cursor-pointer leading-[140%] tracking-normal"
+                className="w-full h-[56px] flex items-center justify-between font-sans text-[16px] font-normal text-white hover:text-[#FFED25] group border-b border-[#007052] text-left transition cursor-pointer leading-[140%] tracking-normal"
               >
                 <span>About Us</span>
                 <ChevronRight className="w-5 h-5 text-white/80 group-hover:translate-x-1 transition-transform" />
@@ -126,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   const faqSection = document.getElementById('faq-section');
                   if (faqSection) faqSection.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full flex items-center justify-between py-3.5 font-sans text-[16px] font-normal text-white hover:text-[#FFED25] group border-b border-[#007052] text-left transition cursor-pointer leading-[140%] tracking-normal"
+                className="w-full h-[56px] flex items-center justify-between font-sans text-[16px] font-normal text-white hover:text-[#FFED25] group border-b border-[#007052] text-left transition cursor-pointer leading-[140%] tracking-normal"
               >
                 <span>FAQ</span>
                 <ChevronRight className="w-5 h-5 text-white/80 group-hover:translate-x-1 transition-transform" />
@@ -134,7 +137,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
               <button
                 onClick={() => onNavigate('partner')}
-                className="w-full flex items-center justify-between py-3.5 font-sans text-[16px] font-normal text-white hover:text-[#FFED25] group border-b border-[#007052] text-left transition cursor-pointer leading-[140%] tracking-normal"
+                className="w-full h-[56px] flex items-center justify-between font-sans text-[16px] font-normal text-white hover:text-[#FFED25] group border-b border-[#007052] text-left transition cursor-pointer leading-[140%] tracking-normal"
               >
                 <span>Become a partner</span>
                 <ChevronRight className="w-5 h-5 text-white/80 group-hover:translate-x-1 transition-transform" />
@@ -142,7 +145,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
               <button
                 onClick={() => onNavigate('about')}
-                className="w-full flex items-center justify-between py-3.5 font-sans text-[16px] font-normal text-white hover:text-[#FFED25] group border-b border-[#007052] text-left transition cursor-pointer leading-[140%] tracking-normal"
+                className="w-full h-[56px] flex items-center justify-between font-sans text-[16px] font-normal text-white hover:text-[#FFED25] group border-b border-[#007052] text-left transition cursor-pointer leading-[140%] tracking-normal"
               >
                 <span>Testimonials</span>
                 <ChevronRight className="w-5 h-5 text-white/80 group-hover:translate-x-1 transition-transform" />

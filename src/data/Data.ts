@@ -135,7 +135,7 @@ export const PROPERTIES: Property[] = [
   {
     id: 'sukoon',
     name: 'The Sukoon Stay & Mountain View',
-    location: 'Pandeygoan, Almora',
+    location: 'Almora',
     state: 'Uttrakhand',
     propertyType: '2-Bedroom Entire Home',
     guestCapacityText: 'Accommodates up to 4 guests',
@@ -163,7 +163,7 @@ export const PROPERTIES: Property[] = [
     description:
       'A highly aesthetic and beautifully designed home perfect for families looking to unwind amidst breathtaking mountains and starry skies. Every detail of the home is thoughtfully designed for relaxation and connection.',
     accessibility: {
-      locationDetail: 'Situated in the serene area of Pandeygoan, Almora.',
+      locationDetail: 'Situated in the serene area of Almora.',
       accessHike: 'The property is a short 3 to 4-minute hike from the main road, making it a peaceful haven completely immersed in nature.',
       parkingDetails: 'The property does not offer reserved parking, but street parking is generally available nearby. Guests can coordinate with the host for parking tips.',
       checkInProcess: 'Features a seamless, independent self check-in experience using a lockbox.',
@@ -223,7 +223,7 @@ export const PROPERTIES: Property[] = [
   {
     id: 'sunlight',
     name: 'The Sunlit Homestay',
-    location: 'Ghorakhal, Bhowali',
+    location: 'Bhowali',
     state: 'Uttrakhand',
     propertyType: '3BHK Independent Hillside Cottage',
     guestCapacityText: 'Accommodates up to 6 guests',
@@ -246,9 +246,9 @@ export const PROPERTIES: Property[] = [
       createPlaceholderImage('The Sunlit Homestay', 'Covered Terrace View'),
     ],
     description:
-      'A cozy 3BHK hillside cottage offering the ultimate nature retreat. Nestled in Leeswal Gaon (Ghorakhal), 2km from Bhowali market and 9km from Kainchi Dham, it provides pristine air quality, quiet residential peace, and full privacy.',
+      'A cozy 3BHK hillside cottage offering the ultimate nature retreat. Nestled in Leeswal Gaon, 2km from Bhowali market and 9km from Kainchi Dham, it provides pristine air quality, quiet residential peace, and full privacy.',
     accessibility: {
-      locationDetail: 'Ghorakhal Village (Leeswal Gaon), 2 km from Bhowali main market & 9 km from Kainchi Dham.',
+      locationDetail: 'Leeswal Gaon, 2 km from Bhowali main market & 9 km from Kainchi Dham.',
       accessHike: 'Narrow village road access; strictly standard cars (Hatchbacks, Sedans, SUVs). Large buses/Tempo Travelers cannot reach.',
       parkingDetails: 'Dedicated private parking space for exactly two cars.',
       checkInProcess: 'Self check-in with staff member present to hand over keys strictly between 06:00 AM and 05:00 PM cutoff.',
@@ -349,7 +349,7 @@ export const PROPERTIES: Property[] = [
     description:
       'A luxury 4-bedroom boutique hilltop villa featuring expansive 180° mountain and sky views. Designed with step-free ground floor access, themed bedrooms, a dedicated cook & caretaker, and landscaped lawn patio.',
     accessibility: {
-      locationDetail: 'Silvara, Devi Mandir Road, Patti Pandeygaon, Bhimtal, Uttarakhand 263136 (Near Saraswati School). 2-3 min drive to market.',
+      locationDetail: 'Silvara, Devi Mandir Road, Bhimtal, Uttarakhand 263136 (Near Saraswati School). 2-3 min drive to market.',
       accessHike: 'Smooth paved road up the hill; step-free ground floor for easy senior accessibility.',
       parkingDetails: 'Secure private parking within premises for 3-4 SUVs.',
       checkInProcess: 'Dedicated 24/7 staff & check-in support team on-ground. Valid government ID mandatory.',
