@@ -1,4 +1,4 @@
-export type ScreenPage = 'home' | 'property' | 'partner' | 'about' | 'search';
+export type ScreenPage = 'home' | 'property' | 'partner' | 'about' | 'search' | 'terms' | 'privacy' | 'refund';
 
 export type ActiveModal = 'none' | 'contact' | 'menu' | 'story' | 'gallery' | 'bookingConfirmation';
 

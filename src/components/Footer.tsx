@@ -164,15 +164,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               © Skymyst 2026, Inc
             </span>
             <div className="flex items-center space-x-3 text-[16px] sm:text-[18px] lg:text-[15px] font-normal text-white leading-[100%]">
-              <button onClick={() => alert('Terms of Service')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
+              <button onClick={() => onNavigate('terms')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
                 Terms
               </button>
               <span className="text-white/60">|</span>
-              <button onClick={() => alert('Privacy Policy')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
+              <button onClick={() => onNavigate('privacy')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
                 Privacy
               </button>
               <span className="text-white/60">|</span>
-              <button onClick={() => alert('Refund Policy')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
+              <button onClick={() => onNavigate('refund')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
                 Refund policy
               </button>
             </div>

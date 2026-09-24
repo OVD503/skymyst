@@ -11,6 +11,9 @@ import { PropertyScreen } from './screens/PropertyScreen';
 import { PartnerScreen } from './screens/PartnerScreen';
 import { AboutScreen } from './screens/AboutScreen';
 import { SearchScreen } from './screens/SearchScreen';
+import { TermsAndConditions } from './screens/TermsAndConditions';
+import { PrivacyPolicy } from './screens/PrivacyPolicy';
+import { RefundPolicy } from './screens/RefundPolicy';
 import { useProperties } from './hooks/useProperties';
 
 export function App() {
@@ -38,8 +41,8 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-stone-900 selection:bg-[#004030] selection:text-white">
-      {/* Global Header (Hidden on mobile home screen as HomeScreenMobile has its own hero overlay top bar) */}
-      <div className={currentPage === 'home' ? 'hidden sm:block' : ''}>
+      {/* Global Header (Hidden on home mobile and legal pages) */}
+      <div className={currentPage === 'home' ? 'hidden sm:block' : ['terms', 'privacy', 'refund'].includes(currentPage) ? 'hidden' : ''}>
         <Header
           currentPage={currentPage}
           onNavigate={handleNavigate}
@@ -89,6 +92,27 @@ export function App() {
             properties={properties}
             onNavigate={handleNavigate}
             onSelectProperty={(id) => setSelectedPropertyId(id)}
+          />
+        )}
+
+        {currentPage === 'terms' && (
+          <TermsAndConditions
+            onNavigate={handleNavigate}
+            onOpenContact={() => setIsContactOpen(true)}
+          />
+        )}
+
+        {currentPage === 'privacy' && (
+          <PrivacyPolicy
+            onNavigate={handleNavigate}
+            onOpenContact={() => setIsContactOpen(true)}
+          />
+        )}
+
+        {currentPage === 'refund' && (
+          <RefundPolicy
+            onNavigate={handleNavigate}
+            onOpenContact={() => setIsContactOpen(true)}
           />
         )}
       </main>

@@ -134,11 +134,35 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-2 gap-y-1 text-stone-300 text-[11px] sm:text-xs md:text-sm font-light w-full md:w-auto">
             <span>© Skymyst 2026, Inc</span>
             <span className="text-stone-500">|</span>
-            <span className="text-stone-300 font-normal">Terms</span>
+            <button
+              onClick={() => {
+                onNavigate('terms');
+                onClose();
+              }}
+              className="text-stone-300 font-normal hover:text-white hover:underline cursor-pointer transition"
+            >
+              Terms
+            </button>
             <span className="text-stone-500">|</span>
-            <span className="text-stone-300 font-normal">Privacy</span>
+            <button
+              onClick={() => {
+                onNavigate('privacy');
+                onClose();
+              }}
+              className="text-stone-300 font-normal hover:text-white hover:underline cursor-pointer transition"
+            >
+              Privacy
+            </button>
             <span className="text-stone-500">|</span>
-            <span className="text-stone-300 font-normal">Refund policy</span>
+            <button
+              onClick={() => {
+                onNavigate('refund');
+                onClose();
+              }}
+              className="text-stone-300 font-normal hover:text-white hover:underline cursor-pointer transition"
+            >
+              Refund policy
+            </button>
           </div>
         </div>
       </div>

@@ -846,15 +846,15 @@ export const HomeScreenMobile: React.FC<HomeScreenMobileProps> = ({
             </p>
 
             <div className="flex items-center justify-center space-x-3 text-[15px] font-normal text-white">
-              <button type="button" onClick={() => alert('Terms of Service')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
+              <button type="button" onClick={() => onNavigate('terms')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
                 Terms
               </button>
               <span className="text-white/60">|</span>
-              <button type="button" onClick={() => alert('Privacy Policy')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
+              <button type="button" onClick={() => onNavigate('privacy')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
                 Privacy
               </button>
               <span className="text-white/60">|</span>
-              <button type="button" onClick={() => alert('Refund Policy')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
+              <button type="button" onClick={() => onNavigate('refund')} className="hover:text-[#FFED25] hover:underline transition cursor-pointer">
                 Refund policy
               </button>
             </div>
