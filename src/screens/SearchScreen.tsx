@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Property, ScreenPage } from '../types';
+import { CategoryBadge } from '../components/CategoryBadge';
 
 interface SearchScreenProps {
   properties: Property[];
@@ -47,6 +48,9 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                     referrerPolicy="no-referrer"
                   />
+                  <div className="absolute top-3 left-3 z-10">
+                    <CategoryBadge category={prop.category} isPremium={prop.isPremium} />
+                  </div>
                 </div>
 
                 {/* Property Details */}

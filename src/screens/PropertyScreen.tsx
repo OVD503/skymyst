@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { Property, ScreenPage } from '../types';
 import { SkymystLogo } from '../components/SkymystLogo';
+import { CategoryBadge } from '../components/CategoryBadge';
 
 interface PropertyScreenProps {
   properties: Property[];
@@ -112,6 +113,10 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/30 pointer-events-none" />
 
+        <div className="absolute top-4 right-4 z-20">
+          <CategoryBadge category={property.category} isPremium={property.isPremium} />
+        </div>
+
         {/* Bottom Right: Photo Counter Badge e.g. "1 / 54" */}
         <div
           onClick={onOpenGallery}
@@ -122,28 +127,8 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
       </div>
 
       <div className="max-w-[1145px] mx-auto px-4 sm:px-6 lg:px-0">
-        {/* Desktop View Back Button & Title */}
+        {/* Desktop View Title */}
         <div className="hidden md:block">
-          <div className="mb-4">
-            <button
-              onClick={() => {
-                if (onNavigate) {
-                  onNavigate('home');
-                } else {
-                  window.history.back();
-                }
-              }}
-              className="inline-flex items-center space-x-2 text-stone-600 hover:text-[#005B41] font-medium text-xs sm:text-sm transition group cursor-pointer"
-              aria-label="Back to stays"
-            >
-              <div className="w-8 h-8 rounded-full bg-stone-100 group-hover:bg-[#005B41] group-hover:text-white flex items-center justify-center transition shadow-xs">
-                <ArrowLeft className="w-4 h-4" />
-              </div>
-              <span>Back</span>
-            </button>
-          </div>
-
-          {/* Title */}
           <div className="mb-6 max-w-[542px]">
             <h1 className="font-sans text-[24px] sm:text-[32px] font-medium leading-[100%] tracking-normal text-[#000000]">
               {property.name}
@@ -164,6 +149,9 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
               className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
               referrerPolicy="no-referrer"
             />
+            <div className="absolute top-3 right-3 z-10">
+              <CategoryBadge category={property.category} isPremium={property.isPremium} />
+            </div>
           </div>
 
           {/* 4 Small Photos Grid (Right 6 cols) */}
@@ -259,13 +247,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                   </p>
                 </div>
 
-                {property.isPremium && (
-                  <div className="flex items-center space-x-2">
-                    <span className="bg-[#EAB308] text-stone-950 text-xs font-bold px-3 py-1 rounded-md flex items-center space-x-1">
-                      ★ Premium
-                    </span>
-                  </div>
-                )}
+                <CategoryBadge category={property.category} isPremium={property.isPremium} />
               </div>
 
               {/* Rating Badge */}
@@ -493,25 +475,16 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
 
             {/* Rooms Section */}
             <div id="property-rooms-section" className="border-t border-[#E7E0CE] pt-8 space-y-6">
-              <h3 className="font-sans text-[22px] font-medium leading-[100%] tracking-[0.02em] text-[#000000]">Rooms</h3>
+              <h3 className="font-sans text-[22px] font-medium leading-[100%] tracking-[0.02em] text-[#000000]">Rooms & Spaces</h3>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3.5 sm:gap-x-4 sm:gap-y-6 max-w-[680px]">
-                {[
-                  ...(property.rooms && property.rooms.length > 0
-                    ? property.rooms.slice(0, 2).map((r) => ({ name: r.name, image: r.image }))
-                    : [
-                        { name: 'Bedroom 1', image: property.images?.[0] || '/cover/bhimsarowar.JPG' },
-                        { name: 'Bedroom 2', image: property.images?.[1] || property.images?.[0] },
-                      ]),
-                  {
-                    name: 'Living Area',
-                    image: property.images?.[2] || property.images?.[0],
-                  },
-                  {
-                    name: 'Rooftop',
-                    image: property.images?.[3] || property.images?.[0],
-                  },
-                ].map((room, idx) => (
+                {(property.rooms && property.rooms.length > 0
+                  ? property.rooms
+                  : [
+                      { name: 'Bedroom 1', image: property.images?.[0] || '/cover/bhimsarowar.JPG', details: '' },
+                      { name: 'Bedroom 2', image: property.images?.[1] || property.images?.[0], details: '' },
+                    ]
+                ).map((room, idx) => (
                   <div
                     key={`${room.name}-${idx}`}
                     onClick={onOpenGallery}
@@ -519,7 +492,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                   >
                     <div className="w-full aspect-square sm:aspect-auto sm:w-[216px] sm:h-[160px] max-w-full rounded-[20px] sm:rounded-[24px] overflow-hidden bg-stone-100 mb-2 shrink-0">
                       <img
-                        src={room.image}
+                        src={room.image || property.images?.[0]}
                         alt={room.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                         referrerPolicy="no-referrer"
@@ -529,6 +502,11 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                       <h4 className="font-sans text-[14px] sm:text-[16px] font-medium leading-[20px] sm:leading-[24px] tracking-[0.02em] text-[#232323] w-full sm:w-[216px] max-w-full">
                         {room.name}
                       </h4>
+                      {room.details && (
+                        <p className="font-sans text-[12px] font-normal leading-[16px] text-[#7D7C7E] truncate">
+                          {room.details}
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -766,63 +744,64 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
               </button>
             </div>
 
-            {/* Explore the Area Widget (Hidden on mobile, visible on desktop) */}
-            <div className="hidden md:block bg-white rounded-[28px] p-6 border border-stone-200/80 shadow-md space-y-4">
+            {/* Explore the Area Widget */}
+            <div className="bg-white rounded-[28px] p-6 border border-stone-200/80 shadow-md space-y-4">
               <h4 className="font-sans text-[24px] font-normal leading-[100%] tracking-[0.02em] text-[#000000] w-full max-w-[416px]">
                 Explore the area
               </h4>
 
-              {/* Map Preview Image */}
-              <div className="relative h-36 rounded-2xl overflow-hidden border border-stone-200/80">
-                <img
-                  src="/assets/sky.png"
-                  alt="Map location preview"
-                  className="w-full h-full object-cover brightness-95"
+              {/* Embedded Real Google Map Container */}
+              <div
+                onClick={() => {
+                  const targetUrl = property.googleMapsUrl || `https://maps.google.com/?q=${property.coordinates?.lat || 29.35},${property.coordinates?.lng || 79.55}`;
+                  window.open(targetUrl, '_blank');
+                }}
+                className="relative h-44 rounded-2xl overflow-hidden border border-stone-200/80 cursor-pointer group shadow-xs hover:shadow-md transition"
+                title="Click to open in Google Maps"
+              >
+                <iframe
+                  title={`Google Map for ${property.name}`}
+                  src={`https://maps.google.com/maps?q=${property.coordinates?.lat || 29.35},${property.coordinates?.lng || 79.55}&z=14&output=embed`}
+                  className="w-full h-full border-0 pointer-events-none"
+                  loading="lazy"
                 />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/95 px-3 py-1 rounded-full shadow-xs text-[11px] font-bold text-[#00704A] flex items-center space-x-1">
+                <div className="absolute inset-0 bg-stone-900/5 group-hover:bg-transparent transition pointer-events-none" />
+                <div className="absolute bottom-2.5 left-2.5 bg-white/95 backdrop-blur-xs px-3 py-1 rounded-full shadow-xs text-[11px] font-bold text-[#00704A] flex items-center space-x-1.5 z-10 pointer-events-none">
                   <MapPin className="w-3.5 h-3.5 text-red-600" />
                   <span>{property.location}, {property.state}</span>
+                  <span className="text-[10px] text-stone-400 font-normal pl-1">· Click to open map</span>
                 </div>
               </div>
 
               {/* Nearby Landmarks list */}
-              <div className="space-y-[16px] my-[24px]">
-                {(property.nearbyAttractions && property.nearbyAttractions.length > 0
-                  ? property.nearbyAttractions.slice(0, 3)
-                  : [
-                      { name: 'Bhimtaal School', driveTime: '12 min' },
-                      { name: 'Almora Lane', driveTime: '4 min' },
-                      { name: 'Garam Pani', driveTime: '25 min' },
-                    ]
-                ).map((attraction, i) => (
-                  <div key={i} className="flex items-center justify-between">
-                    <div className="flex items-center gap-[12px]">
-                      <span className="text-[16px] leading-[24px] shrink-0 select-none">📍</span>
-                      <span className="font-sans text-[16px] font-normal leading-[24px] tracking-[0.02em] text-[#232323]">
-                        {attraction.name}
-                      </span>
-                    </div>
-                    <span className="font-sans text-[16px] font-normal leading-[24px] tracking-[0.02em] text-[#7D7C7E]">
-                      {attraction.driveTime}
-                    </span>
-                  </div>
-                ))}
+              <div className="space-y-[14px] my-[24px]">
+                {property.nearbyAttractions && property.nearbyAttractions.length > 0 ? (
+                  property.nearbyAttractions.map((attraction, i) => {
+                    const lower = attraction.name.toLowerCase();
+                    const isTransport = lower.includes('station') || lower.includes('airport') || lower.includes('railway');
+
+                    return (
+                      <div key={i} className={`flex items-center justify-between ${isTransport ? 'pl-3' : ''}`}>
+                        <div className="flex items-center gap-[12px]">
+                          {isTransport ? (
+                            <span className="text-[18px] font-bold text-[#232323] leading-none shrink-0 select-none">•</span>
+                          ) : (
+                            <span className="text-[16px] leading-[24px] shrink-0 select-none">📍</span>
+                          )}
+                          <span className="font-sans text-[16px] font-normal leading-[24px] tracking-[0.02em] text-[#232323]">
+                            {attraction.name}
+                          </span>
+                        </div>
+                        <span className="font-sans text-[16px] font-normal leading-[24px] tracking-[0.02em] text-[#7D7C7E] shrink-0 ml-2">
+                          {attraction.driveTime}
+                        </span>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p className="text-sm text-stone-500">No nearby location details available.</p>
+                )}
               </div>
-
-              <button
-                onClick={() => setShowAreaDetails(!showAreaDetails)}
-                className="w-full max-w-[416px] h-[48px] rounded-[104px] border border-[#042E23] py-[16px] px-[32px] gap-[16px] font-sans text-[16px] font-medium leading-[100%] text-[#042E23] hover:bg-[#042E23]/5 transition cursor-pointer flex items-center justify-center"
-              >
-                Show all about this area
-              </button>
-
-              {showAreaDetails && (
-                <div className="p-3 bg-stone-50 rounded-xl text-[11px] text-stone-600 space-y-1 border border-stone-200">
-                  {property.nearbyAttractions?.map((attraction, i) => (
-                    <p key={i}>• {attraction.name}: {attraction.driveTime}</p>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
         </div>

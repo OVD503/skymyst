@@ -1,0 +1,443 @@
+import { initializeApp } from 'firebase/app';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const firebaseConfig = {
+  apiKey: process.env.VITE_FIREBASE_API_KEY,
+  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.VITE_FIREBASE_PROJECT_ID,
+};
+
+console.log('Firebase config:', firebaseConfig);
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const propertiesData = [
+  {
+    id: 'silvara',
+    name: 'Silvara Stay Bhimtal',
+    category: 'Premium Management',
+    isPremium: true,
+    location: 'Bhimtal',
+    state: 'Uttarakhand',
+    propertyType: 'Entire Private Villa',
+    guestCapacityText: 'Up to 12 guests',
+    guests: 12,
+    bedrooms: 4,
+    beds: 4,
+    bathrooms: 4,
+    rating: 9.6,
+    ratingLabel: 'Exceptional',
+    reviewsCount: 18,
+    pricePerNight: 14000,
+    originalPricePerNight: 21000,
+    totalPrice: 32000,
+    discountBadge: '30% off',
+    googleMapsUrl: 'https://share.google/0JZK0laQpAZe49FUg',
+    coordinates: { x: 42, y: 35, label: '₹14,000', lat: 29.3520, lng: 79.5550 },
+    images: [
+      '/cover/silvara.jpeg',
+      'data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22600%22%20viewBox%3D%220%200%20800%20600%22%3E%3Crect%20width%3D%22800%22%20height%3D%22600%22%20fill%3D%22%23F4F1EA%22%2F%3E%3Cg%20transform%3D%22translate(400%2C%20270)%22%20text-anchor%3D%22middle%22%3E%3Ctext%20y%3D%22110%22%20font-family%3D%22sans-serif%22%20font-size%3D%2224%22%20fill%3D%22%232D281E%22%3ESilvara%20Stay%20Bhimtal%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E',
+    ],
+    description:
+      'Silvara Stay is a peaceful 4BHK private villa in Bhimtal, designed for families and groups looking for a comfortable hill getaway. Surrounded by greenery and calm mountain surroundings, the property offers spacious rooms, common areas, home-cooked food, and a relaxed stay experience with easy access to Bhimtal and nearby attractions.',
+    accessibility: {
+      locationDetail: 'Bhimtal, Uttarakhand',
+      checkInProcess: 'Check-in: 1:00 PM / Checkout: 10:00 AM',
+    },
+    highlights: [
+      { icon: ' Ideal for Groups', title: 'Ideal for Groups', desc: 'Comfortable accommodation for up to 12 guests.' },
+      { icon: '🍲', title: 'Home-Cooked Food', desc: 'In-house meals with Indian, Pahadi and comfort-food options.' },
+      { icon: '⛰️', title: 'Peaceful Hilltop Setting', desc: 'Surrounded by greenery with a calm hill-stay atmosphere.' },
+      { icon: '📍', title: 'Prime Bhowali Location', desc: 'Conveniently located for exploring Kainchi Dham, Bhimtal, Sattal, Nainital and nearby attractions.' },
+    ],
+    amenities: {
+      facilities: ['Wi-Fi', 'In-house Home-Cooked Meals', 'Attached Bathrooms', 'Spacious Living Area', 'Dining Area', 'Private Parking', 'Outdoor Sitting Area', 'Mountain & Green Surroundings', 'Room Heaters', 'Television', 'Hot Water / Geysers', 'Fresh Linen & Towels', 'Housekeeping & Caretaker Assistance', 'Power Backup'],
+      foodAndDrinks: ['In-house Home-Cooked Meals', 'Pahadi Dining', 'Tea & Coffee'],
+      general: ['Attached Bathrooms', 'Room Heaters', 'Hot Water / Geysers', 'Caretaker Assistance'],
+      social: ['Spacious Living Area', 'Outdoor Sitting Area', 'Mountain & Green Surroundings'],
+      notIncluded: ['Commercial Hotel Room Service'],
+    },
+    rooms: [
+      { name: 'Bedroom 1', image: '/cover/silvara.jpeg', details: 'Private room with attached bath' },
+      { name: 'Bedroom 2', image: '/cover/silvara.jpeg', details: 'Private room with attached bath' },
+      { name: 'Bedroom 3', image: '/cover/silvara.jpeg', details: 'Private room with attached bath' },
+      { name: 'Bedroom 4', image: '/cover/silvara.jpeg', details: 'Private room with attached bath' },
+    ],
+    nearbyAttractions: [
+      { name: 'Bhimtal Lake (2 Km)', driveTime: '5 Mins' },
+      { name: 'Sattal (5 Km)', driveTime: '10 Mins' },
+      { name: 'Naukuchiatal (8 Km)', driveTime: '16 Mins' },
+      { name: 'Bell Temple (10 Km)', driveTime: '25 Mins' },
+      { name: 'Kainchi Dham (15 Km)', driveTime: '35 Mins' },
+      { name: 'Nainital Lake (20 Km)', driveTime: '45 Mins' },
+      { name: 'Mukteshwar (35 Km)', driveTime: '60 Mins' },
+    ],
+  },
+  {
+    id: 'raindrop',
+    name: 'Raindrop Stay Bhowali',
+    category: 'Premium Management',
+    isPremium: true,
+    location: 'Bhowali',
+    state: 'Uttarakhand',
+    propertyType: 'Entire Premium Private Villa',
+    guestCapacityText: 'Up to 9 guests',
+    guests: 9,
+    bedrooms: 3,
+    beds: 3,
+    bathrooms: 3,
+    rating: 9.7,
+    ratingLabel: 'Exceptional',
+    reviewsCount: 15,
+    pricePerNight: 14000,
+    originalPricePerNight: 20000,
+    totalPrice: 30000,
+    discountBadge: '30% off',
+    googleMapsUrl: 'https://maps.app.goo.gl/FKvKaBnSk3xYkVF19',
+    coordinates: { x: 55, y: 40, label: '₹14,000', lat: 29.3800, lng: 79.5200 },
+    images: [
+      '/cover/sunlit.jpeg',
+    ],
+    description:
+      'Raindrop Stay is a premium 3BHK private villa in Bhowali, designed for families and small groups looking for a comfortable and peaceful hill stay. The property features three well-appointed bedrooms, a spacious living and dining area, a functional kitchen, terrace, outdoor sitting space and private car parking. Guests can enjoy beautiful valley and Bhimtal Lake views, modern amenities and a relaxed premium atmosphere. Its location also makes it a convenient base for exploring Kainchi Dham, Bhimtal, Sattal, Nainital and nearby attractions.',
+    accessibility: {
+      locationDetail: 'Bhowali, Uttarakhand',
+      checkInProcess: 'Check-in: 1:00 PM / Checkout: 10:00 AM • Self check-in',
+    },
+    highlights: [
+      { icon: '✨', title: 'Premium 3BHK Private Villa', desc: 'Comfortable and stylish stay ideal for families and small groups.' },
+      { icon: '🌄', title: 'Valley & Bhimtal Lake Views', desc: 'Beautiful scenic views from the property for a peaceful hill experience.' },
+      { icon: '🏡', title: 'Comfortable Homely Setup', desc: 'Living area, dining space, kitchen access and essential amenities for a relaxed stay.' },
+      { icon: '📍', title: 'Prime Bhowali Location', desc: 'Conveniently located for exploring Kainchi Dham 20mins, Bhimtal, Sattal, Nainital and nearby attractions.' },
+    ],
+    amenities: {
+      facilities: ['Wi-Fi', 'Kitchen', 'Parking', 'Terrace', 'Lake View', 'Smart TV', 'Heaters', 'Hot Water', 'Housekeeping', 'Bonfire', 'Living Area', 'Dining Area', 'Power Backup', 'Caretaker Assistance'],
+      foodAndDrinks: ['Kitchen Access', 'Dining Area'],
+      general: ['Heaters', 'Hot Water', 'Power Backup', 'Caretaker Assistance'],
+      social: ['Terrace', 'Bonfire', 'Living Area'],
+      notIncluded: ['Commercial Hotel Room Service'],
+    },
+    rooms: [
+      { name: 'Bedroom 1', image: '/cover/sunlit.jpeg', details: '3BHK Villa Room 1' },
+      { name: 'Bedroom 2', image: '/cover/sunlit.jpeg', details: '3BHK Villa Room 2' },
+      { name: 'Bedroom 3', image: '/cover/sunlit.jpeg', details: '3BHK Villa Room 3' },
+    ],
+    nearbyAttractions: [
+      { name: 'Kainchi Dham (9 Km)', driveTime: '20 Mins' },
+      { name: 'Bell Temple (4 Km)', driveTime: '10 Mins' },
+      { name: 'Bhimtal Lake (9 Km)', driveTime: '20 Mins' },
+      { name: 'Sattal (7 Km)', driveTime: '15 Mins' },
+      { name: 'Naukuchiatal (10 Km)', driveTime: '22 Mins' },
+      { name: 'Nainital Lake (15 Km)', driveTime: '45 Mins' },
+      { name: 'Mukteshwar (35 Km)', driveTime: '60 Mins' },
+    ],
+  },
+  {
+    id: 'sunlight',
+    name: 'Sunlit Stay Bhowali',
+    category: 'Digital Partner',
+    isPremium: false,
+    location: 'Bhowali',
+    state: 'Uttarakhand',
+    propertyType: 'Entire Private Villa',
+    guestCapacityText: 'Up to 6 guests',
+    guests: 6,
+    bedrooms: 3,
+    beds: 3,
+    bathrooms: 3,
+    rating: 9.2,
+    ratingLabel: 'Exceptional',
+    reviewsCount: 14,
+    pricePerNight: 10000,
+    originalPricePerNight: 14000,
+    totalPrice: 22000,
+    discountBadge: '30% off',
+    googleMapsUrl: 'https://www.google.com/maps?q=29.38075,79.53747',
+    coordinates: { x: 58, y: 42, label: '₹10,000', lat: 29.38075, lng: 79.53747 },
+    images: [
+      '/cover/sunlit.jpeg',
+    ],
+    description:
+      'Sunlit Stay Bhowali is a private 3BHK holiday home designed for families and small groups looking for a comfortable and peaceful stay in the hills. The property accommodates up to 6 guests and offers a simple, homely setup with essential amenities and the convenience of self check-in. Its Bhowali location makes it a practical base for exploring nearby attractions such as Kainchi Dham, Bhimtal, Sattal and Nainital while enjoying a relaxed stay away from crowded tourist areas.',
+    accessibility: {
+      locationDetail: 'Bhowali, Uttarakhand (29°22\'50.7"N 79°32\'14.9"E)',
+      checkInProcess: 'Check-in: 1:00 PM / Checkout: 10:00 AM • Self check-in',
+    },
+    highlights: [
+      { icon: '🏡', title: 'Private 3BHK Stay', desc: 'Comfortable setup ideal for families and small groups of up to 6 guests.' },
+      { icon: '🔑', title: 'Self Check-in Convenience', desc: 'Easy and flexible arrival experience for guests.' },
+      { icon: '⛰️', title: 'Peaceful Hill Stay', desc: 'A calm hill stay with convenient access to Kainchi Dham, Bhimtal, Sattal and Nainital.' },
+      { icon: '📍', title: 'Prime Bhowali Location', desc: 'Conveniently located for exploring Kainchi Dham 20mins, Bhimtal, Sattal, Nainital and nearby attractions.' },
+    ],
+    amenities: {
+      facilities: ['Wi-Fi', 'Self Check-in', 'Attached Bathrooms', 'Living / Common Area', 'Dining Area', 'Kitchen', 'Hot Water / Geysers', 'Fresh Linen & Towels', 'Toiletries', 'Room Heaters', 'Housekeeping', 'Parking', 'Power backup', 'Family-Friendly Stay'],
+      foodAndDrinks: ['Kitchen Access', 'Dining Area'],
+      general: ['Room Heaters', 'Hot Water / Geysers', 'Power Backup'],
+      social: ['Living / Common Area', 'Family-Friendly Stay'],
+      notIncluded: ['Commercial Hotel Room Service'],
+    },
+    rooms: [
+      { name: 'Bedroom 1', image: '/cover/sunlit.jpeg', details: '3BHK Villa Room 1' },
+      { name: 'Bedroom 2', image: '/cover/sunlit.jpeg', details: '3BHK Villa Room 2' },
+      { name: 'Bedroom 3', image: '/cover/sunlit.jpeg', details: '3BHK Villa Room 3' },
+    ],
+    nearbyAttractions: [
+      { name: 'Kainchi Dham (9 Km)', driveTime: '20 Mins' },
+      { name: 'Bell Temple (4 Km)', driveTime: '10 Mins' },
+      { name: 'Bhimtal Lake (9 Km)', driveTime: '20 Mins' },
+      { name: 'Sattal (7 Km)', driveTime: '15 Mins' },
+      { name: 'Naukuchiatal (10 Km)', driveTime: '22 Mins' },
+      { name: 'Nainital Lake (15 Km)', driveTime: '45 Mins' },
+      { name: 'Mukteshwar (35 Km)', driveTime: '60 Mins' },
+    ],
+  },
+  {
+    id: 'woodwalk',
+    name: 'WoodWalk Nature Cottage Bhimtal',
+    category: 'Digital Partner',
+    isPremium: false,
+    location: 'Bhimtal',
+    state: 'Uttarakhand',
+    propertyType: 'Entire Private Cottage / Villa',
+    guestCapacityText: 'Up to 12 guests',
+    guests: 12,
+    bedrooms: 4,
+    beds: 5,
+    bathrooms: 4,
+    rating: 9.5,
+    ratingLabel: 'Exceptional',
+    reviewsCount: 12,
+    pricePerNight: 8000,
+    originalPricePerNight: 12000,
+    totalPrice: 19000,
+    discountBadge: '30% off',
+    googleMapsUrl: 'https://www.google.com/maps?q=29.363028,79.539250',
+    coordinates: { x: 48, y: 38, label: '₹8,000', lat: 29.363028, lng: 79.539250 },
+    images: [
+      '/cover/woodwalk.jpg',
+    ],
+    description:
+      'WoodWalk Nature Stay Bhimtal is a private 4BHK nature-focused stay designed for families and groups looking for a peaceful break surrounded by greenery. The property offers comfortable bedrooms, common living spaces, essential amenities, and a relaxed hill environment away from the usual crowd. Its Bhimtal location makes it a convenient base for exploring nearby lakes and tourist spots while enjoying a quieter, more natural stay experience with family or friends.',
+    accessibility: {
+      locationDetail: 'Bhimtal, Uttarakhand (29°21\'46.9"N 79°32\'21.3"E)',
+      checkInProcess: 'Check-in: 1:00 PM / Checkout: 10:00 AM',
+    },
+    highlights: [
+      { icon: '🌿', title: 'Private 4BHK Nature Stay', desc: 'Comfortable accommodation for families and groups in a peaceful Bhimtal setting.' },
+      { icon: '🌳', title: 'Surrounded by Greenery', desc: 'A calm stay experience with a natural hill atmosphere away from the busy tourist areas.' },
+      { icon: '🚶‍♂️', title: '5–6 Minute Nature Walk', desc: 'Guests can enjoy a short and refreshing walk through the surrounding natural area.' },
+      { icon: '📍', title: 'Convenient Bhimtal Base', desc: 'Well suited for exploring Bhimtal, Sattal and other nearby attractions while staying in a quieter location.' },
+    ],
+    amenities: {
+      facilities: ['Wi-Fi', 'Private 4BHK Stay', 'Attached Bathrooms', 'Dining Area', 'Television', 'Hot Water / Geysers', 'Basic Toiletries', 'Room Heaters', 'Parking', 'Housekeeping', 'Caretaker Assistance', 'Outdoor Sitting Area', 'Nature / Green Surroundings', 'Family-Friendly Stay', 'Group-Friendly Accommodation'],
+      foodAndDrinks: ['Dining Area', 'Tea & Coffee Essentials'],
+      general: ['Attached Bathrooms', 'Room Heaters', 'Hot Water / Geysers', 'Caretaker Assistance'],
+      social: ['Outdoor Sitting Area', 'Nature / Green Surroundings'],
+      notIncluded: ['Commercial Hotel Room Service'],
+    },
+    rooms: [
+      { name: 'Bedroom 1', image: '/cover/woodwalk.jpg', details: 'Cottage Room 1' },
+      { name: 'Bedroom 2', image: '/cover/woodwalk.jpg', details: 'Cottage Room 2' },
+      { name: 'Bedroom 3', image: '/cover/woodwalk.jpg', details: 'Cottage Room 3' },
+      { name: 'Bedroom 4', image: '/cover/woodwalk.jpg', details: 'Cottage Room 4' },
+    ],
+    nearbyAttractions: [
+      { name: 'Bhimtal Lake (2 Km)', driveTime: '5 Mins' },
+      { name: 'Sattal (5 Km)', driveTime: '10 Mins' },
+      { name: 'Naukuchiatal (8 Km)', driveTime: '16 Mins' },
+      { name: 'Bell Temple (10 Km)', driveTime: '25 Mins' },
+      { name: 'Kainchi Dham (15 Km)', driveTime: '35 Mins' },
+      { name: 'Nainital Lake (20 Km)', driveTime: '45 Mins' },
+      { name: 'Mukteshwar (35 Km)', driveTime: '60 Mins' },
+    ],
+  },
+  {
+    id: 'pinepearl',
+    name: 'Pine Pearl Stay Bhimtal',
+    category: 'Digital Partner',
+    isPremium: false,
+    location: 'Bhimtal',
+    state: 'Uttarakhand',
+    propertyType: 'Entire Private Villa',
+    guestCapacityText: 'Up to 8 guests',
+    guests: 8,
+    bedrooms: 3,
+    beds: 3,
+    bathrooms: 3,
+    rating: 9.1,
+    ratingLabel: 'Wonderful',
+    reviewsCount: 10,
+    pricePerNight: 9000,
+    originalPricePerNight: 13000,
+    totalPrice: 20000,
+    discountBadge: '',
+    googleMapsUrl: 'https://maps.google.com/?q=Bhimtal,Uttarakhand',
+    coordinates: { x: 45, y: 36, label: '₹9,000', lat: 29.3500, lng: 79.5500 },
+    images: [
+      '/cover/woodwalk.jpg',
+    ],
+    description:
+      'Pine Pearl Stay Bhimtal is a serene private villa surrounded by pine trees, offering spacious rooms and a peaceful hill experience in Bhimtal.',
+    accessibility: {
+      locationDetail: 'Bhimtal, Uttarakhand',
+      checkInProcess: 'Check-in: 1:00 PM / Checkout: 10:00 AM',
+    },
+    highlights: [
+      { icon: '🌲', title: 'Pine Woods Setting', desc: 'Serene surroundings amidst pine trees.' },
+      { icon: '👨‍👩‍👧‍👦', title: 'Family Friendly', desc: 'Comfortable spaces for relaxation.' },
+      { icon: '📍', title: 'Great Location', desc: 'Convenient access to Bhimtal Lake and local spots.' },
+      { icon: '⛰️', title: 'Scenic Mountain Views', desc: 'Enjoy fresh mountain air and natural landscapes.' },
+    ],
+    amenities: {
+      facilities: ['Wi-Fi', 'Private Stay', 'Attached Bathrooms', 'Living Area', 'Dining Space', 'Hot Water / Geysers', 'Parking', 'Caretaker Assistance'],
+      foodAndDrinks: ['Dining Space', 'Tea & Coffee'],
+      general: ['Attached Bathrooms', 'Hot Water / Geysers', 'Caretaker Assistance'],
+      social: ['Living Area', 'Pine Woods Setting'],
+      notIncluded: ['Commercial Hotel Room Service'],
+    },
+    rooms: [
+      { name: 'Bedroom 1', image: '/cover/woodwalk.jpg', details: 'Private bedroom' },
+      { name: 'Bedroom 2', image: '/cover/woodwalk.jpg', details: 'Private bedroom' },
+      { name: 'Bedroom 3', image: '/cover/woodwalk.jpg', details: 'Private bedroom' },
+    ],
+    nearbyAttractions: [
+      { name: 'Bhimtal Lake (2 Km)', driveTime: '5 Mins' },
+      { name: 'Sattal (5 Km)', driveTime: '10 Mins' },
+      { name: 'Kainchi Dham (15 Km)', driveTime: '35 Mins' },
+    ],
+  },
+  {
+    id: 'bhimsarovar',
+    name: 'Bhimsarovar Kumaoni Homestay',
+    category: 'Digital Partner',
+    isPremium: false,
+    location: 'Bhimtal',
+    state: 'Uttarakhand',
+    propertyType: '2-Bedroom Budget-Friendly Homestay',
+    guestCapacityText: 'Up to 6 guests',
+    guests: 6,
+    bedrooms: 2,
+    beds: 3,
+    bathrooms: 2,
+    rating: 9.0,
+    ratingLabel: 'Wonderful',
+    reviewsCount: 281,
+    pricePerNight: 12320,
+    originalPricePerNight: 17500,
+    totalPrice: 29680,
+    discountBadge: '30% off',
+    googleMapsUrl: 'https://maps.google.com/?q=Bhimtal,Uttarakhand',
+    coordinates: { x: 38, y: 32, label: '₹12,320', lat: 29.3500, lng: 79.5530 },
+    images: [
+      '/cover/bhimsarowar.JPG',
+    ],
+    description:
+      'Authentic, budget-friendly Kumaoni homestay retreat designed for peaceful living with 360-degree mountain & valley views near Bhimtal Lake.',
+    accessibility: {
+      locationDetail: 'Ward 9, Chauria, Mehragaon, Bhimtal, District Nainital, Uttarakhand 263136 (2-3 min drive from main market).',
+      accessHike: 'Short, refreshing 3-4 minute uphill walk from the car parking area to reach the property.',
+      parkingDetails: 'Private, secure car parking near main road (accommodates up to 3-4 cars).',
+      checkInProcess: 'Dedicated property manager/assistant available 24/7 for guest reception.',
+    },
+    highlights: [
+      { icon: '❤️', title: 'Loved by couples', desc: 'This property received multiple 10/10 ratings from couples.' },
+      { icon: '☕', title: 'Top rated breakfast', desc: 'Experience delightful mornings with the top rated breakfast.' },
+      { icon: '💎', title: 'Rooftop terrace', desc: 'A rare find - enjoy stunning views from the rooftop terrace.' },
+      { icon: '👍', title: 'Easy to get around', desc: 'Guests love the convenient spot for exploring the area' },
+    ],
+    amenities: {
+      facilities: ['Wi-Fi', 'Television', 'Pets Allowed', 'Work Space', 'Bonfire', 'Table Tennis'],
+      foodAndDrinks: ['In-House Meal Service', 'Local Kumaoni Dining', 'Tea & Coffee Essentials'],
+      general: ['2 Attached Bathrooms with Hot Water', 'Quilts & Pillows', 'Fans & Heaters', '24/7 On-Site Manager'],
+      social: ['Outdoor Garden Swing', 'Dedicated Viewing Terrace', 'Private Bonfire & BBQ'],
+      notIncluded: ['Commercial Hotel Room Service', 'Direct Roadside Parking (3-4 min uphill walk)'],
+    },
+    rooms: [
+      { name: 'Bedroom 1', image: '/cover/bhimsarowar.JPG', details: 'King bed · Attached bath' },
+      { name: 'Bedroom 2', image: '/cover/bhimsarowar.JPG', details: 'King bed · Attached bath' },
+    ],
+    nearbyAttractions: [
+      { name: 'Bhimtal Lake', driveTime: '5 min' },
+      { name: 'Sattal Lake', driveTime: '10 min' },
+      { name: 'Kainchi Dham', driveTime: '35 min' },
+    ],
+  },
+  {
+    id: 'sukoon',
+    name: 'Sukoon Stay Almora',
+    category: 'Digital Partner',
+    isPremium: false,
+    location: 'Almora',
+    state: 'Uttarakhand',
+    propertyType: 'Private Stay (2 BHK)',
+    guestCapacityText: 'Up to 12 guests',
+    guests: 12,
+    bedrooms: 2,
+    beds: 2,
+    bathrooms: 1,
+    rating: 9.8,
+    ratingLabel: 'Exceptional',
+    reviewsCount: 6,
+    pricePerNight: 8000,
+    originalPricePerNight: 12000,
+    totalPrice: 18000,
+    discountBadge: '',
+    googleMapsUrl: 'https://www.google.com/maps?q=29.610933,79.648011',
+    coordinates: { x: 24, y: 62, label: '₹8,000', lat: 29.610933, lng: 79.648011 },
+    images: [
+      '/cover/sukoonstay.jpg',
+    ],
+    description:
+      'Sukoon Stay Almora is a cozy 2BHK private stay designed for couples, small families, and travellers looking for a peaceful mountain escape. The property offers two comfortable bedrooms, a living area, basic kitchen facilities, essential amenities, and a relaxed homely atmosphere. Set in the calm surroundings of Almora, it is ideal for guests who want privacy, comfort, scenic hill surroundings, and a simple stay experience away from crowded tourist areas.',
+    accessibility: {
+      locationDetail: 'Almora, Uttarakhand (29.610933, 79.648011)',
+      checkInProcess: 'Check-in: 1:00 PM / Checkout: 10:00 AM',
+    },
+    highlights: [
+      { icon: '🏡', title: 'Private 2BHK Stay', desc: 'Comfortable and peaceful setup for couples and small families.' },
+      { icon: '⛰️', title: 'Calm Almora Setting', desc: 'Ideal for guests looking to relax away from crowded tourist areas.' },
+      { icon: '🍳', title: 'Homely & Comfortable', desc: 'Living space, basic kitchen facilities and essential stay amenities.' },
+      { icon: '✨', title: 'Perfect for Short Getaways', desc: 'A simple, cozy base for exploring Almora and nearby hill attractions.' },
+    ],
+    amenities: {
+      facilities: ['Wi-Fi', 'Private 2 BHK Stay', 'Attached Bathrooms', 'Dining Area', 'Television', 'Hot Water / Geysers', 'Basic Toiletries', 'Room Heaters', 'Parking', 'Housekeeping', 'Caretaker Assistance', 'Outdoor Sitting Area', 'Nature / Green Surroundings', 'Family-Friendly Stay', 'Group-Friendly Accommodation'],
+      foodAndDrinks: ['Dining Area', 'Basic Kitchen Facilities'],
+      general: ['Attached Bathrooms', 'Hot Water / Geysers', 'Room Heaters', 'Caretaker Assistance'],
+      social: ['Outdoor Sitting Area', 'Nature / Green Surroundings'],
+      notIncluded: ['Commercial Hotel Room Service'],
+    },
+    rooms: [
+      { name: 'Bedroom 1', image: '/cover/sukoonstay.jpg', details: 'Comfortable bedroom' },
+      { name: 'Bedroom 2', image: '/cover/sukoonstay.jpg', details: 'Comfortable bedroom' },
+    ],
+    nearbyAttractions: [
+      { name: 'Almora Mall Road (1 Km)', driveTime: '5 Mins' },
+      { name: 'Kasar Devi Temple (6 Km)', driveTime: '15 Mins' },
+      { name: 'Chitai Golu Devta Temple (12 Km)', driveTime: '25 Mins' },
+      { name: 'Katarmal Sun Temple (10 Km)', driveTime: '30 Mins' },
+      { name: 'Binsar Wildlife Sanctuary (25 Km)', driveTime: '45 Mins' },
+      { name: 'Jageshwar Dham (38 Km)', driveTime: '60 Mins' },
+      { name: 'Kainchi Dham (45 Km)', driveTime: '75 Mins' },
+      { name: 'Mukteshwar (40 Km)', driveTime: '90 Mins' },
+    ],
+  },
+];
+
+async function updateAll() {
+  console.log('Uploading/Updating properties in Firestore...');
+  for (const item of propertiesData) {
+    console.log(`Updating Firestore doc: homestays/${item.id} ...`);
+    await setDoc(doc(db, 'homestays', item.id), item, { merge: true });
+    console.log(`Success: ${item.id}`);
+  }
+  console.log('All Firestore property data updated successfully!');
+}
+
+updateAll().catch((err) => {
+  console.error('Error updating Firestore:', err);
+  process.exit(1);
+});

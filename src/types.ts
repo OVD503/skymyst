@@ -20,6 +20,8 @@ export interface Property {
   originalPricePerNight: number;
   totalPrice: number;
   discountBadge?: string;
+  category?: 'Premium Management' | 'Digital Partner';
+  googleMapsUrl?: string;
   isPremium?: boolean;
   images: string[];
   description: string;

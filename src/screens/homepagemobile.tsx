@@ -5,6 +5,7 @@ import { ScreenPage, Property } from '../types';
 import { DESTINATIONS } from '../data/Data';
 import { UserAvatar } from '../components/UserAvatar';
 import { SkymystLogo } from '../components/SkymystLogo';
+import { CategoryBadge } from '../components/CategoryBadge';
 
 interface HomeScreenMobileProps {
   properties: Property[];
@@ -51,7 +52,13 @@ export const HomeScreenMobile: React.FC<HomeScreenMobileProps> = ({
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedProperty !== 'all') {
+    const matchedProp = properties.find(
+      (p) => p.id === selectedLocation || p.id.toLowerCase() === selectedLocation.toLowerCase()
+    );
+    if (matchedProp) {
+      onSelectProperty(matchedProp.id);
+      onNavigate('property');
+    } else if (selectedProperty !== 'all') {
       onSelectProperty(selectedProperty);
       onNavigate('property');
     } else {
@@ -110,18 +117,27 @@ export const HomeScreenMobile: React.FC<HomeScreenMobileProps> = ({
         <div className="absolute bottom-[24px] left-4 right-4 bg-white rounded-[28px] p-4 flex flex-col justify-between shadow-2xl z-20 border border-stone-100">
           <form onSubmit={handleSearchSubmit} className="w-full flex flex-col gap-3">
             <div className="flex flex-col justify-center w-full divide-y divide-[#CDCDCD]">
-              {/* Item 1: Add Destination */}
+              {/* Item 1: Add Destination / Homestay */}
               <div className="w-full h-[52px] flex items-center px-2">
                 <select
                   value={selectedLocation}
                   onChange={(e) => setSelectedLocation(e.target.value)}
                   className="w-full font-sans text-[16px] text-[#3D3E48] bg-transparent focus:outline-none cursor-pointer appearance-none"
                 >
-                  <option value="Add Destination">Add Destination</option>
-                  <option value="Almora">Almora, Uttarakhand</option>
-                  <option value="Bhimtal">Bhimtal, Uttarakhand</option>
-                  <option value="Bhowali">Bhowali, Uttarakhand</option>
-                  <option value="Mukteshwar">Mukteshwar, Uttarakhand</option>
+                  <option value="Add Destination">Add Destination / Homestay</option>
+                  <optgroup label="Destinations">
+                    <option value="Bhowali">Bhowali, Uttarakhand</option>
+                    <option value="Bhimtal">Bhimtal, Uttarakhand</option>
+                    <option value="Almora">Almora, Uttarakhand</option>
+                    <option value="Mukteshwar">Mukteshwar, Uttarakhand</option>
+                  </optgroup>
+                  <optgroup label="All Homestays">
+                    {properties.map((p) => (
+                      <option key={p.id} value={p.id}>
+                        {p.name} — {p.location}
+                      </option>
+                    ))}
+                  </optgroup>
                 </select>
               </div>
 
@@ -227,9 +243,14 @@ export const HomeScreenMobile: React.FC<HomeScreenMobileProps> = ({
               {/* Product Image Frame */}
               <div className="relative w-full h-[152px] bg-[#E4CCCC] rounded-[16px] overflow-hidden">
                 <img src={prop.images[0]} alt={prop.name} className="w-full h-full object-cover" />
-                <div className="absolute top-3 right-3 bg-[#007C4D] text-white rounded-[4px] px-2 py-1 text-[12px] font-sans font-medium shadow-xs">
-                  30% off
+                <div className="absolute top-2.5 left-2.5 z-10">
+                  <CategoryBadge category={prop.category} isPremium={prop.isPremium} />
                 </div>
+                {prop.discountBadge && (
+                  <div className="absolute top-3 right-3 bg-[#007C4D] text-white rounded-[4px] px-2 py-1 text-[12px] font-sans font-medium shadow-xs">
+                    {prop.discountBadge}
+                  </div>
+                )}
               </div>
 
               {/* Product Details */}
