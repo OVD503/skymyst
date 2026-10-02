@@ -23,6 +23,7 @@ export interface Property {
   category?: 'Premium Management' | 'Digital Partner';
   googleMapsUrl?: string;
   isPremium?: boolean;
+  isActive?: boolean;
   images: string[];
   description: string;
   coordinates: { x: number; y: number; label: string; lat?: number; lng?: number };
@@ -58,7 +59,9 @@ export interface Property {
     driveTime: string;
   }[];
   houseRulesList?: string[];
+  safetyAndProperty?: string[];
   servicesAndDining?: string[];
+
   amenities: {
     facilities: string[];
     foodAndDrinks: string[];
@@ -99,3 +102,23 @@ export interface FAQItem {
   question: string;
   answer: string;
 }
+
+export interface Review {
+  id: string;
+  propertyId: string;
+  authorName: string;
+  authorAvatar?: string;
+  rating: number;
+  date: string;
+  comment: string;
+  categories?: {
+    cleanliness?: number;
+    accuracy?: number;
+    communication?: number;
+    location?: number;
+    checkIn?: number;
+    value?: number;
+  };
+  createdAt?: any;
+}
+

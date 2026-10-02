@@ -20,10 +20,13 @@ import {
   Heart,
   Coffee,
   MapPin,
+  Star,
+  User,
 } from 'lucide-react';
 import { Property, ScreenPage } from '../types';
 import { SkymystLogo } from '../components/SkymystLogo';
 import { CategoryBadge } from '../components/CategoryBadge';
+import { useReviews } from '../hooks/useReviews';
 
 interface PropertyScreenProps {
   properties: Property[];
@@ -43,8 +46,12 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
   const property: Property =
     properties.find((p) => p.id === propertyId) || properties[0];
 
+  const { reviews } = useReviews(property.id);
+
   const [activeTab, setActiveTab] = useState<'overview' | 'amenities' | 'rooms' | 'policies'>('overview');
+  const [showAllReviews, setShowAllReviews] = useState(false);
   const [expandedAmenities, setExpandedAmenities] = useState<Record<string, boolean>>({
+
     facilities: true,
     food: false,
     general: false,
@@ -481,9 +488,9 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                 {(property.rooms && property.rooms.length > 0
                   ? property.rooms
                   : [
-                      { name: 'Bedroom 1', image: property.images?.[0] || '/cover/bhimsarowar.JPG', details: '' },
-                      { name: 'Bedroom 2', image: property.images?.[1] || property.images?.[0], details: '' },
-                    ]
+                    { name: 'Bedroom 1', image: property.images?.[0] || '/cover/bhimsarowar.JPG', details: '' },
+                    { name: 'Bedroom 2', image: property.images?.[1] || property.images?.[0], details: '' },
+                  ]
                 ).map((room, idx) => (
                   <div
                     key={`${room.name}-${idx}`}
@@ -502,16 +509,146 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                       <h4 className="font-sans text-[14px] sm:text-[16px] font-medium leading-[20px] sm:leading-[24px] tracking-[0.02em] text-[#232323] w-full sm:w-[216px] max-w-full">
                         {room.name}
                       </h4>
-                      {room.details && (
-                        <p className="font-sans text-[12px] font-normal leading-[16px] text-[#7D7C7E] truncate">
-                          {room.details}
-                        </p>
-                      )}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
+
+            {/* Reviews Section */}
+            <div id="property-reviews-section" className="border-t border-[#E7E0CE] pt-8 space-y-8">
+              {/* Header: title + overall score */}
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <h3 className="font-sans text-[22px] font-medium leading-[100%] tracking-[0.02em] text-[#000000]">
+                  Reviews
+                </h3>
+                <div className="flex items-center gap-3">
+                  <span className="bg-[#00704A] text-white font-bold text-sm px-3 py-1 rounded-lg">
+                    {reviews.length > 0
+                      ? (reviews.reduce((acc, r) => acc + (r.rating || 5), 0) / reviews.length).toFixed(1)
+                      : property.rating.toFixed(1)}
+                  </span>
+                  <div className="flex flex-col">
+                    <span className="font-sans text-[14px] font-semibold text-[#232323] leading-none">
+                      {reviews.length > 0 ? (reviews.reduce((acc, r) => acc + (r.rating || 5), 0) / reviews.length >= 4.5 ? 'Exceptional' : 'Wonderful') : property.ratingLabel}
+                    </span>
+                    <span className="font-sans text-[12px] text-[#7D7C7E] mt-0.5">
+                      {reviews.length > 0 ? `${reviews.length} reviews` : `${property.reviewsCount} reviews`}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Rating Breakdown Bar */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-3 max-w-[560px]">
+                {[
+                  { label: 'Cleanliness', score: reviews.length ? (reviews.reduce((a, r) => a + (r.categories?.cleanliness || r.rating || 4.9), 0) / reviews.length).toFixed(1) : 4.9 },
+                  { label: 'Accuracy', score: reviews.length ? (reviews.reduce((a, r) => a + (r.categories?.accuracy || r.rating || 4.8), 0) / reviews.length).toFixed(1) : 4.8 },
+                  { label: 'Communication', score: reviews.length ? (reviews.reduce((a, r) => a + (r.categories?.communication || r.rating || 5.0), 0) / reviews.length).toFixed(1) : 5.0 },
+                  { label: 'Location', score: reviews.length ? (reviews.reduce((a, r) => a + (r.categories?.location || r.rating || 4.9), 0) / reviews.length).toFixed(1) : 4.9 },
+                  { label: 'Check-in', score: reviews.length ? (reviews.reduce((a, r) => a + (r.categories?.checkIn || r.rating || 4.7), 0) / reviews.length).toFixed(1) : 4.7 },
+                  { label: 'Value', score: reviews.length ? (reviews.reduce((a, r) => a + (r.categories?.value || r.rating || 4.8), 0) / reviews.length).toFixed(1) : 4.8 },
+                ].map(({ label, score }) => (
+                  <div key={label} className="flex flex-col gap-1.5">
+                    <span className="font-sans text-[13px] text-[#4E4E4E] font-medium">{label}</span>
+                    <div className="flex items-center gap-2">
+                      <div className="flex-1 h-1.5 bg-[#E7E0CE] rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-[#00704A] rounded-full"
+                          style={{ width: `${(Number(score) / 5) * 100}%` }}
+                        />
+                      </div>
+                      <span className="font-sans text-[12px] text-[#232323] font-semibold shrink-0">{score}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Reviews List or Empty State */}
+              {reviews.length === 0 ? (
+                /* Empty State — No Reviews Yet */
+                <div className="flex flex-col items-center justify-center py-12 px-6 bg-[#F9F8F4] rounded-[24px] border border-[#E7E0CE] text-center max-w-[560px]">
+                  <div className="flex items-center justify-center gap-1 mb-5">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg
+                        key={star}
+                        className={`w-7 h-7 ${star <= 4 ? 'text-[#00704A]' : 'text-[#D2F1E4]'}`}
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+
+                  <h4 className="font-serif text-[24px] font-medium text-[#232323] leading-[110%] mb-3">
+                    No Reviews Yet
+                  </h4>
+
+                  <p className="font-sans text-[15px] text-[#7D7C7E] leading-[22px] max-w-[340px]">
+                    Be among the first to experience{' '}
+                    <span className="text-[#232323] font-medium">{property.name}</span> and share your
+                    story. Every great journey starts with a single step.
+                  </p>
+
+                  <div className="flex items-center gap-3 mt-6">
+                    <div className="h-px w-14 bg-[#D2F1E4]" />
+                    <span className="text-[#00704A] text-[18px] select-none">✦</span>
+                    <div className="h-px w-14 bg-[#D2F1E4]" />
+                  </div>
+                </div>
+              ) : (
+                /* Reviews List — Clean Normal Layout */
+                <div className="space-y-6 max-w-[900px]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                    {(showAllReviews ? reviews : reviews.slice(0, 4)).map((rev) => (
+                      <div key={rev.id} className="space-y-3 border-b border-[#F0EBE1] pb-6 last:border-b-0 md:border-b-0 md:pb-0">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            {rev.authorAvatar ? (
+                              <img
+                                src={rev.authorAvatar}
+                                alt={rev.authorName}
+                                className="w-10 h-10 rounded-full object-cover"
+                              />
+                            ) : (
+                              <div className="w-10 h-10 rounded-full bg-[#00704A] text-white flex items-center justify-center font-bold text-sm select-none">
+                                {rev.authorName ? rev.authorName.charAt(0).toUpperCase() : 'G'}
+                              </div>
+                            )}
+                            <div>
+                              <h5 className="font-sans font-semibold text-[15px] text-[#232323]">
+                                {rev.authorName}
+                              </h5>
+                              <span className="text-[13px] text-[#7D7C7E]">{rev.date || 'Recent Guest'}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1 bg-[#EAF6F0] text-[#00704A] px-2.5 py-1 rounded-full text-xs font-bold">
+                            <Star className="w-3.5 h-3.5 fill-[#00704A]" />
+                            <span>{Number(rev.rating).toFixed(1)}</span>
+                          </div>
+                        </div>
+                        <p className="font-sans text-[15px] leading-[24px] text-[#232323]">
+                          {rev.comment}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {reviews.length > 4 && (
+                    <div className="pt-4">
+                      <button
+                        onClick={() => setShowAllReviews(!showAllReviews)}
+                        className="px-6 py-2.5 rounded-full border border-[#232323] text-[#232323] font-sans font-medium text-[14px] hover:bg-[#232323] hover:text-white transition cursor-pointer"
+                      >
+                        {showAllReviews ? 'Show Less' : `Show all ${reviews.length} reviews`}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
 
             {/* Policies Section */}
             <div id="property-policies-section" className="border-t border-[#E7E0CE] pt-8 space-y-[32px] w-[680px] max-w-full">
@@ -533,7 +670,7 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                         House Rules
                       </h4>
                       <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0.02em] text-[#4E4E4E]">
-                        Check-in: 1:00 pm – 9:00 pm, Checkout before 10:00 am<br />
+                        Check-in: 1:00 pm, Checkout before 10:00 am<br />
                         12 guests maximum
                       </p>
                     </div>
@@ -558,8 +695,9 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                   <div className="pt-[24px] pb-[24px] space-y-1.5 font-sans text-[14px] text-stone-600 font-normal">
                     {(property.houseRulesList?.length
                       ? property.houseRulesList
-                      : ['Check-in: 1:00 pm - 9:00 pm, Checkout before 10:00 am', '12 guests maximum', 'Quiet hours after 10:00 pm', 'Respect local community & property guidelines']
+                      : ['Check-in: 1:00 pm, Checkout before 10:00 am', '12 guests maximum', 'Quiet hours after 10:00 pm', 'Respect local community & property guidelines']
                     ).map((rule, idx) => (
+
                       <p key={`rule-${idx}`}>• {rule}</p>
                     ))}
                   </div>
@@ -660,14 +798,15 @@ export const PropertyScreen: React.FC<PropertyScreenProps> = ({
                   </button>
                 </div>
 
-                {expandedPolicies.safety && (
+                {expandedPolicies.safety && property.safetyAndProperty && property.safetyAndProperty.length > 0 && (
                   <div className="pt-[24px] pb-[24px] space-y-[16px] font-sans text-[14px] font-normal leading-normal tracking-[0.02em] text-[#7D7C7E] max-w-[616px]">
-                    <p>• Carbon monoxide alarm installed on premises.</p>
-                    <p>• Smoke alarm installed in main hallway and kitchen area.</p>
-                    <p>• First aid kit and emergency contact information available on site.</p>
-                    <p>• Security camera present near main entrance gate (exterior only).</p>
+                    {property.safetyAndProperty.map((item, idx) => (
+                      <p key={`safety-${idx}`}>• {item}</p>
+                    ))}
                   </div>
                 )}
+
+
               </div>
             </div>
           </div>

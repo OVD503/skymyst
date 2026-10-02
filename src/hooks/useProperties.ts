@@ -6,7 +6,7 @@ import { PROPERTIES as FALLBACK_PROPERTIES } from '../data/Data';
 
 /**
  * Real-time hook that subscribes to the Firestore `homestays` collection.
- * Merges Firestore documents with local property data.
+ * Admin Panel edits/additions/deletions in Firestore take single-source-of-truth precedence.
  */
 export function useProperties() {
   const fixImage = (img: string) => {
@@ -17,28 +17,10 @@ export function useProperties() {
     return img;
   };
 
-  const normalizeStr = (str: string) =>
-    (str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-
-  const findFallback = (docId: string, itemDoc: Property): Property | undefined => {
-    const cleanDocId = normalizeStr(docId);
-    const cleanDocName = normalizeStr(itemDoc.name || '');
-
-    return FALLBACK_PROPERTIES.find((p) => {
-      const cleanPId = normalizeStr(p.id);
-      const cleanPName = normalizeStr(p.name);
-
-      if (p.id === docId || cleanPId === cleanDocId) return true;
-      if (cleanDocId.includes(cleanPId) || cleanPId.includes(cleanDocId)) return true;
-      if (cleanDocName && (cleanPName.includes(cleanDocName) || cleanDocName.includes(cleanPId))) return true;
-      return false;
-    });
-  };
-
   const [properties, setProperties] = useState<Property[]>(() =>
     FALLBACK_PROPERTIES.map((p) => ({
       ...p,
-      name: p.name,
+      isActive: p.isActive !== undefined ? p.isActive : true,
       images: p.images ? p.images.map(fixImage) : p.images,
     }))
   );
@@ -54,60 +36,35 @@ export function useProperties() {
     const unsubscribe = onSnapshot(
       collection(db, 'homestays'),
       (snapshot) => {
-        const firestoreDocs = snapshot.docs.map((doc) => {
-          const item = doc.data() as Property;
-          const fallback = findFallback(doc.id, item);
-          const images = item.images ? item.images.map(fixImage) : item.images;
+        if (!snapshot.empty) {
+          const firestoreDocs = snapshot.docs.map((docSnap) => {
+            const item = docSnap.data() as Property;
+            const fallback = FALLBACK_PROPERTIES.find((p) => p.id === docSnap.id || p.id === item.id);
+            
+            // Fix image URLs if needed
+            const images = item.images ? item.images.map(fixImage) : (fallback?.images || []);
 
-          return {
-            ...item,
-            ...(fallback ? fallback : {}),
-            id: fallback?.id || doc.id,
-            name: fallback?.name || item.name || doc.id,
-            category: fallback?.category || item.category,
-            isPremium: fallback?.isPremium !== undefined ? fallback.isPremium : item.isPremium,
-            images: images && images.length ? images : fallback?.images,
-            googleMapsUrl: fallback?.googleMapsUrl || item.googleMapsUrl,
-            coordinates: fallback?.coordinates || item.coordinates,
-            nearbyAttractions:
-              fallback?.nearbyAttractions && fallback.nearbyAttractions.length > 0
-                ? fallback.nearbyAttractions
-                : item.nearbyAttractions,
-            rooms:
-              fallback?.rooms && fallback.rooms.length > 0
-                ? fallback.rooms
-                : item.rooms,
-          };
-        }) as Property[];
+            // Merge fallback defaults first, then OVERWRITE with Firestore item data so Admin edits take effect
+            const merged: Property = {
+              ...(fallback || {}),
+              ...item,
+              id: item.id || docSnap.id,
+              name: item.name || fallback?.name || docSnap.id,
+              images: images && images.length ? images : (fallback?.images || []),
+              isActive: item.isActive !== undefined ? item.isActive : (fallback?.isActive !== undefined ? fallback.isActive : true),
+            };
 
-        // Combine Firestore docs with any local FALLBACK_PROPERTIES missing in Firestore
-        const matchedFallbackIds = new Set(
-          firestoreDocs.map((d) => normalizeStr(d.id))
-        );
+            return merged;
+          });
 
-        const missingFallbacks = FALLBACK_PROPERTIES.filter(
-          (fb) => !matchedFallbackIds.has(normalizeStr(fb.id))
-        ).map((p) => ({
-          ...p,
-          name: p.name,
-          images: p.images ? p.images.map(fixImage) : p.images,
-        }));
+          // Show only active properties on the Main Website
+          const activeProperties = firestoreDocs.filter((p) => p.isActive !== false);
 
-        const mergedAll = [...firestoreDocs, ...missingFallbacks];
-
-        // Filter out duplicate IDs if any
-        const uniqueProperties: Property[] = [];
-        const seenIds = new Set<string>();
-        for (const prop of mergedAll) {
-          const key = normalizeStr(prop.id);
-          if (!seenIds.has(key)) {
-            seenIds.add(key);
-            uniqueProperties.push(prop);
+          if (activeProperties.length > 0) {
+            setProperties(activeProperties);
+          } else {
+            setProperties(firestoreDocs); // Fallback to all if none active
           }
-        }
-
-        if (uniqueProperties.length > 0) {
-          setProperties(uniqueProperties);
         }
         setLoading(false);
       },
@@ -123,3 +80,4 @@ export function useProperties() {
 
   return { properties, loading, error };
 }
+

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Property, ScreenPage } from '../types';
 import { CategoryBadge } from '../components/CategoryBadge';
+import { MapPin, ExternalLink } from 'lucide-react';
 
 interface SearchScreenProps {
   properties: Property[];
@@ -13,190 +14,168 @@ export const SearchScreen: React.FC<SearchScreenProps> = ({
   onNavigate,
   onSelectProperty,
 }) => {
-  const [selectedPropertyId, setSelectedPropertyId] = useState<string>('bhimsarovar');
+  const [selectedPropertyId, setSelectedPropertyId] = useState<string>(
+    properties[0]?.id || 'bhimsarovar'
+  );
+
+  const selectedProp = properties.find((p) => p.id === selectedPropertyId) || properties[0];
+
+  const getMapEmbedUrl = (prop?: Property) => {
+    if (prop) {
+      const locationQuery = `${prop.name}, ${prop.location || 'Bhimtal'}, ${prop.state || 'Uttarakhand'}`;
+      return `https://maps.google.com/maps?q=${encodeURIComponent(locationQuery)}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+    }
+    return `https://maps.google.com/maps?q=${encodeURIComponent('Bhimtal, Uttarakhand')}&t=&z=12&ie=UTF8&iwloc=&output=embed`;
+  };
 
   return (
     <div className="w-full bg-white font-sans antialiased text-stone-800 pt-4 sm:pt-6 pb-16 sm:pb-24">
       {/* 1. Main Page Title Header */}
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8 pt-6 sm:pt-10 pb-8 sm:pb-12 text-center">
         <h1 className="!font-sans font-medium text-[24px] sm:text-[32px] leading-[100%] tracking-normal text-black text-center">
-          Over 1,000 homes within map area
+          {properties.length} homestays within map area
         </h1>
       </div>
 
-      {/* 2. Main Split Content: Property Cards List + Interactive Map */}
+      {/* 2. Main Split Content: Property Cards List + Real Interactive Map */}
       <div className="max-w-[1440px] mx-auto px-5 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           {/* Left Column: Property Listings (6 cols) */}
           <div className="lg:col-span-6 space-y-8 sm:space-y-10">
-            {properties.map((prop) => (
-              <div
-                key={prop.id}
-                id={`property-listing-${prop.id}`}
-                onClick={() => {
-                  setSelectedPropertyId(prop.id);
-                  onSelectProperty(prop.id);
-                  onNavigate('property');
-                }}
-                className="group cursor-pointer flex flex-col sm:flex-row gap-5 items-start transition"
-              >
-                {/* Property Image with rounded corners matching Figma specs */}
-                <div className="relative w-full sm:w-[328px] h-[212px] shrink-0 rounded-[32px] overflow-hidden bg-[#E4CCCC] shadow-xs">
-                  <img
-                    src={prop.images[0]}
-                    alt={prop.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute top-3 left-3 z-10">
-                    <CategoryBadge category={prop.category} isPremium={prop.isPremium} />
-                  </div>
-                </div>
-
-                {/* Property Details */}
-                <div className="w-full sm:w-[328px] h-auto sm:h-[212px] flex flex-col justify-between py-[8px]">
-                  <div>
-                    <h3 className="!font-sans font-medium text-[18px] leading-[100%] tracking-normal text-black group-hover:text-[#00704A] transition">
-                      {prop.name}
-                    </h3>
-                    <p className="!font-sans font-normal text-[14px] leading-[100%] tracking-[0.02em] text-[#4E4E4E] mt-1 whitespace-nowrap truncate">
-                      {prop.guests} guests · {prop.bedrooms} bedrooms · {prop.beds} beds · {prop.bathrooms} bathrooms
-                    </p>
-
-                    {/* Rating Badge */}
-                    <div className="flex items-center space-x-1.5 mt-2">
-                      <span className="bg-[#00704A] text-white font-bold text-caption-bold px-1.5 py-0.5 rounded-md">
-                        {prop.rating.toFixed(1)}
-                      </span>
-                      <span className="text-caption-bold text-stone-900">Wonderful</span>
-                      <span className="text-caption-light text-stone-500">({prop.reviewsCount} reviews)</span>
+            {properties.map((prop) => {
+              const isSelected = prop.id === selectedPropertyId;
+              return (
+                <div
+                  key={prop.id}
+                  id={`property-listing-${prop.id}`}
+                  onClick={() => {
+                    setSelectedPropertyId(prop.id);
+                    onSelectProperty(prop.id);
+                  }}
+                  className={`group cursor-pointer flex flex-col sm:flex-row gap-5 items-start p-3 rounded-[32px] transition ${
+                    isSelected ? 'bg-emerald-50/60 ring-2 ring-[#00704A]' : 'hover:bg-stone-50'
+                  }`}
+                >
+                  {/* Property Image */}
+                  <div className="relative w-full sm:w-[250px] md:w-[280px] h-[212px] shrink-0 rounded-[28px] overflow-hidden bg-[#E4CCCC] shadow-xs">
+                    <img
+                      src={prop.images[0]}
+                      alt={prop.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute top-3 left-3 z-10">
+                      <CategoryBadge category={prop.category} isPremium={prop.isPremium} />
                     </div>
                   </div>
 
-                  {/* Pricing */}
-                  <div className="pt-2">
-                    <div className="flex items-baseline space-x-2">
-                      <span className="text-body-1 font-bold text-stone-900 font-sans">
-                        ₹{prop.pricePerNight.toLocaleString()}
-                      </span>
-                      {prop.originalPricePerNight && (
-                        <span className="!font-sans font-medium text-[14px] leading-[100%] tracking-normal text-[#4E4E4E] line-through">
-                          ₹{prop.originalPricePerNight.toLocaleString()}
+                  {/* Property Details */}
+                  <div className="w-full flex-1 min-w-0 h-auto sm:h-[212px] flex flex-col justify-between py-[4px] pr-1">
+                    <div>
+                      <h3 className="!font-sans font-medium text-[17px] sm:text-[18px] leading-[125%] tracking-normal text-black group-hover:text-[#00704A] transition break-words">
+                        {prop.name}
+                      </h3>
+                      <p className="!font-sans font-normal text-[13px] leading-[140%] tracking-[0.02em] text-[#4E4E4E] mt-1.5 break-words">
+                        {prop.guests} guests · {prop.bedrooms} bedrooms · {prop.beds} beds · {prop.bathrooms} bathrooms
+                      </p>
+
+                      {/* Rating Badge */}
+                      <div className="flex flex-wrap items-center gap-1.5 mt-2">
+                        <span className="bg-[#00704A] text-white font-bold text-caption-bold px-1.5 py-0.5 rounded-md text-xs shrink-0">
+                          {prop.rating ? prop.rating.toFixed(1) : '5.0'}
                         </span>
-                      )}
-                      <span className="text-caption-light text-stone-500">per night</span>
+                        <span className="text-caption-bold text-stone-900 text-xs">Wonderful</span>
+                        <span className="text-caption-light text-stone-500 text-xs">({prop.reviewsCount || 0} reviews)</span>
+                      </div>
                     </div>
-                    <p className="!font-sans font-normal text-[12px] leading-[130%] tracking-[0.02em] text-[#4E4E4E] mt-1">
-                      <span className="underline underline-offset-2 decoration-[#4E4E4E]">
-                        ₹{prop.totalPrice.toLocaleString()} total
-                      </span>
-                      <br />
-                      includes taxes & fees
-                    </p>
+
+                    {/* Pricing & Action */}
+                    <div className="pt-2">
+                      <div className="flex flex-wrap items-baseline gap-x-2">
+                        <span className="text-body-1 font-bold text-stone-900 font-sans">
+                          ₹{prop.pricePerNight?.toLocaleString()}
+                        </span>
+                        {prop.originalPricePerNight && (
+                          <span className="!font-sans font-medium text-[14px] leading-[100%] tracking-normal text-[#4E4E4E] line-through">
+                            ₹{prop.originalPricePerNight.toLocaleString()}
+                          </span>
+                        )}
+                        <span className="text-caption-light text-stone-500 text-xs">per night</span>
+                      </div>
+                      <div className="mt-2">
+                        <p className="!font-sans font-normal text-[12px] leading-[130%] tracking-[0.02em] text-[#4E4E4E]">
+                          <span className="underline underline-offset-2 decoration-[#4E4E4E]">
+                            ₹{prop.totalPrice?.toLocaleString()} total
+                          </span>
+                        </p>
+                      </div>
+
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
-          {/* Right Column: Topographic Interactive Map View (6 cols) */}
-          <div className="lg:col-span-6 sticky top-24 w-full max-w-[680px] h-[550px] sm:h-[724px] rounded-[48px] overflow-hidden border border-stone-200/80 shadow-sm relative bg-[#DDF0E6]">
-            {/* Map Topography Background SVG */}
-            <div className="absolute inset-0 z-0">
-              <svg
-                width="100%"
-                height="100%"
-                viewBox="0 0 600 700"
-                preserveAspectRatio="none"
-                className="w-full h-full"
-              >
-                {/* Landmass background */}
-                <rect width="600" height="700" fill="#E2F4EB" />
+          {/* Right Column: Real Google Map View (6 cols) */}
+          <div className="lg:col-span-6 sticky top-24 w-full max-w-[680px] h-[550px] sm:h-[724px] rounded-[36px] overflow-hidden border border-stone-200 shadow-lg relative bg-stone-100 flex flex-col">
+            {/* Real Google Maps Embed iFrame */}
+            <iframe
+              title="Real Location Map"
+              width="100%"
+              height="100%"
+              style={{ border: 0, width: '100%', height: '100%' }}
+              loading="lazy"
+              allowFullScreen
+              src={getMapEmbedUrl(selectedProp)}
+            />
 
-                {/* Light green forest patches */}
-                <path d="M0,0 Q200,120 380,80 T600,150 L600,0 Z" fill="#CBEADA" opacity="0.9" />
-                <path d="M150,280 Q380,200 550,290 L600,700 L250,700 Z" fill="#D4EFE1" opacity="0.8" />
-                <path d="M0,450 Q180,380 300,490 L120,700 L0,700 Z" fill="#CEEAD8" opacity="0.75" />
+            {/* Floating Info Overlay Bar for Selected Real Property */}
+            {selectedProp && (
+              <div className="absolute bottom-4 left-4 right-4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-stone-200 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-3 overflow-hidden">
+                  <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-stone-200 border border-stone-200">
+                    <img
+                      src={selectedProp.images?.[0]}
+                      alt={selectedProp.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <h4 className="font-sans font-semibold text-stone-900 text-sm truncate">
+                      {selectedProp.name}
+                    </h4>
+                    <p className="font-sans text-xs text-stone-600 flex items-center gap-1 mt-0.5 truncate">
+                      <MapPin size={12} className="text-[#00704A] shrink-0" />
+                      {selectedProp.location}, {selectedProp.state}
+                    </p>
+                  </div>
+                </div>
 
-                {/* Roads / Highways */}
-                <path d="M0,220 Q220,200 380,340 T600,430" stroke="#FFFFFF" strokeWidth="6" fill="none" />
-                <path d="M0,220 Q220,200 380,340 T600,430" stroke="#E1CEA1" strokeWidth="3" fill="none" />
-
-                <path d="M300,0 Q340,240 260,450 T380,700" stroke="#FFFFFF" strokeWidth="5" fill="none" />
-                <path d="M300,0 Q340,240 260,450 T380,700" stroke="#E1CEA1" strokeWidth="2.5" fill="none" />
-
-                {/* Secondary roads */}
-                <path d="M120,60 Q180,220 260,320 T200,550" stroke="#FFFFFF" strokeWidth="3.5" strokeDasharray="5 3" fill="none" />
-
-                {/* Road Shields & Labels */}
-                <rect x="420" y="220" width="18" height="14" rx="3" fill="#60B075" />
-                <text x="425" y="231" fill="#FFF" fontSize="9" fontWeight="700">6</text>
-
-                <rect x="190" y="110" width="22" height="14" rx="3" fill="#FFFFFF" stroke="#666" strokeWidth="1" />
-                <text x="194" y="121" fill="#333" fontSize="9" fontWeight="700">20</text>
-
-                <rect x="540" y="320" width="22" height="14" rx="3" fill="#60B075" />
-                <text x="544" y="331" fill="#FFF" fontSize="9" fontWeight="700">55</text>
-
-                <text x="440" y="170" fill="#7A8E82" fontSize="10" fontWeight="600">Villa Dolores</text>
-                <text x="365" y="490" fill="#7A8E82" fontSize="10" fontWeight="600">Tilisarao</text>
-                <text x="290" y="295" fill="#7A8E82" fontSize="10" fontWeight="600">Quines</text>
-                <text x="240" y="340" fill="#7A8E82" fontSize="10" fontWeight="600">Luján</text>
-              </svg>
-            </div>
-
-            {/* Price Pins floating on map matching reference screenshot */}
-            <div className="absolute top-[26%] left-[30%] z-10">
-              <button
-                onClick={() => {
-                  setSelectedPropertyId('bhimsarovar');
-                  onSelectProperty('bhimsarovar');
-                  onNavigate('property');
-                }}
-                className="bg-white hover:bg-stone-50 text-stone-900 font-bold text-xs sm:text-sm px-4 py-2 rounded-full shadow-md transition active:scale-95 border border-stone-200"
-              >
-                ₹12,320
-              </button>
-            </div>
-
-            <div className="absolute top-[28%] right-[25%] z-10">
-              <button
-                onClick={() => {
-                  setSelectedPropertyId('sunlight');
-                  onSelectProperty('sunlight');
-                  onNavigate('property');
-                }}
-                className="bg-white hover:bg-stone-50 text-stone-900 font-bold text-xs sm:text-sm px-4 py-2 rounded-full shadow-md transition active:scale-95 border border-stone-200"
-              >
-                ₹16,290
-              </button>
-            </div>
-
-            <div className="absolute top-[44%] left-[22%] z-10">
-              <button
-                onClick={() => {
-                  setSelectedPropertyId('sukoon');
-                  onSelectProperty('sukoon');
-                  onNavigate('property');
-                }}
-                className="bg-[#004030] text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-full shadow-md transition active:scale-95"
-              >
-                ₹11,020
-              </button>
-            </div>
-
-            <div className="absolute top-[43%] left-[44%] z-10">
-              <button
-                onClick={() => {
-                  setSelectedPropertyId('bhimsarovar');
-                  onSelectProperty('bhimsarovar');
-                  onNavigate('property');
-                }}
-                className="bg-white hover:bg-stone-50 text-stone-900 font-bold text-xs sm:text-sm px-4 py-2 rounded-full shadow-md transition active:scale-95 border border-stone-200"
-              >
-                ₹17,990
-              </button>
-            </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    onClick={() => {
+                      onSelectProperty(selectedProp.id);
+                      onNavigate('property');
+                    }}
+                    className="px-4 py-2 bg-[#00704A] text-white text-xs font-bold rounded-xl hover:bg-[#00583a] transition shadow-sm"
+                  >
+                    View Homestay
+                  </button>
+                  {selectedProp.googleMapsUrl && (
+                    <a
+                      href={selectedProp.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 bg-stone-100 text-stone-700 rounded-xl hover:bg-stone-200 transition"
+                      title="Open in Google Maps"
+                    >
+                      <ExternalLink size={16} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
