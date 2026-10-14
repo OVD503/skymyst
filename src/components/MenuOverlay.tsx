@@ -88,6 +88,17 @@ export const MenuOverlay: React.FC<MenuOverlayProps> = ({
             >
               About Us
             </button>
+
+            <button
+              id="menu-link-see-all-properties"
+              onClick={() => {
+                onNavigate('search');
+                onClose();
+              }}
+              className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-normal text-white hover:text-emerald-300 transition underline underline-offset-8 decoration-1 cursor-pointer"
+            >
+              See All Properties
+            </button>
           </div>
 
           {/* 2. Middle Column: GDPR info text in lowercase (Shown after links on mobile via order-3 md:order-2) */}

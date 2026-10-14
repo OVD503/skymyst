@@ -17,7 +17,14 @@ import { RefundPolicy } from './screens/RefundPolicy';
 import { useProperties } from './hooks/useProperties';
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState<ScreenPage>('home');
+  // Read initial page from URL hash (e.g. #about → 'about')
+  const getPageFromHash = (): ScreenPage => {
+    const hash = window.location.hash.replace('#', '') as ScreenPage;
+    const validPages: ScreenPage[] = ['home', 'property', 'partner', 'about', 'search', 'terms', 'privacy', 'refund'];
+    return validPages.includes(hash) ? hash : 'home';
+  };
+
+  const [currentPage, setCurrentPage] = useState<ScreenPage>(getPageFromHash);
   const [selectedPropertyId, setSelectedPropertyId] = useState<string>('bhimsarovar');
   const { properties } = useProperties();
 
@@ -37,7 +44,20 @@ export function App() {
 
   const handleNavigate = (page: ScreenPage) => {
     setCurrentPage(page);
+    // Push to browser history so back button works
+    const hash = page === 'home' ? '' : `#${page}`;
+    window.history.pushState({ page }, '', hash || window.location.pathname);
   };
+
+  // Listen for browser back/forward button
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      const page = event.state?.page as ScreenPage | undefined;
+      setCurrentPage(page ?? getPageFromHash());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF9F5] text-stone-900 selection:bg-[#004030] selection:text-white">

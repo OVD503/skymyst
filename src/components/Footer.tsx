@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronRight, Instagram, Facebook, Check } from 'lucide-react';
 import { ScreenPage } from '../types';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 
 interface FooterProps {
   onNavigate: (page: ScreenPage) => void;
@@ -10,13 +12,42 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) {
+    const trimmedEmail = email.trim();
+    if (!trimmedEmail) return;
+
+    setLoading(true);
+    setError('');
+
+    try {
+      if (!db) {
+        setError('Database not connected. Check Firebase config.');
+        return;
+      }
+
+      // Save email to Firestore
+      const subsRef = collection(db, 'newsletter_subscribers');
+      await addDoc(subsRef, {
+        email: trimmedEmail,
+        subscribedAt: serverTimestamp(),
+      });
+
       setSubscribed(true);
-      setTimeout(() => setSubscribed(false), 4000);
       setEmail('');
+      setTimeout(() => setSubscribed(false), 4000);
+    } catch (err: any) {
+      console.error('Newsletter subscribe error:', err?.code, err?.message, err);
+      if (err?.code === 'permission-denied') {
+        setError('Permission denied — check Firestore rules.');
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -91,13 +122,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   </div>
                   <button
                     type="submit"
-                    className="w-[105px] h-[48px] rounded-[104px] px-[24px] py-[16px] gap-[8px] bg-[#042E23] hover:bg-[#022018] text-white transition shrink-0 cursor-pointer shadow-md active:scale-95 flex flex-row items-center justify-center"
+                    disabled={loading}
+                    className="w-[105px] h-[48px] rounded-[104px] px-[24px] py-[16px] gap-[8px] bg-[#042E23] hover:bg-[#022018] text-white transition shrink-0 cursor-pointer shadow-md active:scale-95 flex flex-row items-center justify-center disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {subscribed ? (
                       <span className="flex items-center space-x-1.5 text-[#FFED25]">
                         <Check className="w-5 h-5" />
-                        <span>Subscribed</span>
+                        <span>Done!</span>
                       </span>
+                    ) : loading ? (
+                      <span className="font-sans font-normal text-[14px] text-white whitespace-nowrap">Saving...</span>
                     ) : (
                       <span className="font-sans font-normal text-[16px] leading-[140%] tracking-normal text-white text-center whitespace-nowrap">
                         Sign Up
@@ -107,7 +141,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </div>
                 {subscribed && (
                   <p className="text-sm text-[#FFED25] mt-2 font-medium">
-                    Thank you for subscribing to Skymyst updates!
+                    ✅ Thank you for subscribing to Skymyst updates!
+                  </p>
+                )}
+                {error && (
+                  <p className="text-sm text-red-300 mt-2 font-medium">
+                    ⚠️ {error}
                   </p>
                 )}
               </form>

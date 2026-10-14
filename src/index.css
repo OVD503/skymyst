@@ -179,3 +179,22 @@ img, video {
     font-size: 16px; /* Prevents iOS zoom */
   }
 }
+
+/* ─── Infinite Review Scroll Animations ─────────────────────────── */
+@keyframes scroll-up {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.review-scroll-col {
+  animation: scroll-up linear infinite;
+  will-change: transform;
+}
+
+.review-scroll-col-slow   { animation-duration: 30s; }
+.review-scroll-col-medium { animation-duration: 24s; }
+.review-scroll-col-fast   { animation-duration: 20s; }
+
+.review-scroll-col:hover {
+  animation-play-state: paused;
+}
